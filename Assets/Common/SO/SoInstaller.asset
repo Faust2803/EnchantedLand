@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab2f22b9a01ec594cb1261edcfdd8f7b, type: 3}
+  m_Name: SoInstaller
+  m_EditorClassIdentifier: 
+  _windowsConfig: {fileID: 11400000, guid: dddbed3935b2f6d479e8d5cad28c07a9, type: 2}
+  _panelConfig: {fileID: 11400000, guid: ac1fb1ca9b4622447b0a746bc6a613d6, type: 2}
+  _avatarConfig: {fileID: 11400000, guid: cca0004328f59aa4c8a524bfe68e4f1d, type: 2}
+  _monsterConfig: {fileID: 11400000, guid: 77024144980377a47b9b8af93c8e78c9, type: 2}
+  _castleConfig: {fileID: 11400000, guid: bb179dd077d9ac54794c9ace3c8deb3f, type: 2}
+  _tripConfig: {fileID: 11400000, guid: 2d83dc7caef98c74e82e4997d6c01059, type: 2}
+  _questConfig: {fileID: 11400000, guid: 1d8493350c655fd498374e498894093b, type: 2}
