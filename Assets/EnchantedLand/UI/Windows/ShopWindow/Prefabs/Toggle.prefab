@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Tanks
+  m_text: "\u0411\u0440\u043E\u043D\u044F"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7c5319f71f8a74eeea9b83e875a8b3b8, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: ec650a673c704408bbb250bd522f0c33, type: 2}
@@ -202,8 +202,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0f3f8742a228c1240988f941a8a70e3d, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 25e974c6ba2553d488bf23d2efce10fd, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -444,8 +444,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a838d8d7865a5a84eb5512c184ef4a0c, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 053f2e53bbff2c5458f3d87852677aad, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

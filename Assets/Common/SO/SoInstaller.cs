@@ -9,25 +9,16 @@ namespace SO.Scripts
         [SerializeField] public WindowsConfig _windowsConfig;
         [SerializeField] public PanelsConfig _panelConfig;
         
-        
         //For game
-        [SerializeField] public AvatarConfig _avatarConfig;
-        [SerializeField] public MonsterConfig _monsterConfig;
-        [SerializeField] public СastleConfig _castleConfig;
-        [SerializeField] public TripConfig _tripConfig;
-        [SerializeField] public QuestConfig _questConfig;
-
+        [SerializeField] public AvatarImageService _avatarImageService;
+        
         public override void InstallBindings()
         {
             Container.BindInstance(_windowsConfig).IfNotBound();
             Container.BindInstance(_panelConfig).IfNotBound();
             
             //For game
-            Container.BindInstance(_avatarConfig).IfNotBound();
-            Container.BindInstance(_monsterConfig).IfNotBound();
-            Container.BindInstance(_castleConfig).IfNotBound();
-            Container.BindInstance(_questConfig).IfNotBound();
-            Container.BindInstance(_tripConfig).IfNotBound();
+            Container.BindInstance(_avatarImageService).IfNotBound();
         }
     }
 }

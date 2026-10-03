@@ -8,5 +8,6 @@
         ConnectionWindow,
         NotEnafMoney,
         MessageWindow,
+        TutorialWindow,
     }
 }

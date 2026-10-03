@@ -8,8 +8,10 @@ namespace UI.Panels
     {
         [Space]
         [SerializeField] private Button  _startButton;
+        [SerializeField] private Slider  _progressSlider;
         
         public Button  StartButton => _startButton;
+        public Slider  ProgressSlider => _progressSlider;
         
         protected override BaseMediator CreateMediator()
         {

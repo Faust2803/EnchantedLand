@@ -1,7 +1,7 @@
 using System;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Serialization;
+using EnchantedLand.Common.DataModels;
+using SO.Scripts;
+
 
 namespace Tanks.Common.Scripts.Player
 {
@@ -10,6 +10,9 @@ namespace Tanks.Common.Scripts.Player
     {
       
         public int Currency;
+        public int RaseId;
+        public Characteristics BaseCharacteristics;
+        public Characteristics CurrentCharacteristics;
     }
     
     

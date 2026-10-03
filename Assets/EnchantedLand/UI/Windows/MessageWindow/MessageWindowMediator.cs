@@ -17,7 +17,6 @@ namespace UI.Windows
             
             Target.CancelButton.onClick.AddListener(OnCancelButtonClicked);
             Target.OkButton.onClick.AddListener(OnOkButtonClicked);
-            Target.CloseButton.onClick.AddListener(OnCancelButtonClicked);
 
             if (Data.OkButtonText != null)
             {
@@ -95,7 +94,6 @@ namespace UI.Windows
             Data.TextAnimation = false;
             Target.CancelButton.onClick.RemoveListener(OnCancelButtonClicked);
             Target.OkButton.onClick.RemoveListener(OnOkButtonClicked);
-            Target.CloseButton.onClick.RemoveListener(OnCancelButtonClicked);
             base.CloseStart();
         }
         

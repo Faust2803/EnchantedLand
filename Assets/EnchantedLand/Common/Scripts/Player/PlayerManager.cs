@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-
-
+using EnchantedLand.Common.DataModels;
+using SO.Scripts;
 using UnityEngine;
 
 namespace Tanks.Common.Scripts.Player
@@ -15,7 +15,7 @@ namespace Tanks.Common.Scripts.Player
         private string SavePath => Path.Combine(Application.persistentDataPath, FileName);
         public PlayerData Data => _data;
         
-        private readonly ConfigsManager _configsManager;
+
 
         
         public static Action<int> OnCurrencyChanged;
@@ -23,9 +23,8 @@ namespace Tanks.Common.Scripts.Player
         public int CurrentMapId { get;  set; }
         public int CurrentPlayerCount { get;  set; }
 
-        public PlayerManager(ConfigsManager configsManager)
+        public PlayerManager()
         {
-            _configsManager = configsManager;
             Load();
         }
 
@@ -85,7 +84,10 @@ namespace Tanks.Common.Scripts.Player
         {
             _data = new PlayerData
             {
-                Currency = 100
+                BaseCharacteristics = new Characteristics(),
+                RaseId = 0,
+                CurrentCharacteristics = new Characteristics(),
+                Currency = 200
             };
         }
 
