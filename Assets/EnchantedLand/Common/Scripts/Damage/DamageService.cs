@@ -15,6 +15,8 @@ namespace EnchantedLand.Common.Damage
         private AvatarImageService _avatarImageService;
         private List<DamageDTO> _damageDTO = new();
         public IReadOnlyList<DamageDTO> DamageDTO => _damageDTO;
+        private string SheetUrl => "https://docs.google.com/spreadsheets/d/e/2PACX-1vRgOkzycG2abPB1w6LScMWBTGLVAx62vSXtimAjeuA2t2Qp5KyRUScbnuoGO8m9H3hl0J2YRJEn3BTR/pub?gid=869588206&single=true&output=csv";
+        
         public int Count => _damageDTO.Count;
 
         public Action<bool> LoadCompleat;
@@ -30,7 +32,7 @@ namespace EnchantedLand.Common.Damage
         
         private async UniTask Load()
         {
-            List<DamageDTO> data = await _googleSheetsService.LoadSheet<DamageDTO>(GoogleSheetsURL.Damage);
+            List<DamageDTO> data = await _googleSheetsService.LoadSheet<DamageDTO>(SheetUrl);
 
             if (data == null || data.Count == 0)
             {

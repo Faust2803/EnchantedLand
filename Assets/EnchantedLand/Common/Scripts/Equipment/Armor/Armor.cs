@@ -1,26 +1,29 @@
 using System;
 using EnchantedLand.Common.DataModels;
+using EnchantedLand.Common.Scripts;
 using UnityEngine;
 
 namespace EnchantedLand.Common.Armor
 {
     [Serializable]
-    public class Armor
+    public class Armor : IIdentifiable
     {
-        public int ID;
-        public Sprite Image;
-        public string Title;
-        public string Description;
-        public int Price;
+        public int ID { get; set; }
+        public Sprite Image { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public int Price { get; set; }
+        public EquipmentSlotID SlotId { get; set; }
+        public bool InShop { get; set; }
+        public int Weight { get; set; }
+        
         public Characteristics NeededCharacteristics;
         public Characteristics InfluenceCharacteristics;
         public Skills Skills;
         public Resistance Resistance;
         public int MaxStrength;
         public int CurrentStrength;
-        public int Weight;
-        public EquipmentSlotID SlotId;
-        public bool InShop = true;
+
     }
     
     [Serializable]

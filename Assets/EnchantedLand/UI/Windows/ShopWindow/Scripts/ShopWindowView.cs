@@ -19,9 +19,12 @@ namespace UI.Windows
         [SerializeField] private Button  _leftButton;
         [SerializeField] private Button  _rightButton;
         [Space]
-        [SerializeField] private RawImage  _itemImage;
+        [SerializeField] private Image  _itemImage;
         [SerializeField] private TextMeshProUGUI  _titleText;
         [SerializeField] private TextMeshProUGUI  _descriptionText;
+        [SerializeField] private TextMeshProUGUI  _priceText;
+        [SerializeField] private TextMeshProUGUI  _weightItemText;
+        
         [Space]
         [SerializeField] private Button  _finishButton;
         public List<Toggle>  ShopTabToggle => _shopTabToggle;
@@ -31,11 +34,64 @@ namespace UI.Windows
         public Button  LeftButton => _leftButton;
         public Button  RightButton => _rightButton;
         public Button  FinishButton => _finishButton;
-        public RawImage  ItemImage => _itemImage;
-        public TextMeshProUGUI  MoneyText => _moneyText;
-        public TextMeshProUGUI  WeightText => _weightText;
-        public TextMeshProUGUI  TitleText => _titleText;
-        public TextMeshProUGUI  DescriptionText => _descriptionText;
+        public Sprite  ItemImage
+        { 
+            set => _itemImage.sprite = value;
+        } 
+
+        public string TitleText
+        {
+            get => _titleText.text;
+            set
+            {
+                _titleText.text = value;
+            } 
+        } 
+        public string  DescriptionText
+        {
+            get => _descriptionText.text;
+            set
+            {
+                _descriptionText.text = value;
+            } 
+        }
+        
+        public string  MoneyText
+        {
+            get => _moneyText.text;
+            set
+            {
+                _moneyText.text = value;
+            } 
+        }
+        
+        public string  WeightText
+        {
+            get => _moneyText.text;
+            set
+            {
+                _moneyText.text = value;
+            } 
+        }
+        
+        public string  PriceText
+        {
+            get => _priceText.text;
+            set
+            {
+                _priceText.text = value + " монет";
+            } 
+        }
+        
+        public string  WeightItemText
+        {
+            get => _weightItemText.text;
+            set
+            {
+                _weightItemText.text = value+ "кг." ;
+            } 
+        }
+
         protected override BaseMediator CreateMediator()
         {
             _mediator = new ShopWindowMediator();

@@ -1,37 +1,14 @@
-using System.Collections.Generic;
-using Common.Scripts.GoogleSheets;
-using Cysharp.Threading.Tasks;
+
 using EnchantedLand.Common.Armor;
 using EnchantedLand.Common.DataModels;
-using EnchantedLand.Common.Scripts.Equipment;
-using UnityEngine;
 
 namespace EnchantedLand.Common.Weapon
 {
-    public class WeaponManager : EquipmentManager
+    public class WeaponManager : EquipmentManager<Weapon, WeaponDTO>
     {
-        private List<Common.Weapon.Weapon> _weapon = new();
-        public IReadOnlyList<Common.Weapon.Weapon> Weapon => _weapon;
-        public int Count => _weapon.Count;
+        protected override string SheetUrl => "https://docs.google.com/spreadsheets/d/e/2PACX-1vRgOkzycG2abPB1w6LScMWBTGLVAx62vSXtimAjeuA2t2Qp5KyRUScbnuoGO8m9H3hl0J2YRJEn3BTR/pub?gid=2002456010&single=true&output=csv";
         
-        protected override async UniTask Load()
-        {
-            List<WeaponDTO> data = await _googleSheetsService.LoadSheet<WeaponDTO>(GoogleSheetsURL.Weapon);
-
-            if (data == null || data.Count == 0)
-            {
-                Debug.LogError("Weapon data is empty.");
-                return;
-            }
-            _weapon.Clear();
-            foreach (WeaponDTO dto in data)
-            {
-                _weapon.Add(Create(dto));
-            }
-            Debug.Log($"Weapon loaded: {_weapon.Count}");
-        }
-        
-        private Weapon Create(WeaponDTO dto)
+        protected override Weapon Create(WeaponDTO dto)
         {
             return new Weapon
             {
@@ -80,17 +57,6 @@ namespace EnchantedLand.Common.Weapon
                     _damageService.GetById(dto.Damage_ID_2)
                 }
             };
-        }
-
-        public Weapon GetById(int id)
-        {
-            foreach (Weapon item in _weapon)
-            {
-                if (item.ID == id)
-                    return item;
-            }
-            Debug.LogError($"weapon with ID {id} not found.");
-            return null;
         }
     }
 }

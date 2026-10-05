@@ -9,7 +9,8 @@ namespace Common.Scripts.Tutorial
     public class TutorialManager
     {
         private const string CURRENT_TUTORIAL_KEY = "CurrentTutorial";
-        
+        private const string  SheetUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRgOkzycG2abPB1w6LScMWBTGLVAx62vSXtimAjeuA2t2Qp5KyRUScbnuoGO8m9H3hl0J2YRJEn3BTR/pub?gid=0&single=true&output=csv";
+
         private GoogleSheetsService _googleSheetsService;
         private List<TutorialModel> _tutorials = new();
         public int TutorialCount => _tutorials.Count;
@@ -29,7 +30,7 @@ namespace Common.Scripts.Tutorial
         private async UniTask LoadTutorialData()
         {
             _tutorials = await _googleSheetsService
-                .LoadSheet<TutorialModel>(GoogleSheetsURL.Tutorial);
+                .LoadSheet<TutorialModel>(SheetUrl);
 
             if (_tutorials == null || _tutorials.Count == 0)
             {

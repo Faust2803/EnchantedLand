@@ -1,4 +1,8 @@
-﻿using Tanks.Common.Scripts.Player;
+﻿using System;
+using EnchantedLand.Common.Armor;
+using EnchantedLand.Common.Scripts;
+using EnchantedLand.Common.Weapon;
+using Tanks.Common.Scripts.Player;
 using UnityEngine;
 using Zenject;
 
@@ -6,13 +10,20 @@ namespace UI.Windows
 {
     public class ShopWindowMediator :BaseWindowMediator <ShopWindowView, UIData>
     {
-        
         private PlayerManager _playerManager;
-        private Camera _camera;
+        private ArmorManager _armorManager;
+        private WeaponManager _weaponManager;
+
+        private int _counter;
+        private ItemType _activeType;
+        private IIdentifiable _activeItem; 
+
         [Inject]
-        private void Construct(PlayerManager playerManager)
+        private void Construct(PlayerManager playerManager, ArmorManager armorManager, WeaponManager weaponManager)
         {
             _playerManager = playerManager;
+            _armorManager = armorManager;
+            _weaponManager = weaponManager;
         }
         
         private void OnCurrencvCange()
@@ -20,11 +31,7 @@ namespace UI.Windows
             //Target.CurrencyText.text =_playerManager.Data.Currency.ToString();
         }
         
-        private void OnBankButton()
-        {
-            _uiManager.OpenWindow(WindowType.BankWindow);
-            CloseSelf();
-        }
+        
 		
         protected override void ShowStart()
         {
@@ -35,9 +42,23 @@ namespace UI.Windows
                 Target.ShopTabToggle[i].onValueChanged.AddListener(OnToggleClicked);
             }
             Target.ShopTabToggle[0].isOn = true;
+            Target.LeftButton.onClick.AddListener(PrewItem);
+            Target.RightButton.onClick.AddListener(NextItem);
             OnToggleClicked(true);
-            //Target.BankButton.onClick.AddListener(OnBankButton);
+            
             OnCurrencvCange();
+        }
+
+        private void NextItem()
+        {
+            _counter++;
+            GetShopItem();
+        }
+
+        private void PrewItem()
+        {
+            _counter--;
+            GetShopItem();
         }
 
         private void OnToggleClicked(bool isOn)
@@ -48,21 +69,66 @@ namespace UI.Windows
                 {
                     if (Target.ShopTabToggle[i].isOn)
                     {
-                        
+                        _counter = 0;
+                        _activeType = (ItemType)i;
+                        GetShopItem();
                     }
-                    else
-                    {
-                        
-                    }
-                    
-                    
                 }
             }
         }
+
+        private void GetShopItem()
+        {
+            switch (_activeType)
+            {
+                case ItemType.Armor:
+                    if (_armorManager.Count == _counter) _counter = 0;
+                    _activeItem = _armorManager.GetByIndex(_counter);
+                    break;
+                case ItemType.Weapons:
+                    if (_weaponManager.Count == _counter) _counter = 0;
+                    _activeItem = _weaponManager.GetByIndex(_counter);
+                    break;
+                case ItemType.Elecsire:
+                    
+                    break;
+                case ItemType.Other:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            ShowItem();
+        }
+
+        private void ShowItem()
+        {
+            if (_activeItem == null) return;
+            if (_activeItem.InShop)
+            {
+                Target.TitleText = _activeItem.Title;
+                Target.DescriptionText = _activeItem.Description;
+                Target.ItemImage = _activeItem.Image;
+                Target.PriceText = _activeItem.Price.ToString();
+                Target.WeightItemText = _activeItem.Weight.ToString();
+            }
+            else
+            {
+                _counter++;
+                GetShopItem();
+            }
+        }
+
+        private enum ItemType
+        {
+            Armor,
+            Weapons,
+            Elecsire,
+            Other
+        }
+        
         
         protected override void CloseStart()
         { 
-            //Target.BankButton.onClick.RemoveListener(OnBankButton);
             for (var i = 0; i < Target.ShopTabToggle.Count; i++)
             {
                 Target.ShopTabToggle[i].onValueChanged.RemoveListener(OnToggleClicked);

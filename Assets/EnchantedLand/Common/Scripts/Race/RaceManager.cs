@@ -10,6 +10,7 @@ namespace EnchantedLand.Common.Race
 {
     public class RaceManager
     {
+        private const string GoogleSheetsURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRgOkzycG2abPB1w6LScMWBTGLVAx62vSXtimAjeuA2t2Qp5KyRUScbnuoGO8m9H3hl0J2YRJEn3BTR/pub?gid=1215578610&single=true&output=csv";
         private GoogleSheetsService _googleSheetsService;
         private AvatarImageService _avatarImageService;
         private List<Race> _races = new();
@@ -27,7 +28,7 @@ namespace EnchantedLand.Common.Race
 
         private async UniTask Load()
         {
-            List<RaceDTO> data = await _googleSheetsService.LoadSheet<RaceDTO>(GoogleSheetsURL.Race);
+            List<RaceDTO> data = await _googleSheetsService.LoadSheet<RaceDTO>(GoogleSheetsURL);
 
             if (data == null || data.Count == 0)
             {
@@ -71,21 +72,6 @@ namespace EnchantedLand.Common.Race
             }
             Debug.LogError($"Race with ID {id} not found.");
             return null;
-        }
-
-        public bool TryGetRaceById(int id, out Race race)
-        {
-            foreach (Race item in _races)
-            {
-                if (item.Id == id)
-                {
-                    race = item;
-                    return true;
-                }
-            }
-
-            race = null;
-            return false;
         }
     }
 }
