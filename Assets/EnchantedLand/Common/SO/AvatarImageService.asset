@@ -14,30 +14,228 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SO.Scripts.AvatarImageService
   _avatarList:
   - Id: 0
+    ImagePreview: {fileID: 0}
+    ImageEquipment: {fileID: 0}
     ImageInterface: {fileID: 21300000, guid: d7e65904b09f38b448da450ac9d01bb0, type: 3}
-    ImageEquipment: {fileID: 0}
   - Id: 1
+    ImagePreview: {fileID: 0}
+    ImageEquipment: {fileID: 0}
     ImageInterface: {fileID: 21300000, guid: 276f9a77a2346ed498a52e94e828b1b0, type: 3}
-    ImageEquipment: {fileID: 0}
   - Id: 2
+    ImagePreview: {fileID: 0}
+    ImageEquipment: {fileID: 0}
     ImageInterface: {fileID: 21300000, guid: 0f0e98e568f5f51498f5df8b4bfac855, type: 3}
-    ImageEquipment: {fileID: 0}
   - Id: 3
+    ImagePreview: {fileID: 0}
+    ImageEquipment: {fileID: 0}
     ImageInterface: {fileID: 21300000, guid: 3f436db0c8da07a43b70c6cf0a046771, type: 3}
-    ImageEquipment: {fileID: 0}
   - Id: 4
+    ImagePreview: {fileID: 0}
+    ImageEquipment: {fileID: 0}
     ImageInterface: {fileID: 21300000, guid: aac9ee14ce689be498e87c12e5a0cfee, type: 3}
-    ImageEquipment: {fileID: 0}
   - Id: 5
+    ImagePreview: {fileID: 0}
+    ImageEquipment: {fileID: 0}
     ImageInterface: {fileID: 21300000, guid: eafeaa3beaac45541aa6103c6e53e29c, type: 3}
-    ImageEquipment: {fileID: 0}
   - Id: 6
+    ImagePreview: {fileID: 0}
+    ImageEquipment: {fileID: 0}
     ImageInterface: {fileID: 21300000, guid: f6db12fed834714419a36b343b69cf37, type: 3}
-    ImageEquipment: {fileID: 0}
   - Id: 7
+    ImagePreview: {fileID: 0}
+    ImageEquipment: {fileID: 0}
     ImageInterface: {fileID: 21300000, guid: 04a474d529042ce42921782e059a1c73, type: 3}
-    ImageEquipment: {fileID: 0}
   - Id: 8
-    ImageInterface: {fileID: 21300000, guid: a956d63e62bdf094f8c0603301be630e, type: 3}
+    ImagePreview: {fileID: 0}
     ImageEquipment: {fileID: 0}
-  _weaponsList: []
+    ImageInterface: {fileID: 21300000, guid: a956d63e62bdf094f8c0603301be630e, type: 3}
+  _weaponsList:
+  - Id: 0
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 1
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 2
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 3
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 4
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 5
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 6
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 7
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 8
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 9
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 10
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 11
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 12
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 13
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 14
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 15
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 16
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 17
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 18
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 19
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 20
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  _armorsList:
+  - Id: 0
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 1
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 2
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 3
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 4
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 5
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 6
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 7
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 8
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 9
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 10
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 11
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 12
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 13
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 14
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 15
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 16
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 17
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 18
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 19
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 20
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 21
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 22
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 23
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 24
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+  - Id: 25
+    ImagePreview: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageEquipment: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}
+    ImageInterface: {fileID: 21300000, guid: f97590080ae00604dbb756240ec1bacc, type: 3}

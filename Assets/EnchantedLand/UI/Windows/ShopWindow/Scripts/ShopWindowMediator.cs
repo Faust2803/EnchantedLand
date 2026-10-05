@@ -17,7 +17,7 @@ namespace UI.Windows
         
         private void OnCurrencvCange()
         {
-            Target.CurrencyText.text =_playerManager.Data.Currency.ToString();
+            //Target.CurrencyText.text =_playerManager.Data.Currency.ToString();
         }
         
         private void OnBankButton()
@@ -36,7 +36,7 @@ namespace UI.Windows
             }
             Target.ShopTabToggle[0].isOn = true;
             OnToggleClicked(true);
-            Target.BankButton.onClick.AddListener(OnBankButton);
+            //Target.BankButton.onClick.AddListener(OnBankButton);
             OnCurrencvCange();
         }
 
@@ -62,7 +62,7 @@ namespace UI.Windows
         
         protected override void CloseStart()
         { 
-            Target.BankButton.onClick.RemoveListener(OnBankButton);
+            //Target.BankButton.onClick.RemoveListener(OnBankButton);
             for (var i = 0; i < Target.ShopTabToggle.Count; i++)
             {
                 Target.ShopTabToggle[i].onValueChanged.RemoveListener(OnToggleClicked);

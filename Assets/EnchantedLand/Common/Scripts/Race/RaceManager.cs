@@ -22,10 +22,10 @@ namespace EnchantedLand.Common.Race
             _googleSheetsService = googleSheetsService;
             _avatarImageService = avatarImageService;
 
-            LoadRaces().Forget();
+            Load().Forget();
         }
 
-        private async UniTask LoadRaces()
+        private async UniTask Load()
         {
             List<RaceDTO> data = await _googleSheetsService.LoadSheet<RaceDTO>(GoogleSheetsURL.Race);
 

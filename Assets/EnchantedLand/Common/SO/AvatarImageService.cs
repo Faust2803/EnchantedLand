@@ -10,6 +10,7 @@ namespace SO.Scripts
     {
         [SerializeField] private  List<Avatar> _avatarList = null;
         [SerializeField] private  List<Avatar> _weaponsList = null;
+        [SerializeField] private  List<Avatar> _armorsList = null;
         
         public Avatar GeAvatar(int type)
         {
@@ -24,7 +25,7 @@ namespace SO.Scripts
             return null;
         }
         
-        public Avatar GeWeapons(int type)
+        public Avatar GeWeapon(int type)
         {
             for (var i = 0; i < _weaponsList.Count; i++)
             {
@@ -33,7 +34,20 @@ namespace SO.Scripts
                     return _weaponsList[i];
                 }
             }
-            Debug.LogWarning("<color=#FF6600>Weapons Image: Avatar not found!!!</color>");
+            Debug.LogWarning("<color=#FF6600>Weapons Image: Weapon not found!!!</color>");
+            return null;
+        }
+        
+        public Avatar GetArmor(int type)
+        {
+            for (var i = 0; i < _armorsList.Count; i++)
+            {
+                if (_armorsList[i].Id == type)
+                {
+                    return _armorsList[i];
+                }
+            }
+            Debug.LogWarning("<color=#FF6600>Armors Image: Armor not found!!!</color>");
             return null;
         }
     }
@@ -42,8 +56,9 @@ namespace SO.Scripts
     public class Avatar
     {
         public int Id;
-        public Sprite ImageInterface;
+        public Sprite ImagePreview;
         public Sprite ImageEquipment;
-        
+        public Sprite ImageInterface;
+
     }
 }

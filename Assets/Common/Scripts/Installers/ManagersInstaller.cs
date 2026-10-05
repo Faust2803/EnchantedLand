@@ -1,9 +1,11 @@
 ﻿using Common.Scripts.GoogleSheets;
 using Common.Scripts.Network;
 using Common.Scripts.Tutorial;
+using EnchantedLand.Common.Armor;
+using EnchantedLand.Common.Damage;
 using EnchantedLand.Common.Race;
+using EnchantedLand.Common.Weapon;
 using Managers;
-using Tanks.Common.Scripts;
 using Tanks.Common.Scripts.Player;
 using Util;
 using Zenject;
@@ -20,6 +22,10 @@ namespace Installers
             Container.BindInterfacesAndSelfTo<PlayerManager>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<TutorialManager>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<RaceManager>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<DamageService>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<ArmorManager>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<WeaponManager>().AsSingle().NonLazy();
+            
             
             Container.BindInterfacesAndSelfTo<NetworkService>().AsSingle();
         }

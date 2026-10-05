@@ -31,9 +31,8 @@ namespace EnchantedLand.Common.DataModels
         public float Ice = 0;
         public float Acid = 0;
         public float Electricity = 0;
-        public float Poison = 0;
         public float Paralysis = 0;
-        public float Deatch = 0;
+        public float Death = 0;
     }
     
 }
