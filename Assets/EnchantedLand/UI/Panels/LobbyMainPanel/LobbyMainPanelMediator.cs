@@ -1,4 +1,6 @@
-﻿using EnchantedLand.Common.Race;
+﻿using Common.Scripts.Tutorial;
+using EnchantedLand.Common.DataModels;
+using EnchantedLand.Common.Race;
 using Tanks.Common.Scripts.Player;
 using UI.Windows;
 
@@ -17,11 +19,14 @@ namespace UI.Panels
         private const string BASE_RASE_DESCRIPTION = "\n\nРАСА";
         private const string BASE_CHARACTERISTICS_DESCRIPTION = "\n\nХАРАКТЕРИСТИКИ";
         
+        private TutorialManager _tutorialManager;
+        
         [Inject]
-        private void Construct(PlayerManager playerManager)
+        private void Construct(PlayerManager playerManager, TutorialManager tutorialManager)
         {
             _playerManager = playerManager;
             _free_and_skilled = FREE_AND_SKILLED;
+           _tutorialManager = tutorialManager;
         }
 		
         protected override void ShowStart()
@@ -58,11 +63,11 @@ namespace UI.Panels
                                       + "\n\nПОДТВЕРЖДЕНИЕ\nПроверь выбранные параметры и заверши создание персонажа, чтобы начать своё путешествие.";
         }
 
-        private void ChangeParametr(int id, bool isAdded, int counter)
+        private void ChangeParametr(CharacteristicsID id, bool isAdded, int counter)
         {
             for (var i = 0; i < Target.ParamsPanel.Count; i++)
             {
-                if (id == i)
+                if (id == Target.ParamsPanel[i].CharacteristicId)
                 {
                     if (isAdded)
                     {
@@ -88,7 +93,6 @@ namespace UI.Panels
             }
         }
 
-
         private void OnStartButtonClicked()
         {
             /*var result = await _sceneLoader.LoadScene(SceneName.Game.ToString(),
@@ -102,22 +106,49 @@ namespace UI.Panels
             {
                 CloseSelf();
             }*/
-            _uiManager.OpenWindow(WindowType.ShopWindow);
-        }
-
-        protected override void CloseStart()
-        {
-            Target.StartButton.onClick.RemoveListener(OnStartButtonClicked);
+            var characteristics = new Characteristics();
             for (var i = 0; i < Target.ParamsPanel.Count; i++)
             {
                 Target.ParamsPanel[i].OnChange -= ChangeParametr;
+                switch (Target.ParamsPanel[i].CharacteristicId)
+                {
+                    case CharacteristicsID.Strength:
+                        characteristics.Strength = Target.ParamsPanel[i].Result;
+                        break;
+                    case CharacteristicsID.Intelligence:
+                        characteristics.Intelligence = Target.ParamsPanel[i].Result;
+                        break;
+                    case CharacteristicsID.Agility:
+                        characteristics.Agility = Target.ParamsPanel[i].Result;
+                        break;
+                    case CharacteristicsID.Charisma:
+                        characteristics.Charisma = Target.ParamsPanel[i].Result;
+                        break;
+                    case CharacteristicsID.Endurance:
+                        characteristics.Endurance = Target.ParamsPanel[i].Result;
+                        break;
+                }
             }
+            _playerManager.Data.SaveCharacteristics(Target.RaseSelector.CurrentRace, characteristics);
+            _playerManager.Save();
+            
+            
+            
+            if (_tutorialManager.CurrentTutorialIndex == 1 )
+            {
+                _uiManager.OpenWindow(WindowType.TutorialWindow);
+            }
+            _uiManager.OpenWindow(WindowType.ShopWindow);
+            
+            _uiManager.ClosePanel(PanelType.LobbyMainPanel);
+        }
+        protected override void CloseStart()
+        {
+            Target.StartButton.onClick.RemoveListener(OnStartButtonClicked);
+            
             Target.RaseSelector.OnRaseSelected -= RaseSelected;
             base.CloseStart();
         }
-
-        
-        
     }
     
 }

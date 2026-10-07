@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -584, y: -139}
+  m_AnchoredPosition: {x: 0, y: -2.75}
+  m_SizeDelta: {x: -584, y: -278.90005}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3608410528020239513
 CanvasRenderer:
@@ -724,7 +724,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8028278265772850447, guid: 04c8a3d0e17e88746951a08a702d2ad0, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -120
+      value: -106.4
       objectReference: {fileID: 0}
     - target: {fileID: 8028278265772850447, guid: 04c8a3d0e17e88746951a08a702d2ad0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -801,11 +801,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5117332396544549186, guid: 3aff8799418d50c46b8f6096cff32a19, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -200
+      value: -163.89987
       objectReference: {fileID: 0}
     - target: {fileID: 5117332396544549186, guid: 3aff8799418d50c46b8f6096cff32a19, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -438.18994
+      value: -400.6001
       objectReference: {fileID: 0}
     - target: {fileID: 5117332396544549186, guid: 3aff8799418d50c46b8f6096cff32a19, type: 3}
       propertyPath: m_LocalPosition.x
@@ -837,11 +837,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5117332396544549186, guid: 3aff8799418d50c46b8f6096cff32a19, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 0.64990234
       objectReference: {fileID: 0}
     - target: {fileID: 5117332396544549186, guid: 3aff8799418d50c46b8f6096cff32a19, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 8.305016
+      value: 18.49997
       objectReference: {fileID: 0}
     - target: {fileID: 5117332396544549186, guid: 3aff8799418d50c46b8f6096cff32a19, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

@@ -48,7 +48,7 @@ namespace EnchantedLand.Common.Race
             return new Race
             {
                 Id = dto.Id,
-                Image = _avatarImageService.GeAvatar(dto.ImageID).ImageInterface,
+                Image = _avatarImageService.GeAvatar(dto.ImageID).EquipedImage,
                 Title = dto.Title,
                 Description = dto.Description,
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using EnchantedLand.Common.Race;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace SO.Scripts
 {
@@ -56,9 +57,9 @@ namespace SO.Scripts
     public class Avatar
     {
         public int Id;
-        public Sprite ImagePreview;
-        public Sprite ImageEquipment;
-        public Sprite ImageInterface;
+        [FormerlySerializedAs("ImagePreview")] public Sprite PreviewImage;
+        [FormerlySerializedAs("ImageEquipment")] public Sprite StorageImage;
+        [FormerlySerializedAs("ImageInterface")] public Sprite EquipedImage;
 
     }
 }

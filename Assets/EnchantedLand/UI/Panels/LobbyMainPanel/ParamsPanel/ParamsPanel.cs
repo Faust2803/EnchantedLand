@@ -1,4 +1,5 @@
 using System;
+using EnchantedLand.Common.DataModels;
 using EnchantedLand.Common.Race;
 using TMPro;
 using UnityEngine;
@@ -13,11 +14,10 @@ namespace UI.Panels.ParamsPanel
         [SerializeField] private Button _plusButton;
         [SerializeField] private Button _minusButton;
         [SerializeField] private RaseSelector.RaseSelector _raseSelector;
-        [SerializeField] private int _characteristicId;
+        [SerializeField] private CharacteristicsID _characteristicId;
         
 
         private int _change;
-        private int _result;
         private int _raseParam;
         private int _free;
         
@@ -25,8 +25,9 @@ namespace UI.Panels.ParamsPanel
         private const int MIN_PARAMS_STARTED = 4;
         
         
-        public Action<int, bool, int> OnChange;
-        public int Result => _result;
+        public Action<CharacteristicsID, bool, int> OnChange;
+        public int Result => _change;
+        public CharacteristicsID CharacteristicId => _characteristicId;
         private void OnEnable()
         {
             _plusButton.onClick.AddListener(OnPlusButtonClick);
@@ -41,19 +42,19 @@ namespace UI.Panels.ParamsPanel
         {
             switch (_characteristicId)
             {
-                case 0:
+                case CharacteristicsID.Strength:
                     _raseParam = obj.Characteristics.Strength;
                     break;
-                case 1:
+                case CharacteristicsID.Intelligence:
                     _raseParam = obj.Characteristics.Intelligence;
                     break;
-                case 2:
+                case CharacteristicsID.Agility:
                     _raseParam = obj.Characteristics.Agility;
                     break;
-                case 3:
+                case CharacteristicsID.Charisma:
                     _raseParam = obj.Characteristics.Charisma;
                     break;
-                case 4:
+                case CharacteristicsID.Endurance:
                     _raseParam = obj.Characteristics.Endurance;
                     break;
             }
@@ -65,7 +66,6 @@ namespace UI.Panels.ParamsPanel
         {
             _change = baseParams;
             _baseParamsText.text = _change.ToString();
-            _result = _change + _raseParam;
         }
 
         public void ButtonsIsActive(int free = 0)

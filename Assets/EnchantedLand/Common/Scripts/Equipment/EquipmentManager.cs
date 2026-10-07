@@ -4,6 +4,7 @@ using Cysharp.Threading.Tasks;
 using EnchantedLand.Common.Damage;
 using EnchantedLand.Common.Scripts;
 using SO.Scripts;
+using Tanks.Common.Scripts.Player;
 using UnityEngine;
 using Zenject;
 
@@ -11,14 +12,18 @@ public abstract class EquipmentManager<T, G>
     where T : IIdentifiable
     where G : new()
 {
-    protected GoogleSheetsService _googleSheetsService;
+    private GoogleSheetsService _googleSheetsService;
+    private PlayerManager _playerManager;
     protected AvatarImageService _avatarImageService;
     protected DamageService _damageService;
+    
 
-    protected List<T> _items = new();
+    private List<T> _items = new();
+    
 
     public IReadOnlyList<T> Items => _items;
     public int Count => _items.Count;
+    protected ItemType Type { get; set; }
 
     protected abstract string SheetUrl { get;}
 
@@ -26,11 +31,13 @@ public abstract class EquipmentManager<T, G>
     private void Construct(
         GoogleSheetsService googleSheetsService,
         AvatarImageService avatarImageService,
-        DamageService damageService)
+        DamageService damageService,
+        PlayerManager playerManager)
     {
         _googleSheetsService = googleSheetsService;
         _avatarImageService = avatarImageService;
         _damageService = damageService;
+        _playerManager = playerManager;
 
         if (_damageService.Count > 0)
         {
@@ -50,7 +57,7 @@ public abstract class EquipmentManager<T, G>
             Load().Forget();
     }
 
-    protected async UniTask Load()
+    protected virtual async UniTask Load()
     {
         List<G> data = await _googleSheetsService.LoadSheet<G>(SheetUrl);
 
@@ -65,8 +72,30 @@ public abstract class EquipmentManager<T, G>
             _items.Add(Create(dto));
         }
         Debug.Log($"{typeof(T).Name} loaded: {_items.Count}");
+        SetSavwdData();
     }
 
+    private void SetSavwdData()
+    {
+        for (var i = 0; i < _playerManager.Data.StorageSave.Count; i++)
+        {
+            if (_playerManager.Data.StorageSave[i].Type == Type)
+            {
+                var item = GetById(_playerManager.Data.StorageSave[i].Id);
+                _playerManager.Data.AddToStorage(item, false);
+            }
+        }
+        
+        for (var i = 0; i < _playerManager.Data.EquipedSave.Count; i++)
+        {
+            if (_playerManager.Data.EquipedSave[i].Type == Type)
+            {
+                var item = GetById(_playerManager.Data.EquipedSave[i].Id);
+                _playerManager.Data.Equip(item, false);
+            }
+        }
+    }
+    
     public T GetById(int id)
     {
         foreach (T item in _items)
@@ -85,6 +114,8 @@ public abstract class EquipmentManager<T, G>
         Debug.LogError($"{typeof(T).Name} with index {index} not found.");
         return default;
     }
+    
+    
 
     protected abstract T Create(G dto);
 }

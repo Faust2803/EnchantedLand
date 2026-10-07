@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Common.Scripts.GoogleSheets;
 using Cysharp.Threading.Tasks;
@@ -18,14 +19,16 @@ namespace Common.Scripts.Tutorial
 
         public int CurrentTutorialIndex => _currentTutorialIndex;
         public TutorialModel CurrentTutorial => GetTutorial(_currentTutorialIndex);
+        public Action OnLoadTutorialData;
 
 
         private TutorialManager(GoogleSheetsService googleSheetsService)
         {
             _googleSheetsService = googleSheetsService;
-             LoadCurrentTutorial();
+            OnLoadTutorialData += LoadCurrentTutorial;
             LoadTutorialData().Forget();
         }
+        
 
         private async UniTask LoadTutorialData()
         {
@@ -40,10 +43,12 @@ namespace Common.Scripts.Tutorial
 
             // Проверяем сохраненный индекс после загрузки уроков
             ValidateCurrentTutorial();
-
+            
             Debug.Log(
                 $"Tutorials loaded: {_tutorials.Count}. " +
                 $"Current tutorial: {_currentTutorialIndex}");
+            OnLoadTutorialData?.Invoke();
+            OnLoadTutorialData -= LoadCurrentTutorial;
         }
 
         // --------------------------------------------------
@@ -57,22 +62,7 @@ namespace Common.Scripts.Tutorial
                 Debug.LogError($"Tutorial index out of range: {index}");
                 return null;
             }
-
             return _tutorials[index];
-        }
-
-        public bool TryGetTutorial(
-            int index,
-            out TutorialModel tutorial)
-        {
-            if (index >= 0 && index < _tutorials.Count)
-            {
-                tutorial = _tutorials[index];
-                return true;
-            }
-
-            tutorial = null;
-            return false;
         }
 
         // --------------------------------------------------
@@ -86,20 +76,18 @@ namespace Common.Scripts.Tutorial
             Debug.Log($"Current tutorial saved: {_currentTutorialIndex}");
         }
 
-        private int LoadCurrentTutorial()
+        private void LoadCurrentTutorial()
         {
-            var index  = 0;
+
             if (PlayerPrefs.HasKey(CURRENT_TUTORIAL_KEY))
             {
-                index = PlayerPrefs.GetInt(CURRENT_TUTORIAL_KEY);
-                _currentTutorialIndex = index+1;
+                _currentTutorialIndex = PlayerPrefs.GetInt(CURRENT_TUTORIAL_KEY) + 1;
             }
             else
             {
-                _currentTutorialIndex = index;
+                _currentTutorialIndex = 0;
             }
             Debug.Log($"Current tutorial loaded: {_currentTutorialIndex}");
-            return index;
         }
 
         // --------------------------------------------------
@@ -132,8 +120,8 @@ namespace Common.Scripts.Tutorial
         public void NextTutorial()
         {
             if (_tutorials.Count == 0) return;
-            if (_currentTutorialIndex >= _tutorials.Count - 1) return;
             SaveCurrentTutorial();
+            if (_currentTutorialIndex >= _tutorials.Count) return;
             _currentTutorialIndex++;
         }
     }

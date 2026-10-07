@@ -11,13 +11,17 @@ namespace EnchantedLand.Common.Weapon
     public class Weapon : IIdentifiable
     {
         public int ID { get; set; }
-        public Sprite Image { get; set; }
+        public ItemType Type { get; set; }
+        public Sprite PreviewImage { get; set; }
+        public Sprite StorageImage { get; set; }
+        public Sprite EquipedImage { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public int Price { get; set; }
         public EquipmentSlotID SlotId { get; set; }
         public bool InShop { get; set; }
         public int Weight { get; set; }
+        public int Count { get; set; }
         
         public int MaxStrength;
         public int CurrentStrength;
@@ -70,5 +74,7 @@ namespace EnchantedLand.Common.Weapon
         public int Desttuction = 0;
         public int Armor = 0;
         public int Initiative = 0;
+
+        public int Count;
     }
 }

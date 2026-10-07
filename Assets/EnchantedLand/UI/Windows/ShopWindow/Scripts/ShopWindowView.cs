@@ -56,21 +56,11 @@ namespace UI.Windows
             } 
         }
         
-        public string  MoneyText
+        public int  MoneyText
         {
-            get => _moneyText.text;
             set
             {
-                _moneyText.text = value;
-            } 
-        }
-        
-        public string  WeightText
-        {
-            get => _moneyText.text;
-            set
-            {
-                _moneyText.text = value;
+                _moneyText.text = value.ToString();
             } 
         }
         
@@ -89,6 +79,14 @@ namespace UI.Windows
             set
             {
                 _weightItemText.text = value+ "кг." ;
+            } 
+        }
+        
+        public int  WeightText
+        {
+            set
+            {
+                _weightText.text = value+ "кг." ;
             } 
         }
 

@@ -1,4 +1,6 @@
 using EnchantedLand.Common.DataModels;
+using EnchantedLand.Common.Scripts;
+using UnityEngine;
 
 
 namespace EnchantedLand.Common.Armor
@@ -7,12 +9,20 @@ namespace EnchantedLand.Common.Armor
     {
         protected override string SheetUrl => "https://docs.google.com/spreadsheets/d/e/2PACX-1vRgOkzycG2abPB1w6LScMWBTGLVAx62vSXtimAjeuA2t2Qp5KyRUScbnuoGO8m9H3hl0J2YRJEn3BTR/pub?gid=1575724902&single=true&output=csv";
         
+        public ArmorManager()
+        {
+            Type = ItemType.Armor;
+        }
+        
         protected override Armor Create(ArmorDTO dto)
         {
             return new Armor
             {
                 ID = dto.ID,
-                Image = _avatarImageService.GetArmor(dto.Image_ID).ImageInterface,
+                PreviewImage = _avatarImageService.GetArmor(dto.Image_ID).PreviewImage,
+                EquipedImage = _avatarImageService.GetArmor(dto.Image_ID).EquipedImage,
+                StorageImage = _avatarImageService.GetArmor(dto.Image_ID).StorageImage,
+                Type = ItemType.Armor,
                 Title = dto.Title,
                 Description = dto.Description,
                 Price = dto.Price,
@@ -21,7 +31,7 @@ namespace EnchantedLand.Common.Armor
                 CurrentStrength = dto.Current_Strength,
                 MaxStrength = dto.Max_Strength,
                 Weight = dto.Weight,
-
+            
                 NeededCharacteristics = new Characteristics
                 {
                     Strength = dto.Need_Strength,
@@ -55,7 +65,9 @@ namespace EnchantedLand.Common.Armor
                     Electricity = dto.Resistics_Electricity,
                     Paralysis = dto.Resistics_Paralysis,
                     Death = dto.Resistics_Death,
-                }
+                },
+                
+                Count = dto.Count
             };
         }
     }

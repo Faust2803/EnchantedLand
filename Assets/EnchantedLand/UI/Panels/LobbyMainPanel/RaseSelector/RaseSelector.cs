@@ -28,11 +28,11 @@ namespace UI.Panels.RaseSelector
         [Inject] private RaceManager _raceManager;
         [Inject] private PlayerManager _playerManager;
         
-        public Race CurrentRace => _raceManager.Races[_playerManager.Data.RaseId];
+        public Race CurrentRace => _raceManager.Races[_playerManager.Data.RaсeId];
 
         private void Start()
         {
-            _currentRase = _playerManager.Data.RaseId; 
+            _currentRase = _playerManager.Data.RaсeId; 
             AddAllAvtar();
             OnRaseChanged();
         }
@@ -106,10 +106,10 @@ namespace UI.Panels.RaseSelector
             {
                 _items[i].gameObject.SetActive(i == _currentRase);
             }
-            _playerManager.Data.RaseId = _currentRase;
-            _title.text = $"Расса {_raceManager.Races[_playerManager.Data.RaseId].Title}";
+            _playerManager.Data.RaсeId = _currentRase;
+            _title.text = $"Расса {_raceManager.Races[_playerManager.Data.RaсeId].Title}";
             
-            OnRaseSelected?.Invoke(_raceManager.Races[_playerManager.Data.RaseId]); 
+            OnRaseSelected?.Invoke(_raceManager.Races[_playerManager.Data.RaсeId]); 
         }
     }
 }

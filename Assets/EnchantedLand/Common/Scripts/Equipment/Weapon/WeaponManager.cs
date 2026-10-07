@@ -1,19 +1,29 @@
 
+using Cysharp.Threading.Tasks;
 using EnchantedLand.Common.Armor;
 using EnchantedLand.Common.DataModels;
+using EnchantedLand.Common.Scripts;
 
 namespace EnchantedLand.Common.Weapon
 {
     public class WeaponManager : EquipmentManager<Weapon, WeaponDTO>
     {
         protected override string SheetUrl => "https://docs.google.com/spreadsheets/d/e/2PACX-1vRgOkzycG2abPB1w6LScMWBTGLVAx62vSXtimAjeuA2t2Qp5KyRUScbnuoGO8m9H3hl0J2YRJEn3BTR/pub?gid=2002456010&single=true&output=csv";
+
+        public WeaponManager()
+        {
+            Type = ItemType.Weapon;
+        }
         
         protected override Weapon Create(WeaponDTO dto)
         {
             return new Weapon
             {
                 ID = dto.ID,
-                Image = _avatarImageService.GeWeapon(dto.Image_ID).ImageInterface,
+                PreviewImage = _avatarImageService.GeWeapon(dto.Image_ID).PreviewImage,
+                EquipedImage = _avatarImageService.GeWeapon(dto.Image_ID).EquipedImage,
+                StorageImage = _avatarImageService.GeWeapon(dto.Image_ID).StorageImage,
+                Type = ItemType.Weapon,
                 Title = dto.Title,
                 Description = dto.Description,
                 Price = dto.Price,
@@ -55,7 +65,9 @@ namespace EnchantedLand.Common.Weapon
                     _damageService.GetById(dto.Damage_ID_0),
                     _damageService.GetById(dto.Damage_ID_1),
                     _damageService.GetById(dto.Damage_ID_2)
-                }
+                },
+                
+                Count = dto.Count
             };
         }
     }

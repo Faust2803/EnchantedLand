@@ -41,8 +41,7 @@ namespace UI.Windows
         private void OnOkButton()
         {
             _tutorialManager.NextTutorial();
-            CloseSelf(Data.OkAction);
-           
+            CloseSelf();
         }
         private void OnCancelButtonClicked()
         {

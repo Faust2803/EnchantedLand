@@ -14,7 +14,6 @@ namespace Tanks.Lobby.Scripts
     {
         private UiManager _uiManager;
         private TutorialManager _tutorialManager;
-        private bool _isFirstLoad = false;
 
 
         [Inject]
@@ -26,52 +25,33 @@ namespace Tanks.Lobby.Scripts
 
         void Start()
         {
-            var tutorial = _tutorialManager.CurrentTutorial;
-            if (tutorial.StepId == 0 )
+            if (_tutorialManager.CurrentTutorialIndex == 0 )
             {
-                _isFirstLoad = true;
-                _uiManager.OpenWindow(WindowType.TutorialWindow,
-                    new TutorialWindowData()
-                    {
-                        OkAction = OpenStart
-                    });
+                _uiManager.OpenWindow(WindowType.TutorialWindow);
+                _uiManager.OpenPanel(PanelType.LobbyMainPanel);
             }
             else
             {
                 OpenChosenStart();
             }
         }
-        
+
         private void OpenChosenStart()
         {
             var data = new MessageWindowData
             {
                 Title = "Начать игру",
                 Description = "Ты можешь начать  новую игру или запустить игру с того места где остановился прошлый раз",
-                CancelAction = OpenStart,
+                CancelAction = () => _uiManager.OpenPanel(PanelType.LobbyMainPanel),
+                OKAction = () => _uiManager.OpenWindow(WindowType.ShopWindow),
                 CancelButtonText = "Новая игра",
                 HasCancelButton = true,
-                OKAction = OpenContinue,
                 OkButtonText = "Продолжить игру",
                 HasOKButton = true,
             };
-
             _uiManager.OpenWindow(WindowType.MessageWindow,data);
         }
         
-        private void OpenContinue()
-        {
-            _uiManager.OpenWindow(WindowType.ConnectionWindow);
-        }
         
-        private void OpenStart()
-        {
-           _uiManager.OpenPanel(
-               PanelType.LobbyMainPanel,
-               new LobbyMainPanelData
-               {
-
-               });
-        }
     }
 }

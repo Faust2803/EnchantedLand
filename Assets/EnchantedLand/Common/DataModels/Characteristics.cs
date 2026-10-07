@@ -34,5 +34,16 @@ namespace EnchantedLand.Common.DataModels
         public float Paralysis = 0;
         public float Death = 0;
     }
+
+    public enum CharacteristicsID
+    {
+        Strength = 0,
+        Intelligence = 1,
+        Agility = 2,
+        Charisma = 3,
+        Endurance = 4,
+    }
+    
+    
     
 }

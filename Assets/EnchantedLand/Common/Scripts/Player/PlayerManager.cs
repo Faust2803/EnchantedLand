@@ -10,16 +10,10 @@ namespace Tanks.Common.Scripts.Player
     public class PlayerManager
     {
         private const string FileName = "player_data.json";
-
+       
         private PlayerData _data;
         private string SavePath => Path.Combine(Application.persistentDataPath, FileName);
         public PlayerData Data => _data;
-        
-
-
-        
-        public static Action<int> OnCurrencyChanged;
-        
         public int CurrentMapId { get;  set; }
         public int CurrentPlayerCount { get;  set; }
 
@@ -85,9 +79,9 @@ namespace Tanks.Common.Scripts.Player
             _data = new PlayerData
             {
                 BaseCharacteristics = new Characteristics(),
-                RaseId = 0,
+                RaсeId = 0,
                 CurrentCharacteristics = new Characteristics(),
-                Currency = 200
+                Currency = PlayerData.START_PLAYER_MONEY
             };
         }
 
@@ -99,35 +93,5 @@ namespace Tanks.Common.Scripts.Player
         {
             
         }
-
-        // =========================================================
-        // TANK
-        // =========================================================
-
-        public bool ChangeCurrency(int value)
-        {
-            if (value < 0)
-            {
-                if (Data.Currency + value < 0)
-                {
-                    return false;
-                }
-                else
-                {
-                    Data.Currency += value;
-                    Save();
-                    OnCurrencyChanged?.Invoke(Data.Currency);
-                    return true;
-                }
-            } 
-            else
-            {
-                Data.Currency += value;
-                Save();
-                OnCurrencyChanged?.Invoke(Data.Currency);
-                return true;
-            }
-        }
-        
     }
 }
