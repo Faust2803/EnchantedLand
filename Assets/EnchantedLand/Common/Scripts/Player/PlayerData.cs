@@ -20,26 +20,29 @@ namespace Tanks.Common.Scripts.Player
         public const int START_PLAYER_MONEY = 200;
         private const float CHARISMA_PERCENTAGE = 0.05f;
         public const int ITEM_COUNT_IN_STORAGE = 25;
+        public const int ITEM_COUNT_IN_EQUIPED = 11;
         
+        private int Weight;
         
         public int Currency;
         public int RaсeId;
         public int LiftingCapacity;
-        public int Weight;
         public Characteristics BaseCharacteristics;
         public Characteristics CurrentCharacteristics;
         public List<SaveItemData> StorageSave = Enumerable.Repeat<SaveItemData>(null, ITEM_COUNT_IN_STORAGE).ToList();
-        public List<SaveItemData> EquipedSave = new();
+        public List<SaveItemData> EquipedSave = Enumerable.Repeat<SaveItemData>(null, ITEM_COUNT_IN_EQUIPED).ToList();
         
-        private List<IIdentifiable> Storage = Enumerable.Repeat<IIdentifiable>(null, ITEM_COUNT_IN_STORAGE).ToList();
-        private List<IIdentifiable> Equiped = new List<IIdentifiable>();
+        private List<IIdentifiable> _storage = Enumerable.Repeat<IIdentifiable>(null, ITEM_COUNT_IN_STORAGE).ToList();
+        private List<IIdentifiable> _equiped = Enumerable.Repeat<IIdentifiable>(null, ITEM_COUNT_IN_EQUIPED).ToList();
+        public IReadOnlyList<IIdentifiable> Storage => _storage;
+        public IReadOnlyList<IIdentifiable> Equiped => _equiped;
         
         public Action<int, IIdentifiable, bool> OnStorageChanged;
         public Action<int, IIdentifiable, bool> OnEquipedChanged;
         
+        
         public int AvailableWeight => LiftingCapacity - Weight;
         
-
         public void SaveCharacteristics(Race raсe, Characteristics characteristics)
         {
             RaсeId = raсe.Id;
@@ -70,9 +73,9 @@ namespace Tanks.Common.Scripts.Player
         {
             if (item == null) return false;
             if (item.Weight > AvailableWeight) return false;
-            var index = Storage.FindIndex(x => x == null); 
+            var index = _storage.FindIndex(x => x == null); 
             if (index < 0) return false;
-            Storage[index] = item;
+            _storage[index] = item;
             Weight += item.Weight;
 
             if (isSaved)
@@ -91,13 +94,14 @@ namespace Tanks.Common.Scripts.Player
 
         public bool RemoveFromStorage(int index)
         {
-            if (index < 0 || index >= Storage.Count) return false;
-            var item = Storage[index];
+            if (index < 0 || index >= _storage.Count) return false;
+            var item = _storage[index];
             if (item == null) return false;
-            Storage[index] = null;
+            _storage[index] = null;
             StorageSave[index] = null;
             Weight -= item.Weight;
             OnStorageChanged?.Invoke(index, item, false);
+            
             return true;
         }
 

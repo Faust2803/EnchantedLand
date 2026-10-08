@@ -9,5 +9,6 @@
         NotEnafMoney,
         MessageWindow,
         TutorialWindow,
+        PlayerUIWindow,
     }
 }

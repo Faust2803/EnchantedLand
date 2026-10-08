@@ -1,5 +1,4 @@
 using EnchantedLand.Common.Armor;
-using SO.Scripts;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;

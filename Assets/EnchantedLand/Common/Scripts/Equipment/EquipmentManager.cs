@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Common.Scripts.GoogleSheets;
 using Cysharp.Threading.Tasks;
@@ -16,14 +17,13 @@ public abstract class EquipmentManager<T, G>
     private PlayerManager _playerManager;
     protected AvatarImageService _avatarImageService;
     protected DamageService _damageService;
-    
+    protected ItemType Type { get; set; }
 
     private List<T> _items = new();
     
-
     public IReadOnlyList<T> Items => _items;
     public int Count => _items.Count;
-    protected ItemType Type { get; set; }
+    public Action<ItemType> SetSavedDataAction;
 
     protected abstract string SheetUrl { get;}
 
@@ -72,10 +72,10 @@ public abstract class EquipmentManager<T, G>
             _items.Add(Create(dto));
         }
         Debug.Log($"{typeof(T).Name} loaded: {_items.Count}");
-        SetSavwdData();
+        SetSavedData();
     }
 
-    private void SetSavwdData()
+    private void SetSavedData()
     {
         for (var i = 0; i < _playerManager.Data.StorageSave.Count; i++)
         {
@@ -86,14 +86,16 @@ public abstract class EquipmentManager<T, G>
             }
         }
         
-        for (var i = 0; i < _playerManager.Data.EquipedSave.Count; i++)
-        {
-            if (_playerManager.Data.EquipedSave[i].Type == Type)
-            {
-                var item = GetById(_playerManager.Data.EquipedSave[i].Id);
-                _playerManager.Data.Equip(item, false);
-            }
-        }
+        // for (var i = 0; i < _playerManager.Data.EquipedSave.Count; i++)
+        // {
+        //     if (_playerManager.Data.EquipedSave[i].Type == Type)
+        //     {
+        //         var item = GetById(_playerManager.Data.EquipedSave[i].Id);
+        //         _playerManager.Data.Equip(item, false);
+        //     }
+        // }
+        
+        SetSavedDataAction?.Invoke(Type);
     }
     
     public T GetById(int id)

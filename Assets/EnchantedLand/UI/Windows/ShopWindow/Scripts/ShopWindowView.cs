@@ -24,9 +24,10 @@ namespace UI.Windows
         [SerializeField] private TextMeshProUGUI  _descriptionText;
         [SerializeField] private TextMeshProUGUI  _priceText;
         [SerializeField] private TextMeshProUGUI  _weightItemText;
-        
         [Space]
         [SerializeField] private Button  _finishButton;
+        [Space]
+        [SerializeField] private InfoPanel  _infoPanel;
         public List<Toggle>  ShopTabToggle => _shopTabToggle;
         
         public Button  InfoButton => _infoButton;
@@ -34,6 +35,7 @@ namespace UI.Windows
         public Button  LeftButton => _leftButton;
         public Button  RightButton => _rightButton;
         public Button  FinishButton => _finishButton;
+        public InfoPanel  InfoPanel => _infoPanel;
         public Sprite  ItemImage
         { 
             set => _itemImage.sprite = value;

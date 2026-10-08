@@ -132,14 +132,7 @@ namespace UI.Panels
             _playerManager.Data.SaveCharacteristics(Target.RaseSelector.CurrentRace, characteristics);
             _playerManager.Save();
             
-            
-            
-            if (_tutorialManager.CurrentTutorialIndex == 1 )
-            {
-                _uiManager.OpenWindow(WindowType.TutorialWindow);
-            }
             _uiManager.OpenWindow(WindowType.ShopWindow);
-            
             _uiManager.ClosePanel(PanelType.LobbyMainPanel);
         }
         protected override void CloseStart()

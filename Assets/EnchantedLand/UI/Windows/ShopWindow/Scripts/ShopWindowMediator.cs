@@ -1,15 +1,13 @@
-﻿using System;
-using Common.Scripts.Tutorial;
+﻿using Common.Scripts.Tutorial;
 using EnchantedLand.Common.Armor;
 using EnchantedLand.Common.Scripts;
 using EnchantedLand.Common.Weapon;
 using Tanks.Common.Scripts.Player;
-using UnityEngine;
 using Zenject;
 
 namespace UI.Windows
 {
-    public class ShopWindowMediator :BaseWindowMediator <ShopWindowView, UIData>
+    public class ShopWindowMediator : BaseWindowMediator<ShopWindowView, UIData>
     {
         private PlayerManager _playerManager;
         private ArmorManager _armorManager;
@@ -19,165 +17,236 @@ namespace UI.Windows
         private int _counter;
         private ItemType _activeType;
         private IIdentifiable _activeItem;
-        private int _currentPrise;
+
+        private int CurrentPrice => _playerManager.Data.CalculatePrice(_activeItem.Price);
+
+        private int CurrentItemCount => _activeType switch
+        {
+            ItemType.Armor => _armorManager.Count,
+            ItemType.Weapon => _weaponManager.Count,
+            _ => 0
+        };
 
         [Inject]
-        private void Construct(PlayerManager playerManager,
+        private void Construct(
+            PlayerManager playerManager,
             ArmorManager armorManager,
             WeaponManager weaponManager,
-            TutorialManager tutorialManager
-            )
+            TutorialManager tutorialManager)
         {
             _playerManager = playerManager;
             _armorManager = armorManager;
             _weaponManager = weaponManager;
             _tutorialManager = tutorialManager;
         }
-		
+
         protected override void ShowStart()
         {
             base.ShowStart();
-            Target.ByeButton.onClick.AddListener(OnByeButtonClicked);
-            for (var i = 0; i < Target.ShopTabToggle.Count; i++)
-            {
-                Target.ShopTabToggle[i].onValueChanged.AddListener(OnToggleClicked);
-            }
-            _playerManager.Data.OnStorageChanged += OnStorageChanged;
-            
+            Subscribe();
+            _counter = 0;
+            _activeType = ItemType.Armor;
             Target.ShopTabToggle[0].isOn = true;
-            Target.LeftButton.onClick.AddListener(PrewItem);
-            Target.RightButton.onClick.AddListener(NextItem);
+            UpdatePlayerInfo();
+            GetShopItem();
             
-            Target.WeightText = _playerManager.Data.AvailableWeight;
-            Target.MoneyText = _playerManager.Data.Currency;
+            if (_tutorialManager.CurrentTutorialIndex == 1 )
+            {
+                _uiManager.ForceOpenWindow(WindowType.TutorialWindow);
+            }
             
-            OnToggleClicked(true);
+            Target.InfoPanel.gameObject.SetActive(false);
         }
 
-        private void OnByeButtonClicked()
+        private void Subscribe()
         {
-            var currentPrice = _playerManager.Data.CalculatePrice(_activeItem.Price);
-            
-            if (_playerManager.Data.Currency < currentPrice)
+            Target.ByeButton.onClick.AddListener(OnBuyButtonClicked);
+            Target.LeftButton.onClick.AddListener(PrevItem);
+            Target.RightButton.onClick.AddListener(NextItem);
+            foreach (var toggle in Target.ShopTabToggle)
+                toggle.onValueChanged.AddListener(OnToggleClicked);
+            _playerManager.Data.OnStorageChanged += OnStorageChanged;
+            Target.InfoButton.onClick.AddListener(OnInfoClick);
+            Target.FinishButton.onClick.AddListener(OnFinishClick);
+        }
+
+        private void OnFinishClick()
+        {
+            _uiManager.OpenWindow(WindowType.PlayerUIWindow);
+            CloseSelf();
+        }
+
+        private void OnInfoClick()
+        {
+            Target.InfoPanel.SetInfo(_activeItem);
+        }
+
+        protected override void CloseStart()
+        {
+            Unsubscribe();
+            base.CloseStart();
+        }
+
+        private void Unsubscribe()
+        {
+            Target.ByeButton.onClick.RemoveListener(OnBuyButtonClicked);
+            Target.LeftButton.onClick.RemoveListener(PrevItem);
+            Target.RightButton.onClick.RemoveListener(NextItem);
+            foreach (var toggle in Target.ShopTabToggle)
+                toggle.onValueChanged.RemoveListener(OnToggleClicked);
+            _playerManager.Data.OnStorageChanged -= OnStorageChanged;
+            Target.InfoButton.onClick.RemoveListener(OnInfoClick);
+            Target.FinishButton.onClick.RemoveListener(OnFinishClick);
+        }
+
+        private void OnBuyButtonClicked()
+        {
+            if (_activeItem == null) return;
+            if (!TryBuyItem()) return;
+            UpdatePlayerInfo();
+            _playerManager.Save();
+        }
+
+        private bool TryBuyItem()
+        {
+            if (_playerManager.Data.Currency < CurrentPrice)
             {
-                var data = new MessageWindowData
-                {
-                    Title = "Нехватает денег",
-                    Description = $"Ты не можеш купить этот предмет. Тебе  нехватает {_activeItem.Price - _playerManager.Data.Currency} монет",
-                    HasCancelButton = false,
-                    OkButtonText = "Продолжить игру",
-                    HasOKButton = true,
-                };
-                _uiManager.ForceOpenWindow(WindowType.MessageWindow, data );
-                return;
+                ShowMessage(
+                    "Нехватает денег",
+                    $"Ты не можешь купить этот предмет. Тебе не хватает {CurrentPrice - _playerManager.Data.Currency} монет.");
+                return false;
             }
-            
             if (!_playerManager.Data.AddToStorage(_activeItem))
             {
-                var data = new MessageWindowData
-                {
-                    Title = "Невозможно купить",
-                    Description = $"Ты не можеш положить этот предмет в хранилище!\n Хранилище полностью заполнено или нехватает грузоподемности!",
-                    HasCancelButton = false,
-                    OkButtonText = "Продолжить игру",
-                    HasOKButton = true,
-                };
-                _uiManager.ForceOpenWindow(WindowType.MessageWindow, data );
+                ShowMessage(
+                    "Невозможно купить",
+                    "Ты не можешь положить этот предмет в хранилище!\nХранилище полностью заполнено или не хватает грузоподъёмности.");
+                return false;
+            }
+            return true;
+        }
+
+        private void ShowMessage(string title, string description)
+        {
+            var data = new MessageWindowData
+            {
+                Title = title,
+                Description = description,
+                HasCancelButton = false,
+                HasOKButton = true,
+                OkButtonText = "Продолжить игру"
+            };
+            _uiManager.ForceOpenWindow(WindowType.MessageWindow, data);
+        }
+
+        private void OnStorageChanged(int index, IIdentifiable item, bool isAded)
+        {
+            if (!isAded)
+            {
+                var price =  (item.Price / 2 ) - (_playerManager.Data.CalculatePrice(item.Price) - item.Price);
+                _playerManager.Data.Currency += price;
+                
+                ShowMessage(
+                    "Предмет продан!",
+                    $"Вы продали {item.Title} за {price} монет.");
             }
             else
             {
-                _playerManager.Data.Currency -= currentPrice;
-                Target.MoneyText = _playerManager.Data.Currency;
-                _playerManager.Save();
-            } 
-        }
-
-        private void OnStorageChanged(int index , IIdentifiable item, bool isDeleted)
-        {
-            Target.WeightText = _playerManager.Data.AvailableWeight;
+                _playerManager.Data.Currency -= CurrentPrice;
+            }
+            UpdatePlayerInfo();
+            _playerManager.Save();
         }
 
         private void NextItem()
         {
-            _counter++;
-            GetShopItem();
+            ChangeItem(1);
         }
 
-        private void PrewItem()
+        private void PrevItem()
         {
-            _counter--;
+            ChangeItem(-1);
+        }
+
+        private void ChangeItem(int direction)
+        {
+            var count = CurrentItemCount;
+            if (count == 0) return;
+            _counter += direction;
+
+            if (_counter >= count) _counter = 0;
+            if (_counter < 0) _counter = count - 1;
+            
             GetShopItem();
         }
 
         private void OnToggleClicked(bool isOn)
         {
-            if (isOn)
+            if (!isOn) return;
+
+            for (var i = 0; i < Target.ShopTabToggle.Count; i++)
             {
-                for (var i = 0; i < Target.ShopTabToggle.Count; i++)
-                {
-                    if (Target.ShopTabToggle[i].isOn)
-                    {
-                        _counter = 0;
-                        _activeType = (ItemType)i;
-                        GetShopItem();
-                    }
-                }
+                if (!Target.ShopTabToggle[i].isOn) continue;
+
+                _activeType = (ItemType)i;
+                _counter = 0;
+
+                GetShopItem();
+                return;
             }
         }
 
         private void GetShopItem()
         {
-            switch (_activeType)
+            var count = CurrentItemCount;
+            if (count == 0)
             {
-                case ItemType.Armor:
-                    if (_armorManager.Count == _counter) _counter = 0;
-                    if (_counter == -1) _counter = _armorManager.Count -1 ;
-                    _activeItem = _armorManager.GetByIndex(_counter);
-                    break;
-                case ItemType.Weapon:
-                    if (_weaponManager.Count == _counter) _counter = 0;
-                    if ( _counter == -1) _counter = _weaponManager.Count - 1;
-                    _activeItem = _weaponManager.GetByIndex(_counter);
-                    break;
-                case ItemType.Amulete:
-                    break;
-                case ItemType.Other:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
+                _activeItem = null;
+                return;
             }
-            ShowItem();
+
+            // Ищем следующий предмет, который есть в магазине.
+            for (var i = 0; i < count; i++)
+            {
+                _counter %= count;
+                IIdentifiable item = GetItem(_counter);
+                if (item != null && item.InShop)
+                {
+                    _activeItem = item;
+                    ShowItem();
+                    return;
+                }
+                _counter++;
+            }
+            _activeItem = null;
+        }
+
+        private IIdentifiable GetItem(int index)
+        {
+            return _activeType switch
+            {
+                ItemType.Armor => _armorManager.GetByIndex(index),
+                ItemType.Weapon => _weaponManager.GetByIndex(index),
+                _ => null
+            };
         }
 
         private void ShowItem()
         {
-            if (_activeItem == null) return;
-            if (_activeItem.InShop)
-            {
-                Target.TitleText = _activeItem.Title;
-                Target.DescriptionText = _activeItem.Description;
-                Target.ItemImage = _activeItem.PreviewImage;
-                
-                _currentPrise = _playerManager.Data.CalculatePrice(_activeItem.Price);
-                Target.PriceText = _currentPrise.ToString();
-                    
-                Target.WeightItemText = _activeItem.Weight.ToString();
-            }
-            else
-            {
-                _counter++;
-                GetShopItem();
-            }
+            if (_activeItem == null)
+                return;
+
+            Target.TitleText = _activeItem.Title;
+            Target.DescriptionText = _activeItem.Description;
+            Target.ItemImage = _activeItem.PreviewImage;
+            Target.PriceText = CurrentPrice.ToString();
+            Target.WeightItemText = _activeItem.Weight.ToString();
         }
-        
-        protected override void CloseStart()
-        { 
-            for (var i = 0; i < Target.ShopTabToggle.Count; i++)
-            {
-                Target.ShopTabToggle[i].onValueChanged.RemoveListener(OnToggleClicked);
-            }
-            _playerManager.Data.OnStorageChanged -= OnStorageChanged;
-            base.CloseStart();
+
+        private void UpdatePlayerInfo()
+        {
+            Target.WeightText = _playerManager.Data.AvailableWeight;
+            Target.MoneyText = _playerManager.Data.Currency;
         }
     }
 }

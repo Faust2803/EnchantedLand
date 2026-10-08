@@ -1,0 +1,96 @@
+using System;
+using System.Collections.Generic;
+using Tanks.Common.Scripts.Player;
+using UnityEngine;
+using Zenject;
+
+namespace EnchantedLand.Common.Scripts
+{
+    public class Storage : MonoBehaviour
+    {
+        [SerializeField]  private List<StorageItem> _storageItem;
+        
+        private PlayerManager _playerManager;
+        
+        [Inject]
+        private void Construct(PlayerManager playerManager)
+        {
+            _playerManager = playerManager;
+            for (var i = 0; i < _playerManager.Data.Storage.Count; i++)
+            {
+                if (_playerManager.Data.Storage[i] != null)
+                {
+                    AddStorageItem(_playerManager.Data.Storage[i]);
+                }
+            }
+            for (var i = 0; i < _storageItem.Count; i++)
+            {
+                if (!_storageItem[i].ItemData)
+                {
+                    _storageItem[i].RemoveItem();
+                }        
+            }
+        }
+
+        private void OnEnable()
+        {
+            Subscribe();
+        }
+
+
+        private void AddStorageItem(IIdentifiable item)
+        {
+            for (var i = 0; i < _storageItem.Count; i++)
+            {
+                if (!_storageItem[i].ItemData)
+                {
+                    _storageItem[i].AddItem(item);
+                    return;
+                }        
+            }
+        }
+
+        private void OnDisable()
+        {
+            Unsubscribe();
+        }
+
+        private void Subscribe()
+        {
+            for (var i = 0; i < _storageItem.Count; i++)
+            {
+                _storageItem[i].OnDoubleClick += RemoveItem;
+            }
+            _playerManager.Data.OnStorageChanged += OnStorageChanged;
+        }
+
+        private void Unsubscribe()
+        {
+            for (var i = 0; i < _storageItem.Count; i++)
+            {
+                _storageItem[i].OnDoubleClick -= RemoveItem;
+            }
+            _playerManager.Data.OnStorageChanged -= OnStorageChanged;
+        }
+        
+        private void OnStorageChanged(int i, IIdentifiable item, bool isAdded)
+        {
+            if (isAdded)
+            {
+                _storageItem[i].AddItem(item);
+            }
+            else
+            {
+                _storageItem[i].RemoveItem();
+                
+            }
+        }
+
+        private void RemoveItem(int i)
+        {
+            _playerManager.Data.RemoveFromStorage(i);
+        }
+        
+        
+    }
+}
