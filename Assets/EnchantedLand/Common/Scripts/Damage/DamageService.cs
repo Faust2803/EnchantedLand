@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Common.Scripts.GoogleSheets;
 using Cysharp.Threading.Tasks;
-using EnchantedLand.Common.Race;
+using EnchantedLand.Common.DataModels;
 using SO.Scripts;
 using UnityEngine;
 using Zenject;

@@ -58,36 +58,36 @@ namespace EnchantedLand.Common.DataModels
             return builder;
         }
         
-        public static StringBuilder Resistance(Resistance resistance)
+        public static StringBuilder Resistance(Dictionary<DamageType, float> resistance)
         {
             var builder = new StringBuilder();
-            if (resistance.Physical > 0 )
+            if (resistance.ContainsKey(DamageType.Physical)  && resistance[DamageType.Physical] > 0 )
             {
-                builder.AppendLine("Физическое: " + resistance.Physical);
+                builder.AppendLine("Физическое: " + resistance[DamageType.Physical]);
             }
-            if (resistance.Fire > 0 )
+            if (resistance.ContainsKey(DamageType.Fire)  && resistance[DamageType.Fire] > 0 )
             {
-                builder.AppendLine("Огонь: " + resistance.Fire);
+                builder.AppendLine("Огонь: " + resistance[DamageType.Fire]);
             }
-            if (resistance.Ice > 0 )
+            if (resistance.ContainsKey(DamageType.Ice)  && resistance[DamageType.Ice] > 0 )
             {
-                builder.AppendLine("Лед: " + resistance.Ice);
+                builder.AppendLine("Лед: " + resistance[DamageType.Ice]);
             }
-            if (resistance.Acid > 0 )
+            if (resistance.ContainsKey(DamageType.Acid)  && resistance[DamageType.Acid] > 0 )
             {
-                builder.AppendLine("Кислота: " + resistance.Acid);
+                builder.AppendLine("Кислота: " + resistance[DamageType.Acid]);
             }
-            if (resistance.Electricity > 0 )
+            if (resistance.ContainsKey(DamageType.Electricity)  && resistance[DamageType.Electricity] > 0 )
             {
-                builder.AppendLine("Электричество: " + resistance.Electricity);
+                builder.AppendLine("Электричество: " + resistance[DamageType.Electricity]);
             }
-            if (resistance.Paralysis > 0 )
+            if (resistance.ContainsKey(DamageType.Paralysis)  && resistance[DamageType.Paralysis] > 0 )
             {
-                builder.AppendLine("Оглушение: " + resistance.Physical);
+                builder.AppendLine("Оглушение: " + resistance[DamageType.Paralysis]);
             }
-            if (resistance.Death > 0 )
+            if (resistance.ContainsKey(DamageType.Death)  && resistance[DamageType.Death] > 0 )
             {
-                builder.AppendLine("Смерть: " + resistance.Death);
+                builder.AppendLine("Смерть: " + resistance[DamageType.Death]);
             }
             return builder;
         }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using EnchantedLand.Common.DataModels;
 using EnchantedLand.Common.Scripts;
 using UnityEngine;
@@ -16,6 +17,15 @@ namespace EnchantedLand.Common.Armor
         
         protected override Armor Create(ArmorDTO dto)
         {
+            var resistance = new Dictionary<DamageType, float>();
+            resistance.Add(DamageType.Physical, dto.Resistics_Physical / 10);
+            resistance.Add(DamageType.Fire, dto.Resistics_Fire / 10);
+            resistance.Add(DamageType.Ice, dto.Resistics_Ice / 10);
+            resistance.Add(DamageType.Acid, dto.Resistics_Acid / 10);
+            resistance.Add(DamageType.Electricity, dto.Resistics_Electricity / 10);
+            resistance.Add(DamageType.Paralysis, dto.Resistics_Paralysis / 10);
+            resistance.Add(DamageType.Death, dto.Resistics_Death / 10);
+            
             return new Armor
             {
                 ID = dto.ID,
@@ -56,17 +66,7 @@ namespace EnchantedLand.Common.Armor
                     Initiative = dto.Initiative,
                     Stealth = dto.Stealth
                 },
-                Resistance =  new Resistance
-                {
-                    Physical =  dto.Resistics_Physical / 10,
-                    Acid = dto.Resistics_Acid / 10,
-                    Fire = dto.Resistics_Fire / 10,
-                    Ice = dto.Resistics_Ice / 10,
-                    Electricity = dto.Resistics_Electricity / 10,
-                    Paralysis = dto.Resistics_Paralysis / 10,
-                    Death = dto.Resistics_Death /10,
-                },
-                
+                Resistance = resistance,
                 Count = dto.Count
             };
         }

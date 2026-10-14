@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using EnchantedLand.Common.DataModels;
 using EnchantedLand.Common.Scripts;
 using UnityEngine;
@@ -27,7 +28,7 @@ namespace EnchantedLand.Common.Armor
         public Characteristics NeededCharacteristics;
         public Characteristics InfluenceCharacteristics;
         public Skills Skills;
-        public Resistance Resistance;
+        public Dictionary<DamageType, float> Resistance;
 
     }
     

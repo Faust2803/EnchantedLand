@@ -22,18 +22,6 @@ namespace EnchantedLand.Common.DataModels
         public int Armor = 9;
         public int Initiative;
     }
-    
-    [Serializable]
-    public class Resistance
-    {
-        public float Physical = 0;
-        public float Fire = 0;
-        public float Ice = 0;
-        public float Acid = 0;
-        public float Electricity = 0;
-        public float Paralysis = 0;
-        public float Death = 0;
-    }
 
     public enum CharacteristicsID
     {
@@ -42,6 +30,18 @@ namespace EnchantedLand.Common.DataModels
         Agility = 2,
         Charisma = 3,
         Endurance = 4,
+    }
+    
+    public enum DamageType
+    {
+        Physical = 0,
+        Fire = 1,
+        Ice = 2,
+        Acid = 3,
+        Electricity = 4,
+        Paralysis = 5,
+        Death = 6,
+        Оther = 7,
     }
     
     
