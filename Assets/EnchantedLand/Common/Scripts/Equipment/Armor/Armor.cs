@@ -19,15 +19,15 @@ namespace EnchantedLand.Common.Armor
         public EquipmentSlotID SlotId { get; set; }
         public bool InShop { get; set; }
         public int Weight { get; set; }
-        
         public int Count { get; set; }
+        public int MaxStrength{ get; set; }
+        public int CurrentStrength{ get; set; }
+
         
         public Characteristics NeededCharacteristics;
         public Characteristics InfluenceCharacteristics;
         public Skills Skills;
         public Resistance Resistance;
-        public int MaxStrength;
-        public int CurrentStrength;
 
     }
     

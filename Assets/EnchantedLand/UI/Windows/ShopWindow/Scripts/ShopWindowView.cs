@@ -54,8 +54,21 @@ namespace UI.Windows
             get => _descriptionText.text;
             set
             {
-                _descriptionText.text = value;
+                _descriptionText.text = CutString(value, 220);
             } 
+        }
+        
+        private string CutString(string text, int maxLength)
+        {
+            if (string.IsNullOrEmpty(text) || text.Length <= maxLength)
+                return text;
+
+            int index = text.LastIndexOf(' ', maxLength);
+
+            if (index <= 0)
+                index = maxLength;
+
+            return text.Substring(0, index) + "...";
         }
         
         public int  MoneyText

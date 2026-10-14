@@ -15,9 +15,9 @@ namespace Common.Scripts.Tutorial
         private GoogleSheetsService _googleSheetsService;
         private List<TutorialModel> _tutorials = new();
         public int TutorialCount => _tutorials.Count;
-        private int _currentTutorialIndex;
+        private TutorialStep _currentTutorialIndex;
 
-        public int CurrentTutorialIndex => _currentTutorialIndex;
+        public TutorialStep CurrentTutorialIndex => _currentTutorialIndex;
         public TutorialModel CurrentTutorial => GetTutorial(_currentTutorialIndex);
         public Action OnLoadTutorialData;
 
@@ -55,8 +55,9 @@ namespace Common.Scripts.Tutorial
         // Current tutorial
         // --------------------------------------------------
 
-        private TutorialModel GetTutorial(int index)
+        private TutorialModel GetTutorial(TutorialStep step)
         {
+            var index = (int)step;
             if (index < 0 || index >= _tutorials.Count)
             {
                 Debug.LogError($"Tutorial index out of range: {index}");
@@ -71,7 +72,7 @@ namespace Common.Scripts.Tutorial
 
         public void SaveCurrentTutorial()
         {
-            PlayerPrefs.SetInt(CURRENT_TUTORIAL_KEY, _currentTutorialIndex);
+            PlayerPrefs.SetInt(CURRENT_TUTORIAL_KEY, (int)_currentTutorialIndex);
             PlayerPrefs.Save();
             Debug.Log($"Current tutorial saved: {_currentTutorialIndex}");
         }
@@ -81,7 +82,7 @@ namespace Common.Scripts.Tutorial
 
             if (PlayerPrefs.HasKey(CURRENT_TUTORIAL_KEY))
             {
-                _currentTutorialIndex = PlayerPrefs.GetInt(CURRENT_TUTORIAL_KEY) + 1;
+                _currentTutorialIndex = (TutorialStep)PlayerPrefs.GetInt(CURRENT_TUTORIAL_KEY) + 1;
             }
             else
             {
@@ -107,9 +108,9 @@ namespace Common.Scripts.Tutorial
                 _currentTutorialIndex = 0;
             }
 
-            if (_currentTutorialIndex >= _tutorials.Count)
+            if ((int)_currentTutorialIndex >= _tutorials.Count)
             {
-                _currentTutorialIndex = _tutorials.Count - 1;
+                _currentTutorialIndex = (TutorialStep)(_tutorials.Count - 1);
             }
         }
 
@@ -121,8 +122,15 @@ namespace Common.Scripts.Tutorial
         {
             if (_tutorials.Count == 0) return;
             SaveCurrentTutorial();
-            if (_currentTutorialIndex >= _tutorials.Count) return;
+            if ((int)_currentTutorialIndex >= _tutorials.Count) return;
             _currentTutorialIndex++;
         }
+    }
+
+    public enum TutorialStep
+    {
+        SelectRace = 0,
+        ByeInShop = 1,
+        EquipItems = 2
     }
 }

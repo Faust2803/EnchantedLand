@@ -9,6 +9,7 @@ namespace EnchantedLand.Common.Scripts
     public class Storage : MonoBehaviour
     {
         [SerializeField]  private List<StorageItem> _storageItem;
+        [SerializeField]  private bool _isShop;
         
         private PlayerManager _playerManager;
         
@@ -31,13 +32,7 @@ namespace EnchantedLand.Common.Scripts
                 }        
             }
         }
-
-        private void OnEnable()
-        {
-            Subscribe();
-        }
-
-
+        
         private void AddStorageItem(IIdentifiable item)
         {
             for (var i = 0; i < _storageItem.Count; i++)
@@ -53,6 +48,10 @@ namespace EnchantedLand.Common.Scripts
         private void OnDisable()
         {
             Unsubscribe();
+        }
+        private void OnEnable()
+        {
+            Subscribe();
         }
 
         private void Subscribe()
@@ -88,7 +87,17 @@ namespace EnchantedLand.Common.Scripts
 
         private void RemoveItem(int i)
         {
-            _playerManager.Data.RemoveFromStorage(i);
+            if (_isShop)
+            {
+                _playerManager.Data.RemoveFromStorage(i);
+            }
+            else
+            {
+                if (_playerManager.Data.Equip(_playerManager.Data.Storage[i], true))
+                {
+                    _playerManager.Data.RemoveFromStorage(i, true);
+                }
+            }
         }
         
         

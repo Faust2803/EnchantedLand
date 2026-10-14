@@ -50,11 +50,12 @@ namespace UI.Windows
             UpdatePlayerInfo();
             GetShopItem();
             
-            if (_tutorialManager.CurrentTutorialIndex == 1 )
+            if (_tutorialManager.CurrentTutorialIndex == TutorialStep.ByeInShop )
             {
                 _uiManager.ForceOpenWindow(WindowType.TutorialWindow);
             }
-            
+
+            Target.InfoPanel.PlayerManager = _playerManager;
             Target.InfoPanel.gameObject.SetActive(false);
         }
 

@@ -1,4 +1,5 @@
 
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using EnchantedLand.Common.Armor;
 using EnchantedLand.Common.DataModels;
@@ -17,7 +18,7 @@ namespace EnchantedLand.Common.Weapon
         
         protected override Weapon Create(WeaponDTO dto)
         {
-            return new Weapon
+            var weapon =  new Weapon
             {
                 ID = dto.ID,
                 PreviewImage = _avatarImageService.GeWeapon(dto.Image_ID).PreviewImage,
@@ -60,15 +61,24 @@ namespace EnchantedLand.Common.Weapon
                     Initiative = dto.Initiative,
                     Stealth = dto.Stealth
                 },
-                Damage = new [] 
-                {
-                    _damageService.GetById(dto.Damage_ID_0),
-                    _damageService.GetById(dto.Damage_ID_1),
-                    _damageService.GetById(dto.Damage_ID_2)
-                },
-                
+
+                Damage = new List<Damage.Damage>(),
                 Count = dto.Count
             };
+            
+            if (dto.Damage_ID_0 >= 0)
+            {
+                weapon.Damage.Add(_damageService.GetById(dto.Damage_ID_0));
+            }
+            if (dto.Damage_ID_1 >= 0)
+            {
+                weapon.Damage.Add(_damageService.GetById(dto.Damage_ID_1));
+            }
+            if (dto.Damage_ID_2 >= 0)
+            {
+                weapon.Damage.Add(_damageService.GetById(dto.Damage_ID_2));
+            }
+            return weapon;
         }
     }
 }

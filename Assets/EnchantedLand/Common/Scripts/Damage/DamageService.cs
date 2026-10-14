@@ -13,11 +13,11 @@ namespace EnchantedLand.Common.Damage
     {
         private GoogleSheetsService _googleSheetsService;
         private AvatarImageService _avatarImageService;
-        private List<DamageDTO> _damageDTO = new();
-        public IReadOnlyList<DamageDTO> DamageDTO => _damageDTO;
+        private List<Damage> _damage = new();
+        public IReadOnlyList<Damage> Damage => _damage;
         private string SheetUrl => "https://docs.google.com/spreadsheets/d/e/2PACX-1vRgOkzycG2abPB1w6LScMWBTGLVAx62vSXtimAjeuA2t2Qp5KyRUScbnuoGO8m9H3hl0J2YRJEn3BTR/pub?gid=869588206&single=true&output=csv";
         
-        public int Count => _damageDTO.Count;
+        public int Count => _damage.Count;
 
         public Action<bool> LoadCompleat;
 
@@ -40,19 +40,32 @@ namespace EnchantedLand.Common.Damage
                 LoadCompleat?.Invoke(false);
                 return;
             }
-            _damageDTO.Clear();
+            _damage.Clear();
             foreach (DamageDTO dto in data)
             {
-                _damageDTO.Add(dto);
-               
+                _damage.Add(Create(dto));
             }
             LoadCompleat?.Invoke(true);
-            Debug.Log($"Damage loaded: {_damageDTO.Count}");
+            Debug.Log($"Damage loaded: {_damage.Count}");
         }
-        
-        public DamageDTO GetById(int id)
+
+        private Damage Create(DamageDTO dto)
         {
-            foreach (DamageDTO damage in _damageDTO)
+            return new Damage
+            {
+                ID = dto.ID,
+                Title = dto.Title,
+                Type = (DamageType)dto.Type,
+                Max = dto.Max,
+                Min = dto.Min,
+                Opposition = dto.Opposition,
+                Radius = dto.Radius,
+            };
+        }
+
+        public Damage GetById(int id)
+        {
+            foreach (Damage damage in _damage)
             {
                 if (damage.ID == id)
                     return damage;
@@ -60,6 +73,5 @@ namespace EnchantedLand.Common.Damage
             Debug.LogError($"Damage with ID {id} not found.");
             return null;
         }
-
     }
 }

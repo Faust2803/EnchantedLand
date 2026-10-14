@@ -17,6 +17,10 @@ namespace EnchantedLand.Common.Scripts
         public bool InShop { get; set; }
         public int Weight { get; set; }
         public int Count { get; set; }
+        
+        public int MaxStrength{ get; set; }
+        public int CurrentStrength{ get; set; }
+
     }
 
     public enum ItemType

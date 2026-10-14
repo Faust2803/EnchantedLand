@@ -58,13 +58,13 @@ namespace EnchantedLand.Common.Armor
                 },
                 Resistance =  new Resistance
                 {
-                    Physical =  dto.Resistics_Physical,
-                    Acid = dto.Resistics_Acid,
-                    Fire = dto.Resistics_Fire,
-                    Ice = dto.Resistics_Ice,
-                    Electricity = dto.Resistics_Electricity,
-                    Paralysis = dto.Resistics_Paralysis,
-                    Death = dto.Resistics_Death,
+                    Physical =  dto.Resistics_Physical / 10,
+                    Acid = dto.Resistics_Acid / 10,
+                    Fire = dto.Resistics_Fire / 10,
+                    Ice = dto.Resistics_Ice / 10,
+                    Electricity = dto.Resistics_Electricity / 10,
+                    Paralysis = dto.Resistics_Paralysis / 10,
+                    Death = dto.Resistics_Death /10,
                 },
                 
                 Count = dto.Count

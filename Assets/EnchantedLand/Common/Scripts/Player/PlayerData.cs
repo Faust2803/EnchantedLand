@@ -69,15 +69,20 @@ namespace Tanks.Common.Scripts.Player
             return Mathf.CeilToInt(price * multiplier);
         }
 
-        public bool AddToStorage(IIdentifiable item, bool isSaved = true)
+        public bool AddToStorage(IIdentifiable item, bool isSaved = true, bool isEquiped = false)
         {
             if (item == null) return false;
-            if (item.Weight > AvailableWeight) return false;
             var index = _storage.FindIndex(x => x == null); 
             if (index < 0) return false;
-            _storage[index] = item;
-            Weight += item.Weight;
 
+            if (!isEquiped)
+            {
+                if (item.Weight > AvailableWeight) return false;
+                Weight += item.Weight;
+            }
+            
+            _storage[index] = item;
+           
             if (isSaved)
             {
                 StorageSave[index] = new SaveItemData
@@ -91,27 +96,70 @@ namespace Tanks.Common.Scripts.Player
             return true;
         }
 
-
-        public bool RemoveFromStorage(int index)
+        public bool RemoveFromStorage(int index, bool isEquiped = false)
         {
             if (index < 0 || index >= _storage.Count) return false;
             var item = _storage[index];
             if (item == null) return false;
             _storage[index] = null;
             StorageSave[index] = null;
-            Weight -= item.Weight;
-            OnStorageChanged?.Invoke(index, item, false);
             
+            if (!isEquiped)
+            {
+                Weight -= item.Weight;
+            }
+           
+            OnStorageChanged?.Invoke(index, item, false);
             return true;
         }
 
-        public bool Equip(IIdentifiable item, bool isSaved = false)
+        public bool Equip(IIdentifiable item, bool isSaved = false, bool fromStorage = true)
         {
+            if (item == null) return false;
+            var index = GetFreeEquipmentSlot(item.SlotId);
+            if (index == -1) return false;
+            
+            if (!fromStorage)
+            {
+                Weight += item.Weight;
+            }
+            _equiped[index] = item;
+           
+            if (isSaved)
+            {
+                EquipedSave[index] = new SaveItemData
+                {
+                    Type = item.Type,
+                    Id = item.ID,
+                    Count = item.Count
+                };
+                OnEquipedChanged?.Invoke(index, item, true); 
+            }
             return true;
         }
 
-        public bool DeEquip(IIdentifiable item)
+        private int GetFreeEquipmentSlot(EquipmentSlotID slot)
         {
+            var i = (int)slot;
+            if (_equiped[i] == null) return i;
+            if (i + 1 < _equiped.Count && _equiped[i + 1] == null) return i + 1;
+            return -1;
+        }
+
+        public bool DeEquip(int index, bool isRemoved = false)
+        {
+            if (index < 0 || index >= _equiped.Count) return false;
+            var item = _equiped[index];
+            if (item == null) return false;
+            _equiped[index] = null;
+            EquipedSave[index] = null;
+            
+            if (isRemoved)
+            {
+                Weight -= item.Weight;
+            }
+           
+            OnEquipedChanged?.Invoke(index, item, false);
             return true;
         }
     }

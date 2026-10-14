@@ -2,21 +2,23 @@ using System;
 using Common.Scripts.Utils;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace EnchantedLand.Common.Scripts
 {
     public class StorageItem : MonoBehaviour
     { 
-        [SerializeField] private int ID;
+        [FormerlySerializedAs("ID")] [SerializeField] private int _ID;
         [SerializeField] private TextMeshProUGUI _counter;
         [SerializeField] private Image _image;
         [SerializeField] private DoubleClickButton _button;
         private IIdentifiable _itemData;
         public bool ItemData => _itemData != null;
         public Action<int> OnDoubleClick;
+        public int ID => _ID;
 
-        public void AddItem(IIdentifiable itemData)
+        public virtual void AddItem(IIdentifiable itemData)
         {
             _itemData = itemData;
             _counter.text = itemData.Count.ToString();
@@ -26,7 +28,7 @@ namespace EnchantedLand.Common.Scripts
             _counter.gameObject.SetActive(itemData.Count > 1);
         }
 
-        public void RemoveItem()
+        public virtual void RemoveItem()
         {
             _itemData = null;
             _button.OnDoubleClick -= OnButtonClicked;
@@ -39,9 +41,9 @@ namespace EnchantedLand.Common.Scripts
             _button.gameObject.SetActive(value);
         }
 
-        private void OnButtonClicked()
+        public virtual void OnButtonClicked()
         {
-            OnDoubleClick?.Invoke(ID);
+            OnDoubleClick?.Invoke(_ID);
         }
         
     }

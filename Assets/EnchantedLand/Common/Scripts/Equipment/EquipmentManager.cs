@@ -86,14 +86,14 @@ public abstract class EquipmentManager<T, G>
             }
         }
         
-        // for (var i = 0; i < _playerManager.Data.EquipedSave.Count; i++)
-        // {
-        //     if (_playerManager.Data.EquipedSave[i].Type == Type)
-        //     {
-        //         var item = GetById(_playerManager.Data.EquipedSave[i].Id);
-        //         _playerManager.Data.Equip(item, false);
-        //     }
-        // }
+        for (var i = 0; i < _playerManager.Data.EquipedSave.Count; i++)
+        {
+            if (_playerManager.Data.EquipedSave[i].Type == Type)
+            {
+                var item = GetById(_playerManager.Data.EquipedSave[i].Id);
+                _playerManager.Data.Equip(item, false, false);
+            }
+        }
         
         SetSavedDataAction?.Invoke(Type);
     }

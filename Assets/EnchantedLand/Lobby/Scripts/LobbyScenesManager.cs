@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Common.Scripts.GoogleSheets;
 using Common.Scripts.Network;
@@ -25,25 +26,35 @@ namespace Tanks.Lobby.Scripts
 
         void Start()
         {
-            if (_tutorialManager.CurrentTutorialIndex == 0 )
+            if (_tutorialManager.CurrentTutorialIndex == TutorialStep.SelectRace )
             {
                 _uiManager.OpenWindow(WindowType.TutorialWindow);
                 _uiManager.OpenPanel(PanelType.LobbyMainPanel);
             }
+            else if (_tutorialManager.CurrentTutorialIndex == TutorialStep.ByeInShop)
+            {
+                OpenChosenStart(WindowType.ShopWindow);
+            }
+            else if (_tutorialManager.CurrentTutorialIndex == TutorialStep.EquipItems)
+            {
+                OpenChosenStart(WindowType.PlayerUIWindow);
+            }
             else
             {
-                OpenChosenStart();
+                OpenChosenStart(WindowType.ConnectionWindow);
             }
         }
 
-        private void OpenChosenStart()
+        private void OpenChosenStart(WindowType type)
         {
+           
+            
             var data = new MessageWindowData
             {
                 Title = "Начать игру",
                 Description = "Ты можешь начать  новую игру или запустить игру с того места где остановился прошлый раз",
                 CancelAction = () => _uiManager.OpenPanel(PanelType.LobbyMainPanel),
-                OKAction = () => _uiManager.OpenWindow(WindowType.ShopWindow),
+                OKAction = () => _uiManager.OpenWindow(type),
                 CancelButtonText = "Новая игра",
                 HasCancelButton = true,
                 OkButtonText = "Продолжить игру",

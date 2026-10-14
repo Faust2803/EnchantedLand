@@ -1,6 +1,6 @@
 using System;
+using System.Collections.Generic;
 using EnchantedLand.Common.Armor;
-using EnchantedLand.Common.Damage;
 using EnchantedLand.Common.DataModels;
 using EnchantedLand.Common.Scripts;
 using UnityEngine;
@@ -22,9 +22,9 @@ namespace EnchantedLand.Common.Weapon
         public bool InShop { get; set; }
         public int Weight { get; set; }
         public int Count { get; set; }
-        
-        public int MaxStrength;
-        public int CurrentStrength;
+        public int MaxStrength{ get; set; }
+        public int CurrentStrength{ get; set; }
+
         public bool TwoHands = false;
         public bool Projectile = false;
         public int Distance;
@@ -32,7 +32,7 @@ namespace EnchantedLand.Common.Weapon
         public Characteristics NeededCharacteristics;
         public Characteristics InfluenceCharacteristics;
         public Skills Skills;
-        public DamageDTO [] Damage;
+        public List<Damage.Damage> Damage;
     }
     
     [Serializable]
@@ -51,7 +51,6 @@ namespace EnchantedLand.Common.Weapon
         public int Projectile;
         public int Two_Hands;
         public int Distance;
-        
         
         public int Need_Strength = 0;
         public int Need_Intelligence = 0;
