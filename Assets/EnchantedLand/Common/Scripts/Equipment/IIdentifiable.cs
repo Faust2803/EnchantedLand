@@ -28,7 +28,7 @@ namespace EnchantedLand.Common.Scripts
         None = -1,
         Armor,
         Weapon,
-        Amulete,
-        Other
+        Potions,
+        Other,
     }
 }

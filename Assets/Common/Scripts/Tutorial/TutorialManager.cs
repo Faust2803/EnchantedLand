@@ -131,6 +131,7 @@ namespace Common.Scripts.Tutorial
     {
         SelectRace = 0,
         ByeInShop = 1,
-        EquipItems = 2
+        EquipItems = 2,
+        Connection = 3,
     }
 }

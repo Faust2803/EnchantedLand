@@ -26,16 +26,15 @@ namespace Tanks.Lobby.Scripts
 
         void Start()
         {
-            if (_tutorialManager.CurrentTutorialIndex == TutorialStep.SelectRace )
+            if (_tutorialManager.CurrentTutorialIndex <= TutorialStep.ByeInShop )
             {
-                _uiManager.OpenWindow(WindowType.TutorialWindow);
                 _uiManager.OpenPanel(PanelType.LobbyMainPanel);
             }
-            else if (_tutorialManager.CurrentTutorialIndex == TutorialStep.ByeInShop)
+            else if (_tutorialManager.CurrentTutorialIndex <=TutorialStep.EquipItems)
             {
                 OpenChosenStart(WindowType.ShopWindow);
             }
-            else if (_tutorialManager.CurrentTutorialIndex == TutorialStep.EquipItems)
+            else if (_tutorialManager.CurrentTutorialIndex <= TutorialStep.Connection)
             {
                 OpenChosenStart(WindowType.PlayerUIWindow);
             }

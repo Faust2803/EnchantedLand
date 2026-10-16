@@ -86,6 +86,7 @@ namespace EnchantedLand.Common.Armor
         Bolt = 2,
         Amulet = 7,
         Ring = 8,
-        Cape = 6
+        Cape = 6,
+        None = -1
     }
 }

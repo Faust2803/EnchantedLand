@@ -3,6 +3,7 @@ using System.Text;
 using EnchantedLand.Common.Armor;
 using EnchantedLand.Common.DataModels;
 using EnchantedLand.Common.Scripts;
+using EnchantedLand.Common.Scripts.Potions;
 using EnchantedLand.Common.Weapon;
 using Tanks.Common.Scripts.Player;
 using TMPro;
@@ -97,9 +98,19 @@ namespace UI.Windows
                     }
                     builder.AppendLine($"ПРОЧНОСТЬ: {weapon.MaxStrength}/{weapon.CurrentStrength}");
                     break;
-                case ItemType.Amulete:
+                case ItemType.Potions:
+                    var potion  = info as Potions;
+                    if (potion.SubType == PotionsType.HP)
+                    {
+                        builder.AppendLine($"Использование прибавляет {potion.Impact} HP, но не больше максимума");
+                    }
+                    else
+                    {
+                        builder.AppendLine($"Использование прибавляет {potion.Impact} указанной характеристики до следующего хода");
+                    }
                     break;
                 case ItemType.Other:
+                    
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

@@ -1,6 +1,8 @@
 ﻿using Common.Scripts.Tutorial;
 using EnchantedLand.Common.Armor;
 using EnchantedLand.Common.Scripts;
+using EnchantedLand.Common.Scripts.Others;
+using EnchantedLand.Common.Scripts.Potions;
 using EnchantedLand.Common.Weapon;
 using Tanks.Common.Scripts.Player;
 using Zenject;
@@ -12,6 +14,8 @@ namespace UI.Windows
         private PlayerManager _playerManager;
         private ArmorManager _armorManager;
         private WeaponManager _weaponManager;
+        private PotionsManager _potionsManager;
+        private OthersEquipmentManager _othersEquipmentManager; 
         private TutorialManager _tutorialManager;
 
         private int _counter;
@@ -24,6 +28,8 @@ namespace UI.Windows
         {
             ItemType.Armor => _armorManager.Count,
             ItemType.Weapon => _weaponManager.Count,
+            ItemType.Potions => _potionsManager.Count,
+            ItemType.Other => _othersEquipmentManager.Count,
             _ => 0
         };
 
@@ -32,11 +38,15 @@ namespace UI.Windows
             PlayerManager playerManager,
             ArmorManager armorManager,
             WeaponManager weaponManager,
+            PotionsManager potionsManager,
+            OthersEquipmentManager othersEquipmentManager,
             TutorialManager tutorialManager)
         {
             _playerManager = playerManager;
             _armorManager = armorManager;
             _weaponManager = weaponManager;
+            _potionsManager = potionsManager;
+            _othersEquipmentManager = othersEquipmentManager;
             _tutorialManager = tutorialManager;
         }
 
@@ -50,13 +60,19 @@ namespace UI.Windows
             UpdatePlayerInfo();
             GetShopItem();
             
+            
+
+            Target.InfoPanel.PlayerManager = _playerManager;
+            Target.InfoPanel.gameObject.SetActive(false);
+        }
+
+        protected override void OpenFinish()
+        {
+            base.OpenFinish();
             if (_tutorialManager.CurrentTutorialIndex == TutorialStep.ByeInShop )
             {
                 _uiManager.ForceOpenWindow(WindowType.TutorialWindow);
             }
-
-            Target.InfoPanel.PlayerManager = _playerManager;
-            Target.InfoPanel.gameObject.SetActive(false);
         }
 
         private void Subscribe()
@@ -200,26 +216,33 @@ namespace UI.Windows
         private void GetShopItem()
         {
             var count = CurrentItemCount;
-            if (count == 0)
+            var hasOne = false;
+            if (count > 0)
             {
-                _activeItem = null;
-                return;
-            }
-
-            // Ищем следующий предмет, который есть в магазине.
-            for (var i = 0; i < count; i++)
-            {
-                _counter %= count;
-                IIdentifiable item = GetItem(_counter);
-                if (item != null && item.InShop)
+                // Ищем следующий предмет, который есть в магазине.
+                for (var i = 0; i < count; i++)
                 {
-                    _activeItem = item;
-                    ShowItem();
-                    return;
+                    _counter %= count;
+                    IIdentifiable item = GetItem(_counter);
+                    if (item != null && item.InShop)
+                    {
+                        _activeItem = item;
+                        ShowItem();
+                        hasOne = true; 
+                        return;
+                    }
+                    _counter++;
                 }
-                _counter++;
+                _activeItem = null;
             }
-            _activeItem = null;
+            if (!hasOne)
+            {
+                ShowMessage(
+                    "Невозможно купить",
+                    "Этот раздел магазина сейчас пуст!\nУ торговца нет товаров данного типа");
+                Target.ShopTabToggle[0].isOn = true;
+            }
+            
         }
 
         private IIdentifiable GetItem(int index)
@@ -228,6 +251,8 @@ namespace UI.Windows
             {
                 ItemType.Armor => _armorManager.GetByIndex(index),
                 ItemType.Weapon => _weaponManager.GetByIndex(index),
+                ItemType.Potions => _potionsManager.GetByIndex(index),
+                ItemType.Other => _othersEquipmentManager.GetByIndex(index),
                 _ => null
             };
         }

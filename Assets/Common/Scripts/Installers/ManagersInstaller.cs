@@ -4,10 +4,13 @@ using Common.Scripts.Tutorial;
 using EnchantedLand.Common.Armor;
 using EnchantedLand.Common.Damage;
 using EnchantedLand.Common.Race;
+using EnchantedLand.Common.Scripts.Others;
+using EnchantedLand.Common.Scripts.Potions;
 using EnchantedLand.Common.Weapon;
 using EnchantedLand.Game;
 using Managers;
 using Tanks.Common.Scripts.Player;
+using Tanks.Game.Scripts.Entetyes.Loot;
 using Util;
 using Zenject;
 namespace Installers
@@ -21,13 +24,20 @@ namespace Installers
             Container.BindInterfacesAndSelfTo<UiManager>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<SceneLoader>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PlayerManager>().AsSingle().NonLazy();
+            
             Container.BindInterfacesAndSelfTo<TutorialManager>().AsSingle().NonLazy();
+            
             Container.BindInterfacesAndSelfTo<RaceManager>().AsSingle().NonLazy();
+            
             Container.BindInterfacesAndSelfTo<DamageManager>().AsSingle().NonLazy();
+            
             Container.BindInterfacesAndSelfTo<ArmorManager>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<WeaponManager>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<PotionsManager>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<OthersEquipmentManager>().AsSingle().NonLazy();
             
             Container.BindInterfacesAndSelfTo<EnemyesManager>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<LootManager>().AsSingle().NonLazy();
             
             Container.BindInterfacesAndSelfTo<NetworkService>().AsSingle();
         }

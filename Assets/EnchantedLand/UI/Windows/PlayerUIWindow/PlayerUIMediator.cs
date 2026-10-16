@@ -32,12 +32,17 @@ namespace UI.Windows
         {
             base.ShowStart();
             Subscribe();
+        }
+        
+        protected override void OpenFinish()
+        {
+            base.OpenFinish();
             if (_tutorialManager.CurrentTutorialIndex == TutorialStep.EquipItems )
             {
                 _uiManager.ForceOpenWindow(WindowType.TutorialWindow);
             }
         }
-        
+
         private void OnStorageChanged(int index, IIdentifiable item, bool isAded)
         {
             _playerManager.Save();

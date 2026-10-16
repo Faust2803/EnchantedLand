@@ -43,8 +43,21 @@ namespace UI.Panels
             Target.FreeAndSkilledText.text = FREE_AND_SKILLED.ToString();
             RaseSelected(Target.RaseSelector.CurrentRace);
             Target.ScrollRect.verticalNormalizedPosition = 1f;
+            
+            
+            
+            
         }
-        
+
+        protected override void OpenFinish()
+        {
+            base.OpenFinish();
+            if (_tutorialManager.CurrentTutorialIndex <= TutorialStep.SelectRace )
+            {
+                _uiManager.ForceOpenWindow(WindowType.TutorialWindow);
+            }
+        }
+
         private void RaseSelected(Race obj)
         {
             var _characteristics_description =
