@@ -68,15 +68,15 @@ namespace EnchantedLand.Common.Weapon
             
             if (dto.Damage_ID_0 >= 0)
             {
-                weapon.Damage.Add(_damageService.GetById(dto.Damage_ID_0));
+                weapon.Damage.Add(DamageManager.GetById(dto.Damage_ID_0));
             }
             if (dto.Damage_ID_1 >= 0)
             {
-                weapon.Damage.Add(_damageService.GetById(dto.Damage_ID_1));
+                weapon.Damage.Add(DamageManager.GetById(dto.Damage_ID_1));
             }
             if (dto.Damage_ID_2 >= 0)
             {
-                weapon.Damage.Add(_damageService.GetById(dto.Damage_ID_2));
+                weapon.Damage.Add(DamageManager.GetById(dto.Damage_ID_2));
             }
             return weapon;
         }

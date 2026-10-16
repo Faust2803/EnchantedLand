@@ -1,5 +1,6 @@
 using System;
 using EnchantedLand.Common.DataModels;
+using Tanks.Game.Scripts;
 using UnityEngine.Serialization;
 
 namespace EnchantedLand.Common.Damage
@@ -16,11 +17,10 @@ namespace EnchantedLand.Common.Damage
         public int Opposition;
         public string For_Wepon;
     }
-    
-    [Serializable]
-    public class Damage
+
+    public class Damage : Configurated
     {
-        public int ID;
+        public int ID { get; set; }
         public string Title;
         public int Min;
         public int Max;

@@ -10,8 +10,9 @@ namespace SO.Scripts
     public class AvatarImageService : ScriptableObject
     {
         [SerializeField] private  List<Avatar> _avatarList = null;
-        [SerializeField] private  List<Avatar> _weaponsList = null;
-        [SerializeField] private  List<Avatar> _armorsList = null;
+        [SerializeField] private  List<EquipmentsImage> _weaponsList = null;
+        [SerializeField] private  List<EquipmentsImage> _armorsList = null;
+        [SerializeField] private  List<Avatar> _enemyes = null;
         
         public Avatar GeAvatar(int type)
         {
@@ -26,7 +27,7 @@ namespace SO.Scripts
             return null;
         }
         
-        public Avatar GeWeapon(int type)
+        public EquipmentsImage GeWeapon(int type)
         {
             for (var i = 0; i < _weaponsList.Count; i++)
             {
@@ -39,7 +40,7 @@ namespace SO.Scripts
             return null;
         }
         
-        public Avatar GetArmor(int type)
+        public EquipmentsImage GetArmor(int type)
         {
             for (var i = 0; i < _armorsList.Count; i++)
             {
@@ -51,15 +52,34 @@ namespace SO.Scripts
             Debug.LogWarning("<color=#FF6600>Armors Image: Armor not found!!!</color>");
             return null;
         }
+        
+        public Avatar GetEnemy(int type)
+        {
+            for (var i = 0; i < _enemyes.Count; i++)
+            {
+                if (_enemyes[i].Id == type)
+                {
+                    return _enemyes[i];
+                }
+            }
+            Debug.LogWarning("<color=#FF6600>Enemy Image: Armor not found!!!</color>");
+            return null;
+        }
     }
     
     [Serializable]
     public class Avatar
     {
         public int Id;
-        [FormerlySerializedAs("ImagePreview")] public Sprite PreviewImage;
-        [FormerlySerializedAs("ImageEquipment")] public Sprite StorageImage;
-        [FormerlySerializedAs("ImageInterface")] public Sprite EquipedImage;
-
+        public Sprite Image;
+    }
+    
+    [Serializable]
+    public class EquipmentsImage
+    {
+        public int Id;
+        public Sprite PreviewImage;
+        public Sprite StorageImage;
+        public Sprite EquipedImage;
     }
 }

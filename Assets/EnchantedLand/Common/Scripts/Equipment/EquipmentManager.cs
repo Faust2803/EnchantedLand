@@ -16,7 +16,7 @@ public abstract class EquipmentManager<T, G>
     private GoogleSheetsService _googleSheetsService;
     private PlayerManager _playerManager;
     protected AvatarImageService _avatarImageService;
-    protected DamageService _damageService;
+    protected DamageManager DamageManager;
     protected ItemType Type { get; set; }
 
     private List<T> _items = new();
@@ -31,27 +31,27 @@ public abstract class EquipmentManager<T, G>
     private void Construct(
         GoogleSheetsService googleSheetsService,
         AvatarImageService avatarImageService,
-        DamageService damageService,
+        DamageManager damageManager,
         PlayerManager playerManager)
     {
         _googleSheetsService = googleSheetsService;
         _avatarImageService = avatarImageService;
-        _damageService = damageService;
+        DamageManager = damageManager;
         _playerManager = playerManager;
 
-        if (_damageService.Count > 0)
+        if (DamageManager.Count > 0)
         {
             Load().Forget();
         }
         else
         {
-            _damageService.LoadCompleat += OnDamageLoadComplete;
+            DamageManager.LoadCompleat += OnDamageLoadComplete;
         }
     }
 
     private void OnDamageLoadComplete(bool result)
     {
-        _damageService.LoadCompleat -= OnDamageLoadComplete;
+        DamageManager.LoadCompleat -= OnDamageLoadComplete;
 
         if (result)
             Load().Forget();
