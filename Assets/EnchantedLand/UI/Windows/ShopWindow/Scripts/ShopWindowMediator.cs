@@ -22,7 +22,7 @@ namespace UI.Windows
         private ItemType _activeType;
         private IIdentifiable _activeItem;
 
-        private int CurrentPrice => _playerManager.Data.CalculatePrice(_activeItem.Price);
+        private int CurrentPrice => _playerManager.CalculatePrice(_activeItem.Price);
 
         private int CurrentItemCount => _activeType switch
         {
@@ -133,7 +133,7 @@ namespace UI.Windows
                     $"Ты не можешь купить этот предмет. Тебе не хватает {CurrentPrice - _playerManager.Data.Currency} монет.");
                 return false;
             }
-            if (!_playerManager.Data.AddToStorage(_activeItem))
+            if (!_playerManager.AddToStorage(_activeItem))
             {
                 ShowMessage(
                     "Невозможно купить",
@@ -160,7 +160,7 @@ namespace UI.Windows
         {
             if (!isAded)
             {
-                var price =  (item.Price / 2 ) - (_playerManager.Data.CalculatePrice(item.Price) - item.Price);
+                var price =  (item.Price / 2 ) - (_playerManager.CalculatePrice(item.Price) - item.Price);
                 _playerManager.Data.Currency += price;
                 
                 ShowMessage(

@@ -9,9 +9,7 @@ using Tanks.Common.Scripts.Player;
 using UnityEngine;
 using Zenject;
 
-public abstract class EquipmentManager<T, G>
-    where T : IIdentifiable
-    where G : new()
+public abstract class EquipmentManager<T, G> where T : IIdentifiable where G : new()
 {
     private GoogleSheetsService _googleSheetsService;
     private PlayerManager _playerManager;
@@ -19,9 +17,8 @@ public abstract class EquipmentManager<T, G>
     protected DamageManager DamageManager;
     protected ItemType Type { get; set; }
 
-    private List<T> _items = new();
-    
-    public IReadOnlyList<T> Items => _items;
+    private Dictionary<int, T> _items = new();
+    public IReadOnlyCollection<T> Items => _items.Values;
     public int Count => _items.Count;
     public Action<ItemType> SetSavedDataAction;
 
@@ -69,7 +66,8 @@ public abstract class EquipmentManager<T, G>
         _items.Clear();
         foreach (G dto in data)
         {
-            _items.Add(Create(dto));
+            T item = Create(dto);
+            _items.Add(item.ID, item);
         }
         Debug.Log($"{typeof(T).Name} loaded: {_items.Count}");
         SetSavedData();
@@ -82,7 +80,7 @@ public abstract class EquipmentManager<T, G>
             if (_playerManager.Data.StorageSave[i].Type == Type)
             {
                 var item = GetById(_playerManager.Data.StorageSave[i].Id);
-                _playerManager.Data.AddToStorage(item, false);
+                _playerManager.AddToStorage(item, false);
             }
         }
         
@@ -91,7 +89,7 @@ public abstract class EquipmentManager<T, G>
             if (_playerManager.Data.EquipedSave[i].Type == Type)
             {
                 var item = GetById(_playerManager.Data.EquipedSave[i].Id);
-                _playerManager.Data.Equip(item, false, false);
+                _playerManager.Equip(item, false, false);
             }
         }
         
@@ -100,11 +98,9 @@ public abstract class EquipmentManager<T, G>
     
     public T GetById(int id)
     {
-        foreach (T item in _items)
-        {
-            if (item.ID == id) return item;
-        }
-
+        T item;
+        if(_items.TryGetValue(id, out item))return item;
+        
         Debug.LogError($"{typeof(T).Name} with ID {id} not found.");
         return default;
     }
@@ -116,8 +112,6 @@ public abstract class EquipmentManager<T, G>
         Debug.LogError($"{typeof(T).Name} with index {index} not found.");
         return default;
     }
-    
-    
 
     protected abstract T Create(G dto);
 }

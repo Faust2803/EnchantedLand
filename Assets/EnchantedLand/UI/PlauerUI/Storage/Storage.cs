@@ -1,4 +1,4 @@
-using System;
+
 using System.Collections.Generic;
 using Tanks.Common.Scripts.Player;
 using UnityEngine;
@@ -89,13 +89,13 @@ namespace EnchantedLand.Common.Scripts
         {
             if (_isShop)
             {
-                _playerManager.Data.RemoveFromStorage(i);
+                _playerManager.RemoveFromStorage(i);
             }
             else
             {
-                if (_playerManager.Data.Equip(_playerManager.Data.Storage[i], true))
+                if (_playerManager.Equip(_playerManager.Data.Storage[i], true))
                 {
-                    _playerManager.Data.RemoveFromStorage(i, true);
+                    _playerManager.RemoveFromStorage(i, true);
                 }
             }
         }

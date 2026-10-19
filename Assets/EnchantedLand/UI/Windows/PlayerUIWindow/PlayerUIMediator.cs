@@ -31,7 +31,6 @@ namespace UI.Windows
         protected override void ShowStart()
         {
             base.ShowStart();
-            Subscribe();
         }
         
         protected override void OpenFinish()
@@ -43,25 +42,11 @@ namespace UI.Windows
             }
         }
 
-        private void OnStorageChanged(int index, IIdentifiable item, bool isAded)
-        {
-            _playerManager.Save();
-        }
         
-
-        private void Subscribe()
-        {
-            _playerManager.Data.OnStorageChanged += OnStorageChanged;
-        }
-        
-        private void Unsubscribe()
-        {
-            _playerManager.Data.OnStorageChanged -= OnStorageChanged;
-        }
         
         protected override void CloseStart()
         {
-            Unsubscribe();
+
             base.CloseStart();
         }
     }

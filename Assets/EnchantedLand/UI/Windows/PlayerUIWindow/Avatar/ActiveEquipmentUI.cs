@@ -83,9 +83,9 @@ namespace EnchantedLand.UI.PlauerUI
         
         private void RemoveItem(int i)
         {
-            if (_playerManager.Data.AddToStorage(_playerManager.Data.Equiped[i], true, true))
+            if (_playerManager.AddToStorage(_playerManager.Data.Equiped[i], true, true))
             {
-                _playerManager.Data.DeEquip(i);
+                _playerManager.DeEquip(i);
             }
         }
     }

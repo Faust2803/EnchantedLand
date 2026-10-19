@@ -1,12 +1,10 @@
 using System;
 using System.Collections.Generic;
 using EnchantedLand.Common.Race;
-using SO.Scripts;
 using Tanks.Common.Scripts.Player;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Utils;
 using Zenject;
 
 
@@ -28,7 +26,7 @@ namespace UI.Panels.RaseSelector
         [Inject] private RaceManager _raceManager;
         [Inject] private PlayerManager _playerManager;
         
-        public Race CurrentRace => _raceManager.Races[_playerManager.Data.RaсeId];
+        public Race CurrentRace => _raceManager.GetById(_playerManager.Data.RaсeId);
 
         private void Start()
         {
@@ -50,7 +48,8 @@ namespace UI.Panels.RaseSelector
         {
             var item = Instantiate(_imagePrefab, _avatarConteyner);
 
-            item.sprite = _raceManager.Races[index].Image;
+            item.sprite = _raceManager.GetById(index).Image;
+            item.sprite = _raceManager.GetAt(index).Image;
             item.preserveAspect = true;
 
            
@@ -107,9 +106,9 @@ namespace UI.Panels.RaseSelector
                 _items[i].gameObject.SetActive(i == _currentRase);
             }
             _playerManager.Data.RaсeId = _currentRase;
-            _title.text = $"Расса {_raceManager.Races[_playerManager.Data.RaсeId].Title}";
+            _title.text = $"Расса {_raceManager.GetById(_playerManager.Data.RaсeId).Title}";
             
-            OnRaseSelected?.Invoke(_raceManager.Races[_playerManager.Data.RaсeId]); 
+            OnRaseSelected?.Invoke(_raceManager.GetById(_playerManager.Data.RaсeId)); 
         }
     }
 }

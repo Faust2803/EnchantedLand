@@ -142,8 +142,7 @@ namespace UI.Panels
                         break;
                 }
             }
-            _playerManager.Data.SaveCharacteristics(Target.RaseSelector.CurrentRace, characteristics);
-            _playerManager.Save();
+            _playerManager.SaveCharacteristics(Target.RaseSelector.CurrentRace, characteristics);
             
             _uiManager.OpenWindow(WindowType.ShopWindow);
             _uiManager.ClosePanel(PanelType.LobbyMainPanel);

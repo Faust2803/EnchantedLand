@@ -1,14 +1,14 @@
 using System;
 using EnchantedLand.Common.DataModels;
-
+using Tanks.Game.Scripts;
 using UnityEngine;
 
 namespace EnchantedLand.Common.Race
 {
     [Serializable]
-    public class Race
+    public class Race : Configurated
     {
-        public int Id;
+        public int ID { get; set; }
         public Sprite Image;
         public string Title;
         public string Description;

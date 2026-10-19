@@ -266,15 +266,6 @@ MonoBehaviour:
   - {fileID: 3457299679427332139}
   - {fileID: 3716649615756855011}
   - {fileID: 8510365822355550026}
-  - {fileID: 5402786208913658335}
-  - {fileID: 6184916368335502964}
-  - {fileID: 3266770179557044388}
-  - {fileID: 4232451586522458852}
-  - {fileID: 6918656326573604275}
-  - {fileID: 1665717529284051870}
-  - {fileID: 3713458966868835983}
-  - {fileID: 1299036951518985789}
-  - {fileID: 634775204292029648}
 --- !u!1 &5761524750293638664
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,7 +359,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2679262933905248674
 RectTransform:
   m_ObjectHideFlags: 0
@@ -483,7 +474,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchorMin.x
@@ -491,7 +482,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_SizeDelta.x
@@ -531,11 +522,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 479.93866
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -587,17 +578,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
   m_PrefabInstance: {fileID: 998352320982535292}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6918656326573604275 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7917008602583560655, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
-  m_PrefabInstance: {fileID: 998352320982535292}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a3c93436b474d258b57b0dd3c96a0ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnchantedLand.UI.PlauerUI.PlauerUI
 --- !u!1001 &1069277969821734315
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -684,6 +664,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5644595782009292526, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7711013290971280294, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
@@ -944,6 +928,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5644595782009292526, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 250
+      objectReference: {fileID: 0}
     - target: {fileID: 7711013290971280294, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_Name
       value: RingFrame
@@ -1011,7 +999,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchorMin.x
@@ -1019,7 +1007,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1059,11 +1047,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 49
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1111,17 +1099,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
   m_PrefabInstance: {fileID: 2820467288960524304}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5402786208913658335 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7917008602583560655, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
-  m_PrefabInstance: {fileID: 2820467288960524304}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a3c93436b474d258b57b0dd3c96a0ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnchantedLand.UI.PlauerUI.PlauerUI
 --- !u!1001 &2845859212546707805
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1402,7 +1379,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchorMin.x
@@ -1410,7 +1387,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1450,11 +1427,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 156.73466
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1506,17 +1483,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
   m_PrefabInstance: {fileID: 4038569749583925179}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6184916368335502964 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7917008602583560655, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
-  m_PrefabInstance: {fileID: 4038569749583925179}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a3c93436b474d258b57b0dd3c96a0ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnchantedLand.UI.PlauerUI.PlauerUI
 --- !u!1001 &4170369392685894341
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1668,7 +1634,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchorMin.x
@@ -1676,7 +1642,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1716,11 +1682,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 264.46933
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1767,17 +1733,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
---- !u!114 &3266770179557044388 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7917008602583560655, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
-  m_PrefabInstance: {fileID: 4650876234906091883}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a3c93436b474d258b57b0dd3c96a0ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnchantedLand.UI.PlauerUI.PlauerUI
 --- !u!224 &6210655278520819877 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
@@ -1870,6 +1825,14 @@ PrefabInstance:
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5644595782009292526, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 372.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5644595782009292526, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 7711013290971280294, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_Name
@@ -1998,6 +1961,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5644595782009292526, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7711013290971280294, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
@@ -2184,7 +2151,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchorMin.x
@@ -2192,7 +2159,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_SizeDelta.x
@@ -2232,11 +2199,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 372.20398
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2283,17 +2250,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
---- !u!114 &4232451586522458852 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7917008602583560655, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
-  m_PrefabInstance: {fileID: 6296715264209836843}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a3c93436b474d258b57b0dd3c96a0ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnchantedLand.UI.PlauerUI.PlauerUI
 --- !u!224 &4745096853308111589 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
@@ -3105,6 +3061,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5644595782009292526, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 250
+      objectReference: {fileID: 0}
     - target: {fileID: 7711013290971280294, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_Name
       value: RingFrame
@@ -3176,7 +3136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchorMin.x
@@ -3184,7 +3144,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_SizeDelta.x
@@ -3224,11 +3184,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 695.408
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3275,17 +3235,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
---- !u!114 &3713458966868835983 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7917008602583560655, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
-  m_PrefabInstance: {fileID: 6797627429327261504}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a3c93436b474d258b57b0dd3c96a0ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnchantedLand.UI.PlauerUI.PlauerUI
 --- !u!224 &5255018487604178574 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
@@ -3313,7 +3262,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchorMin.x
@@ -3321,7 +3270,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_SizeDelta.x
@@ -3361,11 +3310,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 910.8774
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3412,17 +3361,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
---- !u!114 &634775204292029648 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7917008602583560655, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
-  m_PrefabInstance: {fileID: 7282867946558922015}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a3c93436b474d258b57b0dd3c96a0ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnchantedLand.UI.PlauerUI.PlauerUI
 --- !u!224 &8334584659937082577 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
@@ -3450,7 +3388,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchorMin.x
@@ -3458,7 +3396,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_SizeDelta.x
@@ -3498,11 +3436,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 587.67334
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3549,17 +3487,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
---- !u!114 &1665717529284051870 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7917008602583560655, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
-  m_PrefabInstance: {fileID: 8845927445026206289}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a3c93436b474d258b57b0dd3c96a0ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnchantedLand.UI.PlauerUI.PlauerUI
 --- !u!224 &7816165919426302879 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
@@ -3716,7 +3643,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchorMin.x
@@ -3724,7 +3651,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_SizeDelta.x
@@ -3764,11 +3691,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 803.1427
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3815,17 +3742,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
---- !u!114 &1299036951518985789 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7917008602583560655, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}
-  m_PrefabInstance: {fileID: 9212612599623012338}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a3c93436b474d258b57b0dd3c96a0ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnchantedLand.UI.PlauerUI.PlauerUI
 --- !u!224 &7593723181644410428 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1638067100327158222, guid: 9c4487e5a46778243a9dac3d85e7ef8e, type: 3}

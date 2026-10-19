@@ -5,10 +5,6 @@ using EnchantedLand.Common.Armor;
 using EnchantedLand.Common.DataModels;
 using EnchantedLand.Common.Race;
 using EnchantedLand.Common.Scripts;
-using EnchantedLand.Common.Weapon;
-using SO.Scripts;
-using UnityEngine;
-using UnityEngine.Serialization;
 
 
 namespace Tanks.Common.Scripts.Player
@@ -16,19 +12,21 @@ namespace Tanks.Common.Scripts.Player
     [Serializable]
     public class PlayerData
     {
-        private const float WEIGHT_COEFFICIENT = 2.5F;
+        public const float WEIGHT_COEFFICIENT = 2.5F;
         public const int START_PLAYER_MONEY = 200;
-        private const float CHARISMA_PERCENTAGE = 0.05f;
+        public const float CHARISMA_PERCENTAGE = 0.05f;
         public const int ITEM_COUNT_IN_STORAGE = 25;
         public const int ITEM_COUNT_IN_EQUIPED = 11;
+        public const float HP_COEFFICIENT = 0.5F;
         
         private int Weight;
         
         public int Currency;
         public int RaсeId;
         public int LiftingCapacity;
+        public int MaxHP;
+        public int HP;
         public Characteristics BaseCharacteristics;
-        public Characteristics CurrentCharacteristics;
         public List<SaveItemData> StorageSave = Enumerable.Repeat<SaveItemData>(null, ITEM_COUNT_IN_STORAGE).ToList();
         public List<SaveItemData> EquipedSave = Enumerable.Repeat<SaveItemData>(null, ITEM_COUNT_IN_EQUIPED).ToList();
         
@@ -45,29 +43,11 @@ namespace Tanks.Common.Scripts.Player
         
         public void SaveCharacteristics(Race raсe, Characteristics characteristics)
         {
-            RaсeId = raсe.Id;
+            RaсeId = raсe.ID;
             BaseCharacteristics = characteristics; 
-            CurrentCharacteristics = new Characteristics
-            {
-                Agility = characteristics.Agility + raсe.Characteristics.Agility,
-                Strength = characteristics.Strength + raсe.Characteristics.Strength,
-                Endurance = characteristics.Endurance + raсe.Characteristics.Endurance,
-                Charisma = characteristics.Charisma + raсe.Characteristics.Charisma,
-                Intelligence = characteristics.Intelligence + raсe.Characteristics.Intelligence
-            };
-            UpdateLiftingCapacity();
         }
 
-        private void UpdateLiftingCapacity()
-        {
-            LiftingCapacity = Mathf.RoundToInt( (CurrentCharacteristics.Endurance + CurrentCharacteristics.Strength) * WEIGHT_COEFFICIENT);
-        }
-
-        public int CalculatePrice(int price)
-        {
-            var multiplier = 1f - (CurrentCharacteristics.Charisma - 9) * CHARISMA_PERCENTAGE; 
-            return Mathf.CeilToInt(price * multiplier);
-        }
+        
 
         public bool AddToStorage(IIdentifiable item, bool isSaved = true, bool isEquiped = false)
         {

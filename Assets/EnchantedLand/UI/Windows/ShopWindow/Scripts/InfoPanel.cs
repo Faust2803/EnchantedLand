@@ -118,7 +118,7 @@ namespace UI.Windows
             
             _title.text = info.Title;
             _description.text = $"{info.Description}\n\n{builder.ToString()}";
-            _prise.text = PlayerManager.Data.CalculatePrice(info.Price)+ "монет";
+            _prise.text = PlayerManager.CalculatePrice(info.Price)+ "монет";
             _weight.text = (info.Weight) + "кг";
             _image.sprite = info.PreviewImage;
             

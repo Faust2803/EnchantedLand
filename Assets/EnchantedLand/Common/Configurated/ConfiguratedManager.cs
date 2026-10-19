@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Common.Scripts.GoogleSheets;
 using Cysharp.Threading.Tasks;
 using Tanks.Game.Scripts;
@@ -13,10 +14,10 @@ public abstract class ConfiguratedManager<T, G>
     private GoogleSheetsService _googleSheetsService;
 
 
-    private List<T> _items = new();
-    
-    public IReadOnlyList<T> Items => _items;
+    private Dictionary<int, T> _items = new();
+    public IReadOnlyCollection<T> Items => _items.Values;
     public int Count => _items.Count;
+    
     public Action<bool> LoadCompleat;
 
     protected abstract string SheetUrl { get;}
@@ -39,23 +40,31 @@ public abstract class ConfiguratedManager<T, G>
         _items.Clear();
         foreach (G dto in data)
         {
-            _items.Add(Create(dto));
+            T item = Create(dto);
+            _items.Add(item.ID, item);
         }
         Debug.Log($"{typeof(T).Name} loaded: {_items.Count}");
         LoadCompleat?.Invoke(true);
     }
     
+    
+    
+    
+    
+    protected abstract T Create(G dto);
+    
     public T GetById(int id)
     {
-        foreach (T item in _items)
-        {
-            if (item.ID == id) return item;
-        }
-
+        T item;
+        if(_items.TryGetValue(id, out item))return item;
+        
         Debug.LogError($"{typeof(T).Name} with ID {id} not found.");
         return default;
     }
     
-    protected abstract T Create(G dto);
+    public T GetAt(int index)
+    {
+        return _items.Values.ElementAt(index);
+    }
 }
    

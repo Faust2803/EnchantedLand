@@ -13,6 +13,7 @@ namespace EnchantedLand.Common.Scripts
         [SerializeField] private TextMeshProUGUI _counter;
         [SerializeField] private Image _image;
         [SerializeField] private DoubleClickButton _button;
+        
         private IIdentifiable _itemData;
         public bool ItemData => _itemData != null;
         public Action<int> OnDoubleClick;
