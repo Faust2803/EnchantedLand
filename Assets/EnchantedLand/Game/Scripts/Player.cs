@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-namespace Tanks.Game.Scripts
+namespace Game.Scripts
 {
     public class Player : MonoBehaviour
     {

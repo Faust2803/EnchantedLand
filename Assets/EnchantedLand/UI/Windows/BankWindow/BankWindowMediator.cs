@@ -1,4 +1,4 @@
-﻿using Tanks.Common.Scripts.Player;
+﻿using Common.Scripts.Player;
 using Zenject;
 
 namespace UI.Windows

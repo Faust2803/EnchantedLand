@@ -1,7 +1,7 @@
-﻿using Common.Scripts.Tutorial;
+﻿using Common.Scripts.Player;
+using Common.Scripts.Tutorial;
 using EnchantedLand.Common.DataModels;
 using EnchantedLand.Common.Race;
-using Tanks.Common.Scripts.Player;
 using UI.Windows;
 
 using Zenject;

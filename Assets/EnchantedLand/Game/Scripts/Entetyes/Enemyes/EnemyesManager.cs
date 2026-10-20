@@ -5,8 +5,8 @@ using Common.Scripts.GoogleSheets;
 using EnchantedLand.Common.Damage;
 using EnchantedLand.Common.DataModels;
 using SO.Scripts;
-using Tanks.Game.Scripts;
-using Tanks.Game.Scripts.Entetyes.Loot;
+using Game.Scripts;
+using Game.Scripts.Entetyes.Loot;
 using Zenject;
 
 namespace EnchantedLand.Game

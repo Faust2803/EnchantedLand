@@ -1,6 +1,6 @@
 
 using System.Collections.Generic;
-using Tanks.Common.Scripts.Player;
+using Common.Scripts.Player;
 using UnityEngine;
 using Zenject;
 

@@ -9,7 +9,7 @@ using EnchantedLand.Common.Scripts.Potions;
 using SO.Scripts;
 using UnityEngine;
 
-namespace Tanks.Common.Scripts.Player
+namespace Common.Scripts.Player
 {
     public class PlayerManager
     {

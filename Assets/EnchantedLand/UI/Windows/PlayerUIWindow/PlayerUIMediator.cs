@@ -1,8 +1,7 @@
-﻿using Common.Scripts.Tutorial;
+﻿using Common.Scripts.Player;
+using Common.Scripts.Tutorial;
 using EnchantedLand.Common.Armor;
-using EnchantedLand.Common.Scripts;
 using EnchantedLand.Common.Weapon;
-using Tanks.Common.Scripts.Player;
 using Zenject;
 
 namespace UI.Windows

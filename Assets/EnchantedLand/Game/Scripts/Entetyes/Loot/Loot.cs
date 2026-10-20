@@ -1,7 +1,7 @@
 using System;
 using EnchantedLand.Common.Scripts;
 
-namespace Tanks.Game.Scripts.Entetyes.Loot
+namespace Game.Scripts.Entetyes.Loot
 {
     public class Loot : Configurated
     {

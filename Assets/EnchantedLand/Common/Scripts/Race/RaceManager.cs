@@ -1,10 +1,7 @@
-using System.Collections.Generic;
 using Common.Scripts.GoogleSheets;
 using Cysharp.Threading.Tasks;
 using EnchantedLand.Common.DataModels;
 using SO.Scripts;
-using Tanks.Common.Scripts.Player;
-using UnityEngine;
 using Zenject;
 
 namespace EnchantedLand.Common.Race

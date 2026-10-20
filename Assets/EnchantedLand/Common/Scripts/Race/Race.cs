@@ -1,11 +1,10 @@
 using System;
 using EnchantedLand.Common.DataModels;
-using Tanks.Game.Scripts;
+using Game.Scripts;
 using UnityEngine;
 
 namespace EnchantedLand.Common.Race
 {
-    [Serializable]
     public class Race : Configurated
     {
         public int ID { get; set; }

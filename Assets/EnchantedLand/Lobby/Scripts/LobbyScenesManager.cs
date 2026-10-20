@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-using Common.Scripts.GoogleSheets;
-using Common.Scripts.Network;
+using Common.Scripts.Player;
 using Common.Scripts.Tutorial;
 using EnchantedLand.Common.Race;
 using Managers;
-using Tanks.Common.Scripts.Player;
 using UI.Panels;
 using UI.Windows;
 using UnityEngine;

@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using EnchantedLand.Common.Armor;
+using Common.Scripts.Player;
 using EnchantedLand.Common.Scripts;
-using Tanks.Common.Scripts.Player;
 using UnityEngine;
 using Zenject;
 

@@ -1,11 +1,11 @@
 using System;
 using System.Text;
+using Common.Scripts.Player;
 using EnchantedLand.Common.Armor;
 using EnchantedLand.Common.DataModels;
 using EnchantedLand.Common.Scripts;
 using EnchantedLand.Common.Scripts.Potions;
 using EnchantedLand.Common.Weapon;
-using Tanks.Common.Scripts.Player;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

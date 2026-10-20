@@ -9,8 +9,9 @@ using EnchantedLand.Common.Scripts.Potions;
 using EnchantedLand.Common.Weapon;
 using EnchantedLand.Game;
 using Managers;
-using Tanks.Common.Scripts.Player;
-using Tanks.Game.Scripts.Entetyes.Loot;
+using Common.Scripts.Player;
+using Game.Scripts.Entetyes;
+using Game.Scripts.Entetyes.Loot;
 using Util;
 using Zenject;
 namespace Installers
@@ -38,6 +39,8 @@ namespace Installers
             
             Container.BindInterfacesAndSelfTo<EnemyesManager>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<LootManager>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<DialogsManager>().AsSingle().NonLazy();
+            
             
             Container.BindInterfacesAndSelfTo<NetworkService>().AsSingle();
         }

@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using EnchantedLand.Common.DataModels;
-using Tanks.Game.Scripts.Entetyes.Loot;
+using Game.Scripts.Entetyes.Loot;
 using UnityEngine;
 
-namespace Tanks.Game.Scripts
+namespace Game.Scripts
 {
     public class Enemy : Configurated
     {

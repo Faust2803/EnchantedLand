@@ -1,9 +1,4 @@
-﻿
-using Common.Scripts.Network;
-using Common.Scripts.Tutorial;
-using Managers;
-using Tanks.Common.Scripts.Player;
-using Util;
+﻿using Common.Scripts.Tutorial;
 using Zenject;
 
 namespace UI.Windows

@@ -1,7 +1,6 @@
 using System;
 using EnchantedLand.Common.DataModels;
-using Tanks.Game.Scripts;
-using UnityEngine.Serialization;
+using Game.Scripts;
 
 namespace EnchantedLand.Common.Damage
 {

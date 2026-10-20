@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Common.Scripts.Player;
 using EnchantedLand.Common.Race;
-using Tanks.Common.Scripts.Player;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

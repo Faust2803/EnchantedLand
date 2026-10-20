@@ -1,4 +1,4 @@
-namespace Tanks.Game.Scripts
+namespace Game.Scripts
 {
     public interface Configurated
     {

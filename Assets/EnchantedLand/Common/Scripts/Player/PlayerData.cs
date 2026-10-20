@@ -7,7 +7,7 @@ using EnchantedLand.Common.Race;
 using EnchantedLand.Common.Scripts;
 
 
-namespace Tanks.Common.Scripts.Player
+namespace Common.Scripts.Player
 {
     [Serializable]
     public class PlayerData

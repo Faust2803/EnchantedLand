@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Tanks.Game.Scripts
+namespace Game.Scripts
 {
     public class LevelMap : MonoBehaviour
     {

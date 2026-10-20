@@ -1,7 +1,7 @@
 ﻿using System;
 using Common.Scripts.Network;
+using Common.Scripts.Player;
 using Cysharp.Threading.Tasks;
-using Tanks.Common.Scripts.Player;
 using Unity.Netcode;
 using UnityEngine;
 using Util;

@@ -1,11 +1,8 @@
 
 using System.Collections.Generic;
 using Common.Scripts.Network;
+using Common.Scripts.Player;
 using Managers;
-using SO.Scripts;
-using Tanks.Common.Scripts.Player;
-using Tanks.Game.Scripts;
-using Tanks.NetGame.Scripts;
 using Unity.Netcode;
 using UnityEngine;
 using Zenject;

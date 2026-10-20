@@ -1,4 +1,4 @@
-using Tanks.Common.Scripts.Player;
+using Common.Scripts.Player;
 using Unity.Netcode;
 using Zenject;
 namespace Tanks.NetGame.Scripts

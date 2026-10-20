@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Common.Scripts.GoogleSheets;
 using Cysharp.Threading.Tasks;
-using Tanks.Game.Scripts;
+using Game.Scripts;
 using UnityEngine;
 using Zenject;
 
@@ -14,7 +14,7 @@ public abstract class ConfiguratedManager<T, G>
     private GoogleSheetsService _googleSheetsService;
 
 
-    private Dictionary<int, T> _items = new();
+    protected Dictionary<int, T> _items = new();
     public IReadOnlyCollection<T> Items => _items.Values;
     public int Count => _items.Count;
     
@@ -37,6 +37,11 @@ public abstract class ConfiguratedManager<T, G>
             Debug.LogError($"{typeof(T).Name} data is empty.");
             return;
         }
+        InitData(data);
+    }
+
+    protected virtual void InitData(List<G> data)
+    {
         _items.Clear();
         foreach (G dto in data)
         {
