@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Common.Scripts.GoogleSheets;
 using Cysharp.Threading.Tasks;
 using EnchantedLand.Common.DataModels;
@@ -22,6 +23,13 @@ namespace EnchantedLand.Common.Race
         
         protected override Race Create(RaceDTO dto)
         {
+            var characteristics  = new Dictionary<CharacteristicsID, int>();
+            characteristics[CharacteristicsID.Strength] = dto.Strength;
+            characteristics[CharacteristicsID.Intelligence] = dto.Intelligence;
+            characteristics[CharacteristicsID.Agility] = dto.Agility;
+            characteristics[CharacteristicsID.Charisma] = dto.Charisma;
+            characteristics[CharacteristicsID.Endurance] = dto.Endurance;
+
             return new Race
             {
                 ID = dto.Id,
@@ -29,14 +37,7 @@ namespace EnchantedLand.Common.Race
                 Title = dto.Title,
                 Description = dto.Description,
 
-                Characteristics = new Characteristics
-                {
-                    Strength = dto.Strength,
-                    Intelligence = dto.Intelligence,
-                    Agility = dto.Agility,
-                    Charisma = dto.Charisma,
-                    Endurance = dto.Endurance
-                }
+                Characteristics = characteristics
             };
         }
     }

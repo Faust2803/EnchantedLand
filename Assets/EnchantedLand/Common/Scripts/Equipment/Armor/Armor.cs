@@ -6,7 +6,6 @@ using UnityEngine;
 
 namespace EnchantedLand.Common.Armor
 {
-    [Serializable]
     public class Armor : IIdentifiable
     {
         public int ID { get; set; }
@@ -25,9 +24,9 @@ namespace EnchantedLand.Common.Armor
         public int CurrentStrength{ get; set; }
 
         
-        public Characteristics NeededCharacteristics;
-        public Characteristics InfluenceCharacteristics;
-        public Skills Skills;
+        public Dictionary<CharacteristicsID, int> NeededCharacteristics;
+        public Dictionary<CharacteristicsID, int> InfluenceCharacteristics;
+        public Dictionary<SkillsID, int> Skills;
         public Dictionary<DamageType, float> Resistance;
 
     }

@@ -21,6 +21,7 @@ public abstract class EquipmentManager<T, G> where T : IIdentifiable where G : n
     public IReadOnlyCollection<T> Items => _items.Values;
     public int Count => _items.Count;
     public Action<ItemType> SetSavedDataAction;
+    public Action LoadDataAction;
 
     protected abstract string SheetUrl { get;}
 
@@ -70,10 +71,11 @@ public abstract class EquipmentManager<T, G> where T : IIdentifiable where G : n
             _items.Add(item.ID, item);
         }
         Debug.Log($"{typeof(T).Name} loaded: {_items.Count}");
-        SetSavedData();
+        //SetSavedData();
+        LoadDataAction?.Invoke();
     }
 
-    private void SetSavedData()
+    public void SetSavedData()
     {
         for (var i = 0; i < _playerManager.Data.StorageSave.Count; i++)
         {

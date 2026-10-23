@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using EnchantedLand.Common.DataModels;
 using Game.Scripts;
 using UnityEngine;
@@ -11,7 +12,7 @@ namespace EnchantedLand.Common.Race
         public Sprite Image;
         public string Title;
         public string Description;
-        public Characteristics Characteristics;
+        public Dictionary<CharacteristicsID, int> Characteristics;
     }
     
     [Serializable]

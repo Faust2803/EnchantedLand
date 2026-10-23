@@ -1,9 +1,8 @@
-using Common.Scripts.Utils;
+
 using EnchantedLand.Common.Armor;
 using EnchantedLand.Common.Scripts;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace EnchantedLand.UI.PlauerUI
 {
@@ -24,11 +23,6 @@ namespace EnchantedLand.UI.PlauerUI
         {
             base.RemoveItem();
             _strength.gameObject.SetActive(false);
-        }
-        
-        public override void OnButtonClicked()
-        {
-            OnDoubleClick?.Invoke((int)_slotID);
         }
     }
 }

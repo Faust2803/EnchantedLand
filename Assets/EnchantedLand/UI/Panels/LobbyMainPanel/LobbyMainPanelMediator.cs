@@ -1,4 +1,5 @@
-﻿using Common.Scripts.Player;
+﻿using System.Collections.Generic;
+using Common.Scripts.Player;
 using Common.Scripts.Tutorial;
 using EnchantedLand.Common.DataModels;
 using EnchantedLand.Common.Race;
@@ -63,11 +64,11 @@ namespace UI.Panels
             var _characteristics_description =
                 $"\nРаспредели очки между основными характеристиками персонажа\n " +
                 $"Для данной рассы имеются следующие бонусы:\n" +
-                $"Сила {obj.Characteristics.Strength}, " +
-                $"Ловкость {obj.Characteristics.Agility}, " +
-                $"Выносливость {obj.Characteristics.Endurance}, " +
-                $"Интеллект {obj.Characteristics.Intelligence}, " +
-                $"Харизма {obj.Characteristics.Charisma}";
+                $"Сила {obj.Characteristics[CharacteristicsID.Strength]}, " +
+                $"Ловкость {obj.Characteristics[CharacteristicsID.Agility]}, " +
+                $"Выносливость {obj.Characteristics[CharacteristicsID.Endurance]}, " +
+                $"Интеллект {obj.Characteristics[CharacteristicsID.Intelligence]}, " +
+                $"Харизма {obj.Characteristics[CharacteristicsID.Charisma]}";
             
             var  _raseDescription = $"\n{obj.Description}";
             
@@ -119,30 +120,30 @@ namespace UI.Panels
             {
                 CloseSelf();
             }*/
-            var characteristics = new Characteristics();
+            var characteristics = new Dictionary<CharacteristicsID, int>();
             for (var i = 0; i < Target.ParamsPanel.Count; i++)
             {
                 Target.ParamsPanel[i].OnChange -= ChangeParametr;
                 switch (Target.ParamsPanel[i].CharacteristicId)
                 {
                     case CharacteristicsID.Strength:
-                        characteristics.Strength = Target.ParamsPanel[i].Result;
+                        characteristics[CharacteristicsID.Strength] = Target.ParamsPanel[i].Result;
                         break;
                     case CharacteristicsID.Intelligence:
-                        characteristics.Intelligence = Target.ParamsPanel[i].Result;
+                        characteristics[CharacteristicsID.Intelligence] = Target.ParamsPanel[i].Result;
                         break;
                     case CharacteristicsID.Agility:
-                        characteristics.Agility = Target.ParamsPanel[i].Result;
+                        characteristics[CharacteristicsID.Agility] = Target.ParamsPanel[i].Result;
                         break;
                     case CharacteristicsID.Charisma:
-                        characteristics.Charisma = Target.ParamsPanel[i].Result;
+                        characteristics[CharacteristicsID.Charisma] = Target.ParamsPanel[i].Result;
                         break;
                     case CharacteristicsID.Endurance:
-                        characteristics.Endurance = Target.ParamsPanel[i].Result;
+                        characteristics[CharacteristicsID.Endurance] = Target.ParamsPanel[i].Result;
                         break;
                 }
             }
-            _playerManager.SaveCharacteristics(Target.RaseSelector.CurrentRace, characteristics);
+            _playerManager.SaveCharacteristicsByRace(Target.RaseSelector.CurrentRace, characteristics);
             
             _uiManager.OpenWindow(WindowType.ShopWindow);
             _uiManager.ClosePanel(PanelType.LobbyMainPanel);

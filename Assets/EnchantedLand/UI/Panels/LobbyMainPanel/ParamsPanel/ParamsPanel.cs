@@ -40,24 +40,8 @@ namespace UI.Panels.ParamsPanel
 
         private void RaseSelected(Race obj)
         {
-            switch (_characteristicId)
-            {
-                case CharacteristicsID.Strength:
-                    _raseParam = obj.Characteristics.Strength;
-                    break;
-                case CharacteristicsID.Intelligence:
-                    _raseParam = obj.Characteristics.Intelligence;
-                    break;
-                case CharacteristicsID.Agility:
-                    _raseParam = obj.Characteristics.Agility;
-                    break;
-                case CharacteristicsID.Charisma:
-                    _raseParam = obj.Characteristics.Charisma;
-                    break;
-                case CharacteristicsID.Endurance:
-                    _raseParam = obj.Characteristics.Endurance;
-                    break;
-            }
+            _raseParam = obj.Characteristics[_characteristicId];
+            
             _additionalParamsText.text = _raseParam.ToString();
             SetParams(_change);
         }

@@ -6,54 +6,54 @@ namespace EnchantedLand.Common.DataModels
 {
     public static class CharacteristicsServise
     {
-        public static StringBuilder Characteristics(Characteristics characteristics)
+        public static StringBuilder Characteristics(Dictionary<CharacteristicsID, int> characteristics)
         {
             var builder = new StringBuilder();
-            if (characteristics.Strength > 0 )
+            if (characteristics[CharacteristicsID.Strength] > 0 )
             {
-                builder.AppendLine("Сила: " + characteristics.Strength);
+                builder.AppendLine("Сила: " + characteristics[CharacteristicsID.Strength]);
             }
-            if (characteristics.Agility > 0 )
+            if (characteristics[CharacteristicsID.Agility] > 0 )
             {
-                builder.AppendLine("Ловкость: " + characteristics.Agility);
+                builder.AppendLine("Ловкость: " + characteristics[CharacteristicsID.Agility]);
             }
-            if (characteristics.Endurance > 0 )
+            if (characteristics[CharacteristicsID.Endurance] > 0 )
             {
-                builder.AppendLine("Выносливость: " + characteristics.Endurance);
+                builder.AppendLine("Выносливость: " + characteristics[CharacteristicsID.Endurance]);
             }
-            if (characteristics.Intelligence > 0 )
+            if (characteristics[CharacteristicsID.Intelligence] > 0 )
             {
-                builder.AppendLine("Интеллект: " + characteristics.Intelligence);
+                builder.AppendLine("Интеллект: " + characteristics[CharacteristicsID.Intelligence]);
             }
-            if (characteristics.Charisma > 0 )
+            if (characteristics[CharacteristicsID.Charisma] > 0 )
             {
-                builder.AppendLine("Харизма: " + characteristics.Charisma);
+                builder.AppendLine("Харизма: " + characteristics[CharacteristicsID.Charisma]);
             }
             return builder;
         }
         
-        public static StringBuilder Skills(Skills skills)
+        public static StringBuilder Skills(Dictionary<SkillsID, int> skills)
         {
             var builder = new StringBuilder();
-            if (skills.Armor > 0 )
+            if (skills[SkillsID.Armor] > 0 )
             {
-                builder.AppendLine("Броня: " + skills.Armor);
+                builder.AppendLine("Броня: " + skills[SkillsID.Armor]);
             }
-            if (skills.Accuracy > 0 )
+            if (skills[SkillsID.Accuracy] > 0 )
             {
-                builder.AppendLine("Точность: " + skills.Accuracy);
+                builder.AppendLine("Точность: " + skills[SkillsID.Accuracy]);
             }
-            if (skills.Destruction > 0 )
+            if (skills[SkillsID.Destruction] > 0 )
             {
-                builder.AppendLine("Урон: " + skills.Destruction);
+                builder.AppendLine("Урон: " + skills[SkillsID.Destruction]);
             }
-            if (skills.Initiative > 0 )
+            if (skills[SkillsID.Initiative] > 0 )
             {
-                builder.AppendLine("Инициатива: " + skills.Initiative);
+                builder.AppendLine("Инициатива: " + skills[SkillsID.Initiative]);
             }
-            if (skills.Stealth > 0 )
+            if (skills[SkillsID.Stealth] > 0 )
             {
-                builder.AppendLine("Скрытность: " + skills.Stealth);
+                builder.AppendLine("Скрытность: " + skills[SkillsID.Stealth]);
             }
             return builder;
         }

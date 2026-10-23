@@ -55,7 +55,11 @@ namespace Game.Scripts.Entetyes
         NextStep7 = 8,
         NextStep8 = 9,
         NextStep9 = 10,
-        
+        NextStep10 = 11,
+        NextStep11 = 12,
+        NextStep12 = 13,
+        NextStep13 = 14,
+        NextStep15 = 15,
     }
     
     [Serializable]

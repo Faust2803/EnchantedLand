@@ -1,6 +1,9 @@
 
+using System;
 using System.Collections.Generic;
 using Common.Scripts.Player;
+using Managers;
+using UI.Windows;
 using UnityEngine;
 using Zenject;
 
@@ -12,11 +15,15 @@ namespace EnchantedLand.Common.Scripts
         [SerializeField]  private bool _isShop;
         
         private PlayerManager _playerManager;
+        private UiManager _uiManager;
+        public static Action<bool> ShowEqupErrorWindow;
         
         [Inject]
-        private void Construct(PlayerManager playerManager)
+        private void Construct(PlayerManager playerManager, UiManager uiManager)
         {
             _playerManager = playerManager;
+            _uiManager = uiManager;
+            
             for (var i = 0; i < _playerManager.Data.Storage.Count; i++)
             {
                 if (_playerManager.Data.Storage[i] != null)
@@ -85,7 +92,7 @@ namespace EnchantedLand.Common.Scripts
             }
         }
 
-        private void RemoveItem(int i)
+        private void RemoveItem(int i, IIdentifiable item)
         {
             if (_isShop)
             {
@@ -93,12 +100,33 @@ namespace EnchantedLand.Common.Scripts
             }
             else
             {
-                if (_playerManager.Equip(_playerManager.Data.Storage[i], true))
+                if (_playerManager.Equip(item, true))
                 {
                     _playerManager.RemoveFromStorage(i, true);
                 }
+                else
+                {
+                    var data = new MessageWindowData
+                    {
+                        Title = "Не экипировано",
+                        Description = $"Ты не можешь экипировать или использовать {item.Title} . \n" +
+                                      "Возможно слот уже занят другим предметом или не хватает характеристик персонажа.",
+                        CancelAction = null ,
+                        OKAction = () => ShowEqupErrorWindow?.Invoke(false),
+                        CancelButtonText = "Cancel",
+                        HasCancelButton = false,
+                        OkButtonText = "Продолжить игру",
+                        HasOKButton = true,
+                    };
+                    _uiManager.ForceOpenWindow(WindowType.MessageWindow,data);
+                    ShowEqupErrorWindow?.Invoke(true);
+                }
             }
         }
+        
+        
+        
+        
         
         
     }

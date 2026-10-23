@@ -29,9 +29,9 @@ namespace EnchantedLand.Common.Weapon
         public bool Projectile = false;
         public int Distance;
     
-        public Characteristics NeededCharacteristics;
-        public Characteristics InfluenceCharacteristics;
-        public Skills Skills;
+        public Dictionary<CharacteristicsID, int> NeededCharacteristics;
+        public Dictionary<CharacteristicsID, int> InfluenceCharacteristics;
+        public Dictionary<SkillsID, int> Skills;
         public List<Damage.Damage> Damage;
     }
     

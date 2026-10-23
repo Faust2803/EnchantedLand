@@ -13,7 +13,7 @@ namespace Common.Scripts.Player
     public class PlayerData
     {
         public const float WEIGHT_COEFFICIENT = 2.5F;
-        public const int START_PLAYER_MONEY = 200;
+        public const int START_PLAYER_MONEY = 600;
         public const float CHARISMA_PERCENTAGE = 0.05f;
         public const int ITEM_COUNT_IN_STORAGE = 25;
         public const int ITEM_COUNT_IN_EQUIPED = 11;
@@ -27,6 +27,7 @@ namespace Common.Scripts.Player
         public int MaxHP;
         public int HP;
         public Characteristics BaseCharacteristics;
+        
         public List<SaveItemData> StorageSave = Enumerable.Repeat<SaveItemData>(null, ITEM_COUNT_IN_STORAGE).ToList();
         public List<SaveItemData> EquipedSave = Enumerable.Repeat<SaveItemData>(null, ITEM_COUNT_IN_EQUIPED).ToList();
         
@@ -38,13 +39,21 @@ namespace Common.Scripts.Player
         public Action<int, IIdentifiable, bool> OnStorageChanged;
         public Action<int, IIdentifiable, bool> OnEquipedChanged;
         
+        public Dictionary<CharacteristicsID, int> СurrentCharacteristics { get; set; } = new Dictionary<CharacteristicsID, int>();
+        public Dictionary<SkillsID, int> Skills { get; set; } = new Dictionary<SkillsID, int>();
+        public Dictionary<DamageType, float> Resistics { get; set; } = new Dictionary<DamageType, float>();
         
         public int AvailableWeight => LiftingCapacity - Weight;
         
-        public void SaveCharacteristics(Race raсe, Characteristics characteristics)
+        public void SaveRaceAndBaseCharacteristics(Race raсe , Dictionary<CharacteristicsID, int> characteristics)
         {
             RaсeId = raсe.ID;
-            BaseCharacteristics = characteristics; 
+            
+            BaseCharacteristics.Endurance = characteristics[CharacteristicsID.Endurance]; 
+            BaseCharacteristics.Intelligence = characteristics[CharacteristicsID.Intelligence]; 
+            BaseCharacteristics.Strength = characteristics[CharacteristicsID.Strength]; 
+            BaseCharacteristics.Agility = characteristics[CharacteristicsID.Agility]; 
+            BaseCharacteristics.Charisma = characteristics[CharacteristicsID.Charisma]; 
         }
 
         
@@ -111,7 +120,8 @@ namespace Common.Scripts.Player
                 {
                     Type = item.Type,
                     Id = item.ID,
-                    Count = item.Count
+                    Count = item.Count,
+                    SlotId = item.SlotId
                 };
                 OnEquipedChanged?.Invoke(index, item, true); 
             }
@@ -120,27 +130,59 @@ namespace Common.Scripts.Player
 
         private int GetFreeEquipmentSlot(EquipmentSlotID slot)
         {
-            var i = (int)slot;
-            if (_equiped[i] == null) return i;
-            if (i + 1 < _equiped.Count && _equiped[i + 1] == null) return i + 1;
-            return -1;
+            var emptyIndex = -1;
+            var ringCount = 0;
+
+            for (var i = 0; i < _equiped.Count; i++)
+            {
+                if (_equiped[i] == null)
+                {
+                    emptyIndex = i;
+                    continue;
+                }
+                
+                if (_equiped[i].SlotId == EquipmentSlotID.None)
+                {
+                    if (emptyIndex == -1)
+                        emptyIndex = i;
+
+                    continue;
+                }
+
+                if (_equiped[i].SlotId != slot)
+                    continue;
+
+                if (slot != EquipmentSlotID.Ring)
+                    return -1;
+
+                ringCount++;
+
+                if (ringCount >= 2)
+                    return -1;
+            }
+
+            return emptyIndex;
+        
         }
 
-        public bool DeEquip(int index, bool isRemoved = false)
+        public bool DeEquip(int slotIndex, IIdentifiable item, bool isRemoved = false)
         {
-            if (index < 0 || index >= _equiped.Count) return false;
-            var item = _equiped[index];
             if (item == null) return false;
-            _equiped[index] = null;
-            EquipedSave[index] = null;
-            
-            if (isRemoved)
+            for (var i = 0; i < _equiped.Count(); i++)
             {
-                Weight -= item.Weight;
+                if (i == slotIndex)
+                {
+                    _equiped[i] = null;
+                    EquipedSave[i] = new SaveItemData();
+                    OnEquipedChanged?.Invoke(slotIndex, item, false);
+                    if (isRemoved)
+                    {
+                        Weight -= item.Weight;
+                    }
+                    return true;
+                }
             }
-           
-            OnEquipedChanged?.Invoke(index, item, false);
-            return true;
+            return false;
         }
     }
     
@@ -149,6 +191,7 @@ namespace Common.Scripts.Player
     {
         public ItemType Type = ItemType.None;
         public int Id = -1;
+        public EquipmentSlotID SlotId;
         public int Count = 0;
     }
     

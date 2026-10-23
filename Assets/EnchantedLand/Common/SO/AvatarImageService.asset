@@ -255,6 +255,10 @@ MonoBehaviour:
     PreviewImage: {fileID: 21300000, guid: 18b1b026665bd74419c64f529c111e20, type: 3}
     StorageImage: {fileID: 21300000, guid: 18b1b026665bd74419c64f529c111e20, type: 3}
     EquipedImage: {fileID: 21300000, guid: 18b1b026665bd74419c64f529c111e20, type: 3}
+  - Id: 2
+    PreviewImage: {fileID: 21300000, guid: d005b2e474c663744b4976a151dc661f, type: 3}
+    StorageImage: {fileID: 21300000, guid: d005b2e474c663744b4976a151dc661f, type: 3}
+    EquipedImage: {fileID: 21300000, guid: d005b2e474c663744b4976a151dc661f, type: 3}
   _enemyes:
   - Id: 0
     Image: {fileID: 21300000, guid: d6bed47142132b94aae44af99f0cfb8d, type: 3}

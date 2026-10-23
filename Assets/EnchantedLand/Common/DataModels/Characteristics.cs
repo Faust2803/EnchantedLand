@@ -2,25 +2,24 @@ using System;
 
 namespace EnchantedLand.Common.DataModels
 {
+    
     [Serializable]
     public class Characteristics
     {
-        public int Strength = 0;
-        public int Intelligence = 0;
-        public int Agility = 0;
-        public int Charisma = 0;
-        public int Endurance = 0;
-        
+        public int Strength;
+        public int Intelligence;
+        public int Agility;
+        public int Charisma;
+        public int Endurance;
     }
     
-    [Serializable]
-    public class Skills
+    public enum SkillsID
     {
-        public int Stealth = 0;
-        public int Accuracy = 0;
-        public int Destruction = 0;
-        public int Armor = 9;
-        public int Initiative;
+        Stealth = 0,
+        Accuracy = 1,
+        Destruction = 2,
+        Armor = 3,
+        Initiative = 4
     }
 
     public enum CharacteristicsID

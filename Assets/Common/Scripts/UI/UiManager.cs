@@ -51,7 +51,8 @@ namespace Managers
             }
             else
             {
-                if (!_windowsQueue.Contains(windowType) || (data as WindowData).repeatedInQueue)
+                //if (!_windowsQueue.Contains(windowType) || (data as WindowData).repeatedInQueue)
+                if (!_windowsQueue.Contains(windowType))
                 {
                     _windowsQueue.Enqueue(windowType);
                     _windowsDataQueue.Enqueue(data);
