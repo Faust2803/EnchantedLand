@@ -50,7 +50,11 @@ namespace Common.Scripts.Player
                 {
                     CreateDefaultData();
                 }
-                Debug.Log($"<color=#00FF00>Player Data Loaded</color>");
+                else
+                {
+                    Debug.Log($"<color=#00FF00>Player Data Loaded</color>");
+                    _data.IntiData();
+                }
             }
             catch (System.Exception e)
             {
@@ -89,6 +93,7 @@ namespace Common.Scripts.Player
                 RaсeId = 0,
                 Currency = PlayerData.START_PLAYER_MONEY
             };
+            _data.IntiData();
         }
         
         public void SaveCharacteristicsByRace(Race raсe, Dictionary<CharacteristicsID, int> characteristics)
@@ -102,14 +107,6 @@ namespace Common.Scripts.Player
         public void SetCharacteristics(Dictionary<CharacteristicsID, int> characteristics, bool add, bool save = true)
         {
             if (characteristics == null) return;
-            if (_data.СurrentCharacteristics.Count == 0)
-            {
-                _data.СurrentCharacteristics[CharacteristicsID.Intelligence] = _data.BaseCharacteristics.Intelligence;
-                _data.СurrentCharacteristics[CharacteristicsID.Endurance] = _data.BaseCharacteristics.Endurance;
-                _data.СurrentCharacteristics[CharacteristicsID.Agility] = _data.BaseCharacteristics.Agility;
-                _data.СurrentCharacteristics[CharacteristicsID.Charisma] = _data.BaseCharacteristics.Charisma;
-                _data.СurrentCharacteristics[CharacteristicsID.Strength] = _data.BaseCharacteristics.Strength;
-            }
             ApplyModifiers(_data.СurrentCharacteristics, characteristics, add);
             RecalculateDerivedStats();
             if (save) Save();
@@ -119,43 +116,80 @@ namespace Common.Scripts.Player
         {
             _data.СurrentCharacteristics.TryGetValue(CharacteristicsID.Endurance, out int endurance);
             _data.СurrentCharacteristics.TryGetValue(CharacteristicsID.Strength, out int strength);
+            _data.СurrentCharacteristics.TryGetValue(CharacteristicsID.Agility, out int agility);
+
             _data.LiftingCapacity = Mathf.RoundToInt((endurance + strength) * PlayerData.WEIGHT_COEFFICIENT);
             int previousMaxHP = _data.MaxHP;
             _data.MaxHP = Mathf.RoundToInt(endurance * (1f + PlayerData.HP_COEFFICIENT));
+
             // При первой инициализации устанавливаем полное здоровье.
             if (previousMaxHP <= 0 || _data.HP <= 0)
+            {
                 _data.HP = _data.MaxHP;
+            }
             else
+            {
                 _data.HP = Mathf.Min(_data.HP, _data.MaxHP);
+            }
+            
+            _data.AddSkills[SkillsID.Armor] = GetSkillModifier(agility);
+            _data.AddSkills[SkillsID.Accuracy] = GetSkillModifier(agility);
+            _data.AddSkills[SkillsID.Destruction] = GetSkillModifier(strength);
+
+            _data.AddResistics = GetResistanceModifier(endurance);
+        }
+
+        private int GetSkillModifier(int characteristic)
+        {
+            return characteristic switch
+            {
+                0 => -3,
+                1 or 3 or 4 => -2,
+                5 or 6 or 7 => -1,
+                >= 8 and <= 11 => 0,
+                12 or 13 or 14 => 1,
+                15 or 16 or 17 => 2,
+                18 => 3,
+                _ => 0
+            };
+        }
+
+        private float GetResistanceModifier(int endurance)
+        {
+            return endurance switch
+            {
+                0 => -0.8f,
+                1 => -0.7f,
+                3 => -0.6f,
+                4 => -0.5f,
+                5 => -0.4f,
+                6 => -0.3f,
+                7 => -0.2f,
+                8 => -0.1f,
+                9 => 0f,
+                10 => 0.1f,
+                11 => 0.2f,
+                12 => 0.3f,
+                13 => 0.4f,
+                14 => 0.5f,
+                15 => 0.6f,
+                16 => 0.7f,
+                17 => 0.8f,
+                18 => 0.9f,
+                _ => 0f
+            };
         }
 
         public void SetSkills(Dictionary<SkillsID, int> skills, bool isEquip)
         {
             if (skills == null) return;
-            if (_data.Skills.Count == 0)
-            {
-                _data.Skills.Add(SkillsID.Accuracy, 0);
-                _data.Skills.Add(SkillsID.Armor, 0);
-                _data.Skills.Add(SkillsID.Initiative, 0);
-                _data.Skills.Add(SkillsID.Destruction, 0);
-                _data.Skills.Add(SkillsID.Stealth, 0);
-            }
+            
             ApplyModifiers(_data.Skills, skills, isEquip);
         }
 
         public void SetResistics(Dictionary<DamageType, float> resistics, bool isEquip)
         {
             if (resistics == null) return;
-            if (_data.Resistics.Count == 0)
-            {
-                _data.Resistics.Add(DamageType.Acid, 0);
-                _data.Resistics.Add(DamageType.Death, 0);
-                _data.Resistics.Add(DamageType.Electricity, 0);
-                _data.Resistics.Add(DamageType.Fire, 0);
-                _data.Resistics.Add(DamageType.Ice, 0);
-                _data.Resistics.Add(DamageType.Physical, 0);
-                _data.Resistics.Add(DamageType.Оther, 0);
-            }
             ApplyModifiers(_data.Resistics, resistics, isEquip);
         }
 
@@ -198,8 +232,9 @@ namespace Common.Scripts.Player
             return result;
         }
 
-        public bool Equip(IIdentifiable item, bool isSaved = false, bool fromStorage = true)
+        public bool Equip(IIdentifiable item, out string error,bool isSaved = false, bool fromStorage = true)
         {
+            error = String.Empty;
             if (item == null) return false;
            
             switch (item.Type)
@@ -225,14 +260,21 @@ namespace Common.Scripts.Player
                 _ => null
             };
 
-            var checkResult = CheckCharacteristics(characteristics);
+            var checkResult = CheckCharacteristics(characteristics, out error);
 
-            if (characteristics == null || !checkResult) return false;
+            if (characteristics == null || !checkResult)
+            {
+                return false;
+            }
 
             var result = _data.Equip(item, isSaved, fromStorage);
             if (result)
             {
                 SetData(item , true);
+            }
+            else
+            {
+                error = "Нет свободного слота для этого предмета";
             }
 
             return result;
@@ -244,21 +286,49 @@ namespace Common.Scripts.Player
             if (result)
             {
                 SetData(item , false);
+                Save();
             }
             return result;
         }
         
-        public bool CheckCharacteristics(Dictionary<CharacteristicsID, int> characteristics)
+        public bool CheckCharacteristics(Dictionary<CharacteristicsID, int> characteristics, out string error)
         {
+            error = String.Empty;
             if (characteristics == null) return false;
             foreach (var characteristic in characteristics)
             {
                 if (!_data.СurrentCharacteristics.TryGetValue(characteristic.Key, out int current))
                 {
+                    error = "Ошибка характеристики";
                     return false;
                 }
 
-                if (characteristic.Value > current) return false;
+                if (characteristic.Value > current)
+                {
+                    switch (characteristic.Key)
+                    {
+                        case CharacteristicsID.Strength:
+                            error = $"Недостаточно характеристики 'Сила' {current}/{characteristic.Value}";
+                            break;
+                        case CharacteristicsID.Intelligence:
+                            error = $"Недостаточно характеристики 'Интеллект' {current}/{characteristic.Value}";
+                            break;
+                        case CharacteristicsID.Agility:
+                            error = $"Недостаточно характеристики 'Ловкость' {current}/{characteristic.Value}";
+                            break;
+                        case CharacteristicsID.Charisma:
+                            error = $"Недостаточно характеристики 'Харизма' {current}/{characteristic.Value}";
+                            break;
+                        case CharacteristicsID.Endurance:
+                            error = $"Недостаточно характеристики 'Выносливость' {current}/{characteristic.Value}";
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
+                    
+                    
+                    return false;
+                }
             }
 
             return true;

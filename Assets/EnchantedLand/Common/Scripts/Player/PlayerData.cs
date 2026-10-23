@@ -5,6 +5,7 @@ using EnchantedLand.Common.Armor;
 using EnchantedLand.Common.DataModels;
 using EnchantedLand.Common.Race;
 using EnchantedLand.Common.Scripts;
+using UnityEngine;
 
 
 namespace Common.Scripts.Player
@@ -41,9 +42,41 @@ namespace Common.Scripts.Player
         
         public Dictionary<CharacteristicsID, int> СurrentCharacteristics { get; set; } = new Dictionary<CharacteristicsID, int>();
         public Dictionary<SkillsID, int> Skills { get; set; } = new Dictionary<SkillsID, int>();
+        public Dictionary<SkillsID, int> AddSkills { get; set; } = new Dictionary<SkillsID, int>();
         public Dictionary<DamageType, float> Resistics { get; set; } = new Dictionary<DamageType, float>();
+        public float AddResistics { get; set; }
         
         public int AvailableWeight => LiftingCapacity - Weight;
+
+        public void IntiData()
+        {
+            СurrentCharacteristics[CharacteristicsID.Endurance] = BaseCharacteristics.Endurance;
+            СurrentCharacteristics[CharacteristicsID.Intelligence] = BaseCharacteristics.Intelligence;
+            СurrentCharacteristics[CharacteristicsID.Strength] = BaseCharacteristics.Strength;
+            СurrentCharacteristics[CharacteristicsID.Agility] = BaseCharacteristics.Agility;
+            СurrentCharacteristics[CharacteristicsID.Charisma] = BaseCharacteristics.Charisma;
+            
+            Skills[SkillsID.Accuracy] = 0;
+            Skills[SkillsID.Armor] =  0;
+            Skills[SkillsID.Initiative] = 0;
+            Skills[SkillsID.Destruction] = 0;
+            Skills[SkillsID.Stealth] = 0;
+            
+            AddSkills[SkillsID.Accuracy] = 0;
+            AddSkills[SkillsID.Armor] =  0;
+            AddSkills[SkillsID.Initiative] = 0;
+            AddSkills[SkillsID.Destruction] = 0;
+            AddSkills[SkillsID.Stealth] = 0;
+            
+            Resistics[DamageType.Acid] = 0;
+            Resistics[DamageType.Death] = 0;
+            Resistics[DamageType.Electricity] = 0;
+            Resistics[DamageType.Fire] = 0;
+            Resistics[DamageType.Ice] = 0;
+            Resistics[DamageType.Physical] = 0;
+            Resistics[DamageType.Оther] = 0;
+            Debug.Log($"<color=#00FF00>Player Data created</color>");
+        }
         
         public void SaveRaceAndBaseCharacteristics(Race raсe , Dictionary<CharacteristicsID, int> characteristics)
         {
@@ -53,7 +86,8 @@ namespace Common.Scripts.Player
             BaseCharacteristics.Intelligence = characteristics[CharacteristicsID.Intelligence]; 
             BaseCharacteristics.Strength = characteristics[CharacteristicsID.Strength]; 
             BaseCharacteristics.Agility = characteristics[CharacteristicsID.Agility]; 
-            BaseCharacteristics.Charisma = characteristics[CharacteristicsID.Charisma]; 
+            BaseCharacteristics.Charisma = characteristics[CharacteristicsID.Charisma];
+            IntiData();
         }
 
         
@@ -170,7 +204,7 @@ namespace Common.Scripts.Player
             if (item == null) return false;
             for (var i = 0; i < _equiped.Count(); i++)
             {
-                if (i == slotIndex)
+                if (_equiped[i] != null && _equiped[i].ID == item.ID)
                 {
                     _equiped[i] = null;
                     EquipedSave[i] = new SaveItemData();

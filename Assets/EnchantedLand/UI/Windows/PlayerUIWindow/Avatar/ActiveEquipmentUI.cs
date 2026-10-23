@@ -85,8 +85,8 @@ namespace EnchantedLand.UI.PlauerUI
         {
             var builder = new StringBuilder();
             var characteristics = CharacteristicsServise.Characteristics(_playerManager.Data.СurrentCharacteristics);
-            var skills = CharacteristicsServise.Skills(_playerManager.Data.Skills);
-            var res = CharacteristicsServise.Resistance(_playerManager.Data.Resistics);
+            var skills = CharacteristicsServise.Skills(_playerManager.Data.Skills, true);
+            var res = CharacteristicsServise.Resistance(_playerManager.Data.Resistics, true);
             var race = _raceManager.GetById(_playerManager.Data.RaсeId);
             builder.Append("ОБЩИЕ ДАННЫЕ\n");
             builder.Append($"Расса: {race.Title} \n");

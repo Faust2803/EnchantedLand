@@ -91,7 +91,8 @@ public abstract class EquipmentManager<T, G> where T : IIdentifiable where G : n
             if (_playerManager.Data.EquipedSave[i].Type == Type)
             {
                 var item = GetById(_playerManager.Data.EquipedSave[i].Id);
-                _playerManager.Equip(item, false, false);
+                string error = null;
+                _playerManager.Equip(item, out error, false, false);
             }
         }
         

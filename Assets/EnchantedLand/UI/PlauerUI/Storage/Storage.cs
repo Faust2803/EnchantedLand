@@ -100,7 +100,8 @@ namespace EnchantedLand.Common.Scripts
             }
             else
             {
-                if (_playerManager.Equip(item, true))
+               string errorMessage = null;
+                if (_playerManager.Equip(item, out errorMessage,true))
                 {
                     _playerManager.RemoveFromStorage(i, true);
                 }
@@ -109,8 +110,7 @@ namespace EnchantedLand.Common.Scripts
                     var data = new MessageWindowData
                     {
                         Title = "Не экипировано",
-                        Description = $"Ты не можешь экипировать или использовать {item.Title} . \n" +
-                                      "Возможно слот уже занят другим предметом или не хватает характеристик персонажа.",
+                        Description = $"Ты не можешь экипировать или использовать {item.Title} . \n{errorMessage}",
                         CancelAction = null ,
                         OKAction = () => ShowEqupErrorWindow?.Invoke(false),
                         CancelButtonText = "Cancel",
