@@ -4,6 +4,9 @@
 
 - [Архитектура проекта](Documentation/ARCHITECTURE.md)
 - [Установка и запуск](Documentation/SETUP.md)
+- [Сетевая архитектура](Documentation/NETWORK_ARCHITECTURE.md)
+- [Zenject / Extenject и DI](Documentation/DI_ZENJECT.md)
+
 
 ## Технологии
 
