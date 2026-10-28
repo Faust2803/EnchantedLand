@@ -573,7 +573,6 @@ GameObject:
   - component: {fileID: 1393243679}
   - component: {fileID: 1393243678}
   - component: {fileID: 1393243681}
-  - component: {fileID: 1393243682}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -699,25 +698,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!114 &1393243682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1393243677}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7e7f7689fd5414c99bc4ac72e441e24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.CameraFollowCursor2D
-  _target: {fileID: 1986017077}
-  _followSpeed: 5
-  _map: {fileID: 1825277869}
-  _zoomSpeed: 0.2
-  _minZoom: 1
-  _maxZoom: 3
-  _zoomSmooth: 5
 --- !u!1 &1825277868
 GameObject:
   m_ObjectHideFlags: 0
