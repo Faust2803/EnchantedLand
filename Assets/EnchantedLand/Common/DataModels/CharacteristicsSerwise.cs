@@ -39,7 +39,7 @@ namespace EnchantedLand.Common.DataModels
             {
                 if (addSkills != null)
                 {
-                    builder.AppendLine("Броня: " + skills[SkillsID.Armor] + addSkills[SkillsID.Armor]);
+                    builder.AppendLine("Броня: " + (skills[SkillsID.Armor] + addSkills[SkillsID.Armor]));
                 }
                 else
                 {
@@ -50,7 +50,7 @@ namespace EnchantedLand.Common.DataModels
             {
                 if (addSkills != null)
                 {
-                    builder.AppendLine("Точность: " + skills[SkillsID.Accuracy] + addSkills[SkillsID.Accuracy]);
+                    builder.AppendLine("Точность: " + (skills[SkillsID.Accuracy] + addSkills[SkillsID.Accuracy]));
                 }
                 else
                 {
@@ -61,7 +61,7 @@ namespace EnchantedLand.Common.DataModels
             {
                 if (addSkills != null)
                 {
-                    builder.AppendLine("Урон: " + skills[SkillsID.Destruction] + addSkills[SkillsID.Destruction]);
+                    builder.AppendLine("Урон: " + (skills[SkillsID.Destruction] + addSkills[SkillsID.Destruction]));
                 }
                 else
                 {
@@ -73,7 +73,7 @@ namespace EnchantedLand.Common.DataModels
             {
                 if (addSkills != null)
                 {
-                    builder.AppendLine("Инициатива: " + skills[SkillsID.Initiative] + addSkills[SkillsID.Initiative]);
+                    builder.AppendLine("Инициатива: " + (skills[SkillsID.Initiative] + addSkills[SkillsID.Initiative]));
                 }
                 else
                 {
@@ -84,7 +84,7 @@ namespace EnchantedLand.Common.DataModels
             {
                 if (addSkills != null)
                 {
-                    builder.AppendLine("Скрытность: " + skills[SkillsID.Initiative] + addSkills[SkillsID.Initiative]);
+                    builder.AppendLine("Скрытность: " + (skills[SkillsID.Initiative] + addSkills[SkillsID.Initiative]));
                 }
                 else
                 {
@@ -95,36 +95,36 @@ namespace EnchantedLand.Common.DataModels
             return builder;
         }
         
-        public static StringBuilder Resistance(Dictionary<DamageType, float> resistance, bool all = false, float Resistance =0)
+        public static StringBuilder Resistance(Dictionary<DamageType, float> resistance, bool all = false, float allResistance =0)
         {
             var builder = new StringBuilder();
             if (resistance.ContainsKey(DamageType.Physical)  && (resistance[DamageType.Physical] > 0 || all))
             {
-                builder.AppendLine("Физическое: " + resistance[DamageType.Physical]);
+                builder.AppendLine("Физическое: " + (resistance[DamageType.Physical] +allResistance));
             }
             if (resistance.ContainsKey(DamageType.Fire)  && (resistance[DamageType.Fire] > 0 || all))
             {
-                builder.AppendLine("Огонь: " + resistance[DamageType.Fire]);
+                builder.AppendLine("Огонь: " + (resistance[DamageType.Fire]+allResistance));
             }
             if (resistance.ContainsKey(DamageType.Ice)  && (resistance[DamageType.Ice] > 0 || all))
             {
-                builder.AppendLine("Лед: " + resistance[DamageType.Ice]);
+                builder.AppendLine("Лед: " + (resistance[DamageType.Ice]+allResistance));
             }
             if (resistance.ContainsKey(DamageType.Acid)  && (resistance[DamageType.Acid] > 0 || all))
             {
-                builder.AppendLine("Кислота: " + resistance[DamageType.Acid]);
+                builder.AppendLine("Кислота: " + (resistance[DamageType.Acid]+allResistance));
             }
             if (resistance.ContainsKey(DamageType.Electricity)  && (resistance[DamageType.Electricity] > 0 || all))
             {
-                builder.AppendLine("Электричество: " + resistance[DamageType.Electricity]);
+                builder.AppendLine("Электричество: " + (resistance[DamageType.Electricity]+allResistance));
             }
             if (resistance.ContainsKey(DamageType.Paralysis)  && (resistance[DamageType.Paralysis] > 0 || all))
             {
-                builder.AppendLine("Оглушение: " + resistance[DamageType.Paralysis]);
+                builder.AppendLine("Оглушение: " + (resistance[DamageType.Paralysis]+allResistance));
             }
             if (resistance.ContainsKey(DamageType.Death)  && (resistance[DamageType.Death] > 0 || all))
             {
-                builder.AppendLine("Смерть: " + resistance[DamageType.Death]);
+                builder.AppendLine("Смерть: " + (resistance[DamageType.Death]+allResistance));
             }
             return builder;
         }

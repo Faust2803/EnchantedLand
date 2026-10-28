@@ -104,27 +104,35 @@ namespace EnchantedLand.Common.Scripts
                 if (_playerManager.Equip(item, out errorMessage,true))
                 {
                     _playerManager.RemoveFromStorage(i, true);
+                    for (var j = 0; j < _playerManager.Data.Equiped.Count; j++)
+                    {
+
+                        _playerManager.CheckCharacteristics(_playerManager.Data.Equiped[i], out errorMessage);
+                    }
                 }
                 else
                 {
-                    var data = new MessageWindowData
-                    {
-                        Title = "Не экипировано",
-                        Description = $"Ты не можешь экипировать или использовать {item.Title} . \n{errorMessage}",
-                        CancelAction = null ,
-                        OKAction = () => ShowEqupErrorWindow?.Invoke(false),
-                        CancelButtonText = "Cancel",
-                        HasCancelButton = false,
-                        OkButtonText = "Продолжить игру",
-                        HasOKButton = true,
-                    };
-                    _uiManager.ForceOpenWindow(WindowType.MessageWindow,data);
-                    ShowEqupErrorWindow?.Invoke(true);
+                    SendMessage(item, errorMessage);
                 }
             }
         }
-        
-        
+
+        private void SendMessage(IIdentifiable item, string errorMessage)
+        {
+            var data = new MessageWindowData
+            {
+                Title = "Не экипировано",
+                Description = $"Ты не можешь экипировать или использовать {item.Title} . \n{errorMessage}",
+                CancelAction = null ,
+                OKAction = () => ShowEqupErrorWindow?.Invoke(false),
+                CancelButtonText = "Cancel",
+                HasCancelButton = false,
+                OkButtonText = "Продолжить игру",
+                HasOKButton = true,
+            };
+            _uiManager.ForceOpenWindow(WindowType.MessageWindow,data);
+            ShowEqupErrorWindow?.Invoke(true);
+        }
         
         
         

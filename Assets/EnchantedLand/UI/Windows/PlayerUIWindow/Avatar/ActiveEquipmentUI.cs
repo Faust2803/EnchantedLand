@@ -4,6 +4,7 @@ using Common.Scripts.Player;
 using EnchantedLand.Common.DataModels;
 using EnchantedLand.Common.Race;
 using EnchantedLand.Common.Scripts;
+using EnchantedLand.Common.Weapon;
 using Managers;
 using UI.Windows;
 using UnityEngine;
@@ -85,16 +86,33 @@ namespace EnchantedLand.UI.PlauerUI
         {
             var builder = new StringBuilder();
             var characteristics = CharacteristicsServise.Characteristics(_playerManager.Data.СurrentCharacteristics);
-            var skills = CharacteristicsServise.Skills(_playerManager.Data.Skills, true);
-            var res = CharacteristicsServise.Resistance(_playerManager.Data.Resistics, true);
+            var skills = CharacteristicsServise.Skills(_playerManager.Data.Skills, true, _playerManager.Data.AddSkills);
+            var res = CharacteristicsServise.Resistance(_playerManager.Data.Resistics, true, _playerManager.Data.AddResistics);
+            Weapon  weapon = null;
+            for (int i = 0; i < _playerManager.Data.Equiped.Count; i++)
+            {
+                if (_playerManager.Data.Equiped[i] != null && _playerManager.Data.Equiped[i].Type == ItemType.Weapon)
+                {
+                    weapon = _playerManager.Data.Equiped[i] as Weapon;
+                    break;
+                }
+            }
+            
             var race = _raceManager.GetById(_playerManager.Data.RaсeId);
             builder.Append("ОБЩИЕ ДАННЫЕ\n");
             builder.Append($"Расса: {race.Title} \n");
             builder.Append($"Очков здоровья: {_playerManager.Data.HP}/{_playerManager.Data.MaxHP} \n");
             builder.Append($"Грузоподъемность : {_playerManager.Data.LiftingCapacity}кг \n");
             builder.Append($"Деньги : {_playerManager.Data.Currency}монет \n");
-            builder.Append("ХАРАКТЕРИСТИКИ\n");
+            builder.Append("\nХАРАКТЕРИСТИКИ\n");
             builder.Append($"{characteristics.ToString()}\n");
+            if (weapon != null)
+            {
+                builder.Append($"ОРУЖИЕ: {weapon.Title}\n"); ;
+                var dam = CharacteristicsServise.Damage(weapon.Damage);
+                builder.Append("УРОН\n");
+                builder.Append($"{dam.ToString()}\n");
+            }
             builder.Append("УМЕНИЯ\n");
             builder.Append($"{skills.ToString()}\n");
             builder.Append("СОПРОТИВЛЕНИЯ УРОНУ\n");

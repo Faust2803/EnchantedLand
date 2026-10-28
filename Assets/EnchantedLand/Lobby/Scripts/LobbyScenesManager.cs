@@ -2,6 +2,8 @@ using Common.Scripts.Player;
 using Common.Scripts.Tutorial;
 using EnchantedLand.Common.Armor;
 using EnchantedLand.Common.Race;
+using EnchantedLand.Common.Scripts.Others;
+using EnchantedLand.Common.Scripts.Potions;
 using EnchantedLand.Common.Weapon;
 using Managers;
 using UI.Panels;
@@ -19,6 +21,8 @@ namespace Tanks.Lobby.Scripts
         private RaceManager _raceManager;
         private ArmorManager _armorManager;
         private WeaponManager _weaponManager;
+        private PotionsManager _potionsManager;
+        private OthersEquipmentManager _othersEquipmentManager;
 
         [Inject]
         private void Construct(UiManager uiManager,
@@ -26,7 +30,9 @@ namespace Tanks.Lobby.Scripts
             PlayerManager playerManager,
             RaceManager raceManager,
             ArmorManager armorManager,
-            WeaponManager weaponManager)
+            WeaponManager weaponManager,
+            PotionsManager potionsManager,
+            OthersEquipmentManager othersEquipmentManager)
         {
             _uiManager = uiManager; 
             _tutorialManager = tutorialManager;
@@ -34,6 +40,8 @@ namespace Tanks.Lobby.Scripts
             _raceManager = raceManager;
             _armorManager = armorManager;
             _weaponManager = weaponManager;
+            _potionsManager = potionsManager;
+            _othersEquipmentManager = othersEquipmentManager;
         }
 
         void Start()
@@ -93,6 +101,22 @@ namespace Tanks.Lobby.Scripts
                 {
                     _armorManager.LoadDataAction += ArmorLoaded;
                 }
+                if (_potionsManager.Count > 0 )
+                {
+                    _potionsManager.SetSavedData();
+                }
+                else
+                {
+                    _potionsManager.LoadDataAction += PotionsLoaded;
+                }
+                if (_othersEquipmentManager.Count > 0 )
+                {
+                    _othersEquipmentManager.SetSavedData();
+                }
+                else
+                {
+                    _othersEquipmentManager.LoadDataAction += OthersEquipmentLoaded;
+                }
             }
             else
             {
@@ -110,6 +134,18 @@ namespace Tanks.Lobby.Scripts
         {
             _weaponManager.LoadDataAction -= WeaponLoaded;
             _weaponManager.SetSavedData();
+        }
+        
+        private void PotionsLoaded()
+        {
+            _potionsManager.LoadDataAction -= PotionsLoaded;
+            _potionsManager.SetSavedData();
+        }
+        
+        private void OthersEquipmentLoaded()
+        {
+            _othersEquipmentManager.LoadDataAction -= OthersEquipmentLoaded;
+            _othersEquipmentManager.SetSavedData();
         }
 
 

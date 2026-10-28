@@ -81,7 +81,6 @@ namespace Common.Scripts.Player
         public void SaveRaceAndBaseCharacteristics(Race raсe , Dictionary<CharacteristicsID, int> characteristics)
         {
             RaсeId = raсe.ID;
-            
             BaseCharacteristics.Endurance = characteristics[CharacteristicsID.Endurance]; 
             BaseCharacteristics.Intelligence = characteristics[CharacteristicsID.Intelligence]; 
             BaseCharacteristics.Strength = characteristics[CharacteristicsID.Strength]; 
@@ -89,9 +88,7 @@ namespace Common.Scripts.Player
             BaseCharacteristics.Charisma = characteristics[CharacteristicsID.Charisma];
             IntiData();
         }
-
         
-
         public bool AddToStorage(IIdentifiable item, bool isSaved = true, bool isEquiped = false)
         {
             if (item == null) return false;
@@ -108,12 +105,21 @@ namespace Common.Scripts.Player
            
             if (isSaved)
             {
-                StorageSave[index] = new SaveItemData
+                for (var i = 0; i < _storage.Count; i++)
                 {
-                    Type = item.Type,
-                    Id = item.ID,
-                    Count = item.Count
-                };
+                    if (_storage[i] != null)
+                    {
+                        StorageSave[i].Type = _storage[i].Type;
+                        StorageSave[i].Id = _storage[i].ID;
+                        StorageSave[i].Count = _storage[i].Count;
+                        StorageSave[i].SlotId = _storage[i].SlotId;
+                    }
+                    else
+                    {
+                        StorageSave[i] = new SaveItemData();
+                    }
+                }
+                
                 OnStorageChanged?.Invoke(index, item, true); 
             }
             return true;

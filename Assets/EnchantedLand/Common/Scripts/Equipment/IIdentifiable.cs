@@ -26,9 +26,9 @@ namespace EnchantedLand.Common.Scripts
     public enum ItemType
     {
         None = -1,
-        Armor,
-        Weapon,
-        Potions,
-        Other,
+        Armor = 0,
+        Weapon = 1,
+        Potions = 2,
+        Other = 3,
     }
 }

@@ -247,22 +247,36 @@ namespace Common.Scripts.Player
                     return false;
 
                 case ItemType.Armor:
+                    if ((item as Armor).SlotId == EquipmentSlotID.Shield)
+                    {
+                        for (var i = 0; i < _data.Equiped.Count; i++)
+                        {
+                            if (_data.Equiped[i] != null && _data.Equiped[i].SlotId == EquipmentSlotID.Weapon && (_data.Equiped[i] as Weapon).TwoHands)
+                            {
+                                error = $"Вы пытаетесь экипировать {item.Title}. Освободите вторую руку в ней находится {_data.Equiped[i].Title} - двуручное оружие.";
+                                return false;
+                            }
+                        }
+                    }
+                    break;
                 case ItemType.Weapon:
+                    if ((item as Weapon).TwoHands)
+                    {
+                        for (var i = 0; i < _data.Equiped.Count; i++)
+                        {
+                            if (_data.Equiped[i] != null && _data.Equiped[i].SlotId == EquipmentSlotID.Shield)
+                            {
+                                error = $"Вы пытаетесь экипировать {item.Title} - двуручное оружие. Освободите вторую руку, в ней находится {_data.Equiped[i].Title }.";
+                                return false;
+                            }
+                        }
+                    }
                     break;
                 default:
                     return false;
             }
 
-            var characteristics = item switch
-            {
-                Armor armor => armor.NeededCharacteristics,
-                Weapon weapon => weapon.NeededCharacteristics,
-                _ => null
-            };
-
-            var checkResult = CheckCharacteristics(characteristics, out error);
-
-            if (characteristics == null || !checkResult)
+            if (CheckCharacteristics(item, out error))
             {
                 return false;
             }
@@ -291,9 +305,18 @@ namespace Common.Scripts.Player
             return result;
         }
         
-        public bool CheckCharacteristics(Dictionary<CharacteristicsID, int> characteristics, out string error)
+        public bool CheckCharacteristics(IIdentifiable item, out string error)
         {
             error = String.Empty;
+            
+            var characteristics = item switch
+            {
+                Armor armor => armor.NeededCharacteristics,
+                Weapon weapon => weapon.NeededCharacteristics,
+                _ => null
+            };
+            
+            
             if (characteristics == null) return false;
             foreach (var characteristic in characteristics)
             {
