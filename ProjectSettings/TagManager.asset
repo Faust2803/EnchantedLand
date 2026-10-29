@@ -14,25 +14,25 @@ TagManager:
   - 
   - 
   - Ground
+  - Walking
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - Players
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - PostProcessing
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
   - 
   - 
   - 
@@ -43,6 +43,9 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Walking
+    uniqueID: 1255956325
     locked: 0
   - name: Obstacles
     uniqueID: 1733597283
