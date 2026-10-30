@@ -77,4 +77,10 @@ crashlytics-build.properties
 /[Aa]ssets/GLU_Animated_Backgrounds/*
 /[Aa]ssets/EffectExamples/*
 # not commited odin changes
-/[Aa]ssets/_Project/Plugins/JMO Assets/Toony Colors Pro/Demo TCP2/*
+
+
+#temp
+/[Aa]ssets/Plugins/Demigiant/*
+/[Aa]ssets/Plugins/Zenject/*
+/Packages/manifest.json
+/Packages/packages-lock.json

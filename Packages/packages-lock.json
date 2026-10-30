@@ -1,16 +1,18 @@
 {
   "dependencies": {
     "com.cysharp.unitask": {
-      "version": "file:C:/Users/DanyliukStanislav/Desktop/UnityPack/UniTask-master/src/UniTask/Assets/Plugins/UniTask",
+      "version": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
       "depth": 0,
-      "source": "local",
-      "dependencies": {}
+      "source": "git",
+      "dependencies": {},
+      "hash": "a77a1b4a89824fb6df293099de3060daf2a432c1"
     },
     "com.h8man.2d.navmeshplus": {
-      "version": "file:C:/Users/DanyliukStanislav/Desktop/repo/NavMeshPlus-master",
+      "version": "https://github.com/h8man/NavMeshPlus.git",
       "depth": 0,
-      "source": "local",
-      "dependencies": {}
+      "source": "git",
+      "dependencies": {},
+      "hash": "019e15cfe2fe7985ff1ac04cc8db6666ccc0df8d"
     },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
