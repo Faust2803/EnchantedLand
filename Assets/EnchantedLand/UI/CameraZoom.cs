@@ -6,9 +6,9 @@ public class CameraZoom : MonoBehaviour
     private CinemachineCamera vcam;
 
     [Header("Camera Zoom Settings")]
-    public float zoomSpeed = 5f;        // Швидкість зміни зуму
-    public float minZoom = 3f;          // Максимальне наближення (менше значення = ближче)
-    public float maxZoom = 12f;         // Максимальне віддалення (більше значення = далі)
+    public float zoomSpeed = 11f;        // Швидкість зміни зуму
+    public float minZoom = 2f;          // Максимальне наближення (менше значення = ближче)
+    public float maxZoom = 6f;         // Максимальне віддалення (більше значення = далі)
     public float smoothness = 10f;      // Плавність зуму
 
     private float targetZoom;           // Цільовий рівень зуму

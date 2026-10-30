@@ -473,7 +473,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -499,7 +499,7 @@ Transform:
   m_GameObject: {fileID: 1393243677}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -5.86, z: -10}
+  m_LocalPosition: {x: 0.0001933719, y: -5.2706, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -562,7 +562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineBrain
   ShowDebugText: 0
-  ShowCameraFrustum: 1
+  ShowCameraFrustum: 0
   IgnoreTimeScale: 0
   WorldUpOverride: {fileID: 0}
   ChannelMask: -1
@@ -698,6 +698,7 @@ GameObject:
   - component: {fileID: 2019944051}
   - component: {fileID: 2019944050}
   - component: {fileID: 2019944052}
+  - component: {fileID: 2019944054}
   - component: {fileID: 2019944053}
   m_Layer: 0
   m_Name: CinemachineCamera
@@ -777,7 +778,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineFollow
   TrackerSettings:
-    BindingMode: 4
+    BindingMode: 3
     PositionDamping: {x: 1, y: 1, z: 1}
     AngularDampingMode: 0
     RotationDamping: {x: 1, y: 1, z: 1}
@@ -795,10 +796,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcfa74ec2f7047f45ae4d40aa5b0ea4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraZoom
-  zoomSpeed: 5
-  minZoom: 3
-  maxZoom: 12
+  zoomSpeed: 11
+  minZoom: 1
+  maxZoom: 3
   smoothness: 10
+--- !u!114 &2019944054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019944049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f453f694addf4275988fac205bc91968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineConfiner2D
+  BoundingShape2D: {fileID: 2118392347}
+  Damping: 0.5
+  SlowingDistance: 5
+  OversizeWindow:
+    Enabled: 1
+    MaxWindowSize: 1
+    Padding: 0
+  m_LegacyMaxWindowSize: -2
 --- !u!1001 &2079869956
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -807,6 +828,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 364820256283241270, guid: a9c72efb1c79af64a84fbba03d9bd85e, type: 3}
+      propertyPath: m_Size.y
+      value: 12.570366
+      objectReference: {fileID: 0}
+    - target: {fileID: 364820256283241270, guid: a9c72efb1c79af64a84fbba03d9bd85e, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.015182734
+      objectReference: {fileID: 0}
     - target: {fileID: 3342334300038765846, guid: a9c72efb1c79af64a84fbba03d9bd85e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -860,6 +889,90 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9c72efb1c79af64a84fbba03d9bd85e, type: 3}
+--- !u!1 &2118392344
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2118392346}
+  - component: {fileID: 2118392347}
+  m_Layer: 0
+  m_Name: MapBounds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2118392346
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118392344}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.53303, y: -0.66882, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &2118392347
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118392344}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 6.8100567, y: 6.9377575}
+      - {x: -5.737777, y: 6.9384127}
+      - {x: -5.7426653, y: 0.13212335}
+      - {x: -5.7368813, y: -5.6011047}
+      - {x: 6.7969866, y: -5.602449}
+  m_UseDelaunayMesh: 1
 --- !u!1001 &8466847440152619347
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -941,3 +1054,4 @@ SceneRoots:
   - {fileID: 696748980}
   - {fileID: 2079869956}
   - {fileID: 8466847440152619347}
+  - {fileID: 2118392346}
